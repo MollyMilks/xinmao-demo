@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>心锚 · 社区戒毒矫治与康复智能辅助系统 · 路演</title>
+<style>
+:root{
+  --navy:#0B1F3A; --navy2:#123055; --brand:#1A5490; --brand2:#2470B8;
+  --teal:#2EC4B6; --gold:#D4A853; --paper:#F4F7FB; --ink:#152033; --ink2:#4A5A6E; --ink3:#7A8A9C;
+  --line:#E2EAF2; --red:#D64545; --orange:#E08A1E; --green:#1F9D6B;
+  --w:1280px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#071426;
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI","Noto Sans SC",sans-serif;color:var(--ink)}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{
+  position:absolute;inset:0;display:none;flex-direction:column;
+  padding:48px 64px 72px;background:var(--paper);overflow:hidden;
+}
+.slide.on{display:flex;animation:in .45s cubic-bezier(.22,.8,.3,1)}
+@keyframes in{from{opacity:0;transform:translateY(12px) scale(.995)}to{opacity:1;transform:none}}
+.slide.dark{background:linear-gradient(145deg,#0B1F3A 0%,#123A66 55%,#1A5490 100%);color:#fff}
+.slide.dark .muted{color:#A8C0D8}
+.slide.dark .card{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#E8F1FA}
+.slide.dark .kicker{color:var(--teal)}
+.slide.dark h1,.slide.dark h2,.slide.dark h3{color:#fff}
+
+.kicker{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:10px}
+h1{font-size:48px;line-height:1.2;margin:0 0 14px;font-weight:800;letter-spacing:.5px}
+h2{font-size:36px;line-height:1.25;margin:0 0 16px;font-weight:750;letter-spacing:.3px}
+h3{font-size:18px;margin:0 0 10px;font-weight:700}
+.lead{font-size:19px;color:var(--ink2);line-height:1.7;max-width:920px;margin:0 0 22px}
+.muted{color:var(--ink3)}
+.small{font-size:13px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;
+  box-shadow:0 8px 28px rgba(11,31,58,.06);
+}
+.card.accent{border-top:4px solid var(--teal)}
+.card.gold{border-top:4px solid var(--gold)}
+.card.brand{border-top:4px solid var(--brand)}
+.card.red{border-top:4px solid var(--red)}
+
+.stat{font-size:44px;font-weight:800;line-height:1.1;color:var(--brand);font-variant-numeric:tabular-nums}
+.stat.teal{color:var(--teal)} .stat.gold{color:var(--gold)} .stat.red{color:var(--red)}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
+  background:rgba(26,84,144,.08);color:var(--brand);font-size:13.5px;font-weight:600;
+  border:1px solid rgba(26,84,144,.12)
+}
+.slide.dark .chip{background:rgba(255,255,255,.12);color:#D7E6F5;border-color:rgba(255,255,255,.18)}
+.chip.teal{background:rgba(46,196,182,.15);color:#0F8C82;border-color:rgba(46,196,182,.28)}
+.chip.gold{background:rgba(212,168,83,.16);color:#9A7224;border-color:rgba(212,168,83,.3)}
+
+ul.clean{margin:0;padding-left:0;list-style:none}
+ul.clean li{position:relative;padding:10px 0 10px 28px;font-size:16px;line-height:1.65;border-bottom:1px dashed var(--line)}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li::before{
+  content:"";position:absolute;left:6px;top:18px;width:10px;height:10px;border-radius:50%;
+  background:var(--teal);box-shadow:0 0 0 4px rgba(46,196,182,.18)
+}
+.slide.dark ul.clean li{border-color:rgba(255,255,255,.1)}
+
+.steps{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.step{
+  flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:18px 16px;position:relative
+}
+.slide.dark .step{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
+.step .n{
+  width:32px;height:32px;border-radius:10px;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:14px;margin-bottom:10px
+}
+.step.t .n{background:var(--teal)} .step.g .n{background:var(--gold)}
+
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700;margin-right:6px}
+.tag.red{background:#FDECEC;color:#C0392B}
+.tag.orange{background:#FFF4E5;color:#C47A12}
+.tag.green{background:#E7F7F0;color:#0F7A55}
+
+.pill-row{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.pill{
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;
+  min-width:180px;flex:1
+}
+.slide.dark .pill{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
+.pill .v{font-size:28px;font-weight:800;color:var(--teal)}
+.pill .l{font-size:13px;color:var(--ink3);margin-top:4px}
+
+.table{width:100%;border-collapse:collapse;font-size:14.5px}
+.table th,.table td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.table th{font-size:12.5px;letter-spacing:.4px;color:var(--ink3);font-weight:700}
+.slide.dark .table th,.slide.dark .table td{border-color:rgba(255,255,255,.12)}
+
+/* charts */
+.chart{width:100%;height:280px}
+.chart svg{width:100%;height:100%}
+
+/* footer / chrome */
+.chrome{
+  position:absolute;left:0;right:0;bottom:0;height:52px;display:flex;align-items:center;
+  padding:0 28px;gap:14px;background:rgba(11,31,58,.92);color:#A8C0D8;font-size:12.5px;z-index:50
+}
+.chrome .brand{color:#fff;font-weight:700;letter-spacing:.4px}
+.chrome .right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.btn{
+  border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;
+  border-radius:10px;padding:7px 14px;cursor:pointer;font-size:13px;font-family:inherit
+}
+.btn:hover{background:rgba(255,255,255,.16)}
+.progress{position:absolute;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:60;transition:width .3s}
+.page{font-variant-numeric:tabular-nums;color:#fff;font-weight:700}
+
+/* cover extras */
+.cover-wrap{display:flex;flex-direction:column;justify-content:center;height:100%;position:relative;z-index:2}
+.orb{position:absolute;border-radius:50%;filter:blur(0px);opacity:.55}
+.orb1{width:420px;height:420px;right:-80px;top:-60px;background:radial-gradient(circle,rgba(46,196,182,.35),transparent 70%)}
+.orb2{width:360px;height:360px;left:-100px;bottom:-40px;background:radial-gradient(circle,rgba(212,168,83,.28),transparent 70%)}
+.grid-deco{
+  position:absolute;inset:0;opacity:.12;
+  background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(circle at 30% 40%, #000 20%, transparent 70%);
+}
+
+.footer-note{margin-top:auto;padding-top:18px;color:var(--ink3);font-size:12.5px}
+.slide.dark .footer-note{color:#8FB0CC}
+
+.qr-panel{display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:center}
+@media (max-width:800px){.qr-panel{grid-template-columns:1fr}}
+.qr-\boxed{width:220px;height:220px;background:#fff;border-radius:18px;padding:12px;box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.qr-box svg{width:100%;height:100%}
+
+.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.badge{
+  padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:700;
+  background:rgba(46,196,182,.18);color:#0E7C74
+}
+.slide.dark .badge{background:rgba(46,196,182,.22);color:#9FF0E6}
+
+/* keyboard hint */
+.hint{position:fixed;right:18px;bottom:64px;background:rgba(11,31,58,.85);color:#C9DCEF;
+  padding:10px 14px;border-radius:12px;font-size:12px;z-index:70;opacity:.9}
+
+/* flow diagram */
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0}
+.flow .node{
+  background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;
+  font-size:13.5px;font-weight:700;min-width:100px;text-align:center
+}
+.slide.dark .flow .node{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.16)}
+.flow .arrow{color:var(--teal);font-size:18px;font-weight:800}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink3);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" style="width:0%"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 封面 -->
+  <section class="slide dark on" data-title="封面">
+    <div class="grid-deco"></div><div class="orb orb1"></div><div class="orb orb2"></div>
+    <div class="cover-wrap">
+      <div class="kicker">2026 中国（广西）—东盟「AI+法律」应用创新大赛 · 高校学生赛道</div>
+      <h1 style="font-size:56px">心锚</h1>
+      <div style="font-size:28px;font-weight:650;letter-spacing:1px;margin-bottom:18px">
+        社区戒毒矫治与康复智能辅助系统
+      </div>
+      <p class="lead" style="color:#C5D9EC;font-size:20px">
+        基于复发预防模型的多维心理渴求评估 · 风险预警 · 复吸阻断闭环<br>
+        让干预窗口从「复吸之后」前移至「渴求爬升之中」
+      </p>
+      <div class="chips">
+        <span class="chip">规则引擎 + 大模型双通道</span>
+        <span class="chip teal">面向东盟 · 五语支持</span>
+        <span class="chip gold">数据不出域 · 全合成演示</span>
+      </div>
+      <div class="badge-row" style="margin-top:28px">
+        <span class="badge">广西警察学院 · 心锚队</span>
+        <span class="badge">AI 让法律跨越山海</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 赛道契合 -->
+  <section class="slide" data-title="赛道契合">
+    <div class="kicker">Why this track</div>
+    <h2>紧扣「刑罚执行与监管安全」，服务社区戒毒矫治</h2>
+    <p class="lead">大赛方向二明确征集「戒毒康复智能管理与科学戒治」「社区矫正全流程智能监管与精准矫治」——本项目即该场景的可运行原型。</p>
+    <div class="grid3">
+      <div class="card brand">
+        <h3>政策与法律锚点</h3>
+        <ul class="clean">
+          <li>《禁毒法》：社区戒毒 / 社区康复制度</li>
+          <li>《戒毒条例》：出所衔接与后续照管</li>
+          <li>风险分级管控与精准矫治要求</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>业务场景</h3>
+        <ul class="clean">
+          <li>社区矫正工作人员 / 司法所</li>
+          <li>禁毒社工与涉毒矫正对象</li>
+          <li>强制隔离戒毒所管教民警</li>
+        </ul>
+      </div>
+      <div class="card gold">
+        <h3>技术主张</h3>
+        <ul class="clean">
+          <li>可解释规则，满足司法审计</li>
+          <li>LLM 语义增强，不越权决策</li>
+          <li>轻量部署，进得了内网</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-note">评审维度对齐：先进性 · 示范性 · 可推广性 · 实效性 · 项目完整性</div>
+  </section>
+
+  <!-- 3 痛点 -->
+  <section class="slide dark" data-title="痛点">
+    <div class="kicker">The problem</div>
+    <h2>复吸预防的真实堵点，不在脱毒，而在回归社会之后</h2>
+    <div class="grid2" style="margin-top:12px">
+      <div>
+        <ul class="clean">
+          <li><strong>渴求测不准</strong>——最强近端预测因子，却主观、隐蔽、瞬时波动</li>
+          <li><strong>数据不采集</strong>——台账以纸面谈话记录为主，渴求维度从未结构化</li>
+          <li><strong>方案同质化</strong>——帮教模板千人一面，「因人施策」难落地</li>
+          <li><strong>出所后真空</strong>——社区康复期高发，往往复吸后才被动处置</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="stat red">滞后</div>
+        <h3 style="margin-top:12px">识别时点普遍晚于风险形成</h3>
+        <p class="muted" style="font-size:15px;line-height:1.7">
+          依赖定期尿检、谈话与经验判断时，风险信号出现与人工发现之间存在窗口期。
+          系统目标：在风险上升但尚未爆发时触发<strong style="color:#fff">前置干预</strong>。
+        </p>
+        <div class="pill-row">
+          <div class="pill"><div class="v" style="color:#fff">分钟级</div><div class="l">研判响应</div></div>
+          <div class="pill"><div class="v" style="color:#fff">7 日</div><div class="l">趋势窗口</div></div>
+          <div class="pill"><div class="v" style="color:#fff">三档</div><div class="l">风险色标</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 方案总览 -->
+  <section class="slide" data-title="方案总览">
+    <div class="kicker">Solution</div>
+    <h2>心锚：从每日一打，到可执行的阻断动作</h2>
+    <div class="flow">
+      <div class="node">每日打卡</div><div class="arrow">→</div>
+      <div class="node">信号抽取</div><div class="arrow">→</div>
+      <div class="node">五维建模</div><div class="arrow">→</div>
+      <div class="node">净风险</div><div class="arrow">→</div>
+      <div class="node">三级预警</div><div class="arrow">→</div>
+      <div class="node">帮教三步</div><div class="arrow">→</div>
+      <div class="node">复评留痕</div>
+    </div>
+    <div class="grid4" style="margin-top:8px">
+      <div class="card accent"><div class="stat">1 次/日</div><div class="muted">生态瞬时评估（EMA）</div></div>
+      <div class="card brand"><div class="stat">5 维</div><div class="muted">渴求可计算化</div></div>
+      <div class="card gold"><div class="stat">8 类</div><div class="muted">Marlatt 高危情境</div></div>
+      <div class="card red"><div class="stat">3 步</div><div class="muted">当下可执行阻断</div></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3>一句话定位</h3>
+      <p class="lead" style="margin:0">
+        面向<strong>社区戒毒矫治与康复</strong>工作台，把「谁需要立刻干预、干预窗口在哪」变成可视化结论，
+        让有限警力与社工精力聚焦在红色预警与橙色爬升人员上。
+      </p>
+    </div>
+  </section>
+
+  <!-- 5 架构 -->
+  <section class="slide" data-title="架构">
+    <div class="kicker">Architecture</div>
+    <h2>六层流水线：数据接入 → 处置动作</h2>
+    <div class="grid2">
+      <div>
+        <div class="steps" style="flex-direction:column">
+          <div class="step"><div class="n">1</div><strong>数据接入</strong><div class="muted small">打卡、历史档案、工作人员观察</div></div>
+          <div class="step t"><div class="n">2</div><strong>数据治理</strong><div class="muted small">清洗、结构化、情境归并</div></div>
+          <div class="step"><div class="n">3</div><strong>智能研判</strong><div class="muted small">规则打分 + LLM 语义抽取</div></div>
+          <div class="step g"><div class="n">4</div><strong>风险决策</strong><div class="muted small">净风险、三级预警、趋势窗口</div></div>
+          <div class="step"><div class="n">5</div><strong>干预输出</strong><div class="muted small">帮教方案、任务派发、复评</div></div>
+          <div class="step t"><div class="n">6</div><strong>应用展示</strong><div class="muted small">驾驶舱、个案、台账、留痕</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card brand">
+          <h3>工程选型：轻量、可离线、可审计</h3>
+          <table class="table">
+            <tr><th>层</th><th>选型</th><th>理由</th></tr>
+            <tr><td>后端</td><td>Flask</td><td>依赖极少，基层可维护</td></tr>
+            <tr><td>数据</td><td>SQLite</td><td>单机可用，数据不出域</td></tr>
+            <tr><td>图表</td><td>ECharts（本地化）</td><td>断网可渲染</td></tr>
+            <tr><td>研判</td><td>规则为主 + LLM 为辅</td><td>可复现、可解释</td></tr>
+          </table>
+        </div>
+        <div class="card accent" style="margin-top:16px">
+          <h3>部署形态</h3>
+          <p class="muted" style="margin:0">普通电脑或政务云虚拟机即可运行，无需 GPU 服务器与复杂容器编排，便于强制隔离戒毒所与社区矫正机构部署。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 算法 -->
+  <section class="slide" data-title="评估算法">
+    <div class="kicker">Scoring</div>
+    <h2>可审计的风险公式：先把危险加总，再扣掉保护因素</h2>
+    <div class="grid2">
+      <div class="card brand">
+        <h3>净风险计算</h3>
+        <div class="steps" style="margin:8px 0">
+          <div class="step"><div class="n">R</div><strong>原始风险</strong><div class="small muted" style="margin-top:6px">五维得分之和 × (1 + Σ情境权重 / 10)</div></div>
+          <div class="step t"><div class="n">N</div><strong>净风险</strong><div class="small muted" style="margin-top:6px">0.7 × R − 0.3 × 康复资本 C + 30</div></div>
+        </div>
+        <p class="muted" style="margin:0">分数越高越需要关注，落在 0–100 直观区间；系数可按实测数据重新标定。</p>
+      </div>
+      <div>
+        <div class="card">
+          <h3>高危情境加权（近 7 日累加，上限 12）</h3>
+          <table class="table">
+            <tr><th>代码</th><th>情境</th><th>权重</th></tr>
+            <tr><td>CE</td><td>线索／诱因暴露</td><td><strong>4.0</strong></td></tr>
+            <tr><td>IC</td><td>人际冲突</td><td><strong>3.0</strong></td></tr>
+            <tr><td>SP</td><td>社会压力</td><td><strong>2.5</strong></td></tr>
+            <tr><td>NE</td><td>负性情绪状态</td><td><strong>2.0</strong></td></tr>
+            <tr><td>NP</td><td>负性生理状态</td><td><strong>1.5</strong></td></tr>
+          </table>
+        </div>
+        <div class="card accent" style="margin-top:14px">
+          <h3>为什么坚持「规则为主、模型为辅」</h3>
+          <p class="muted" style="margin:0;font-size:14.5px">司法场景必须可解释、可复现：规则打分能逐项核对；LLM 只理解文字自述，不直接决定风险等级。两者差异过大时提示人工复核。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 预警与趋势 -->
+  <section class="slide dark" data-title="预警与趋势">
+    <div class="kicker">Early warning</div>
+    <h2>既看「今天多危险」，也看「是不是在变危险」</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>三级预警</h3>
+        <table class="table">
+          <tr><th>色标</th><th>条件</th><th>响应</th></tr>
+          <tr><td><span class="tag red">红</span></td><td>N ≥ 70</td><td>24–48h 一对一危机面谈 + 一级帮教</td></tr>
+          <tr><td><span class="tag orange">橙</span></td><td>40 ≤ N &lt; 70</td><td>48h 跟进 + 二级方案 / 周关注</td></tr>
+          <tr><td><span class="tag green">绿</span></td><td>N &lt; 40</td><td>常规跟踪 + 月度复评</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>趋势爬升窗口</h3>
+        <ul class="clean">
+          <li>计算近 60 日净风险的 <strong>7 日移动平均</strong></li>
+          <li>连续 3 天上升且累计升幅达阈值 → 爬升窗口</li>
+          <li>未越线也可<strong>上调一档预警</strong>并生成前置任务</li>
+          <li>参数开放可调，场所可按灵敏度重设</li>
+        </ul>
+        <div class="chart" id="chartTrend" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 帮教闭环 -->
+  <section class="slide" data-title="帮教闭环">
+    <div class="kicker">Intervention loop</div>
+    <h2>标准动作打底，个性化表达润色，必须闭环复评</h2>
+    <div class="grid3">
+      <div class="card red">
+        <div class="stat red">01</div>
+        <h3 style="margin-top:8px">即时应激处理</h3>
+        <p class="muted">离开现场、安全确认、紧急联系人、呼吸放松——先把火压住。</p>
+      </div>
+      <div class="card gold">
+        <div class="stat gold">02</div>
+        <h3 style="margin-top:8px">认知重构</h3>
+        <p class="muted">CBT 线索—后果链条梳理，识别「借口合理化」，调整自动化负性想法。</p>
+      </div>
+      <div class="card accent">
+        <div class="stat teal">03</div>
+        <h3 style="margin-top:8px">替代行为</h3>
+        <p class="muted">预设绕行路线、有氧运动、同伴互助——用可执行动作替换旧路径。</p>
+      </div>
+    </div>
+    <div class="card brand" style="margin-top:18px">
+      <h3>研判 — 处置 — 复评 闭环</h3>
+      <div class="flow">
+        <div class="node">风险研判</div><div class="arrow">→</div>
+        <div class="node">一键派发</div><div class="arrow">→</div>
+        <div class="node">执行留痕</div><div class="arrow">→</div>
+        <div class="node">回填复评</div><div class="arrow">→</div>
+        <div class="node">方案迭代</div>
+      </div>
+      <p class="muted" style="margin:0">八类典型高危情境均映射「三步标准动作」；LLM 仅做口语化改写，干预内核不变，确保循证底线。</p>
+    </div>
+  </section>
+
+  <!-- 9 系统演示 -->
+  <section class="slide" data-title="系统演示">
+    <div class="kicker">Live system</div>
+    <h2>已跑通完整演示闭环</h2>
+    <div class="grid2">
+      <div>
+        <div class="card brand">
+          <h3>驾驶舱一屏态势</h3>
+          <div class="pill-row">
+            <div class="pill"><div class="v" style="color:var(--red)">1</div><div class="l">红色预警</div></div>
+            <div class="pill"><div class="v" style="color:var(--orange)">1</div><div class="l">橙色关注</div></div>
+            <div class="pill"><div class="v" style="color:var(--green)">1</div><div class="l">绿色平稳</div></div>
+            <div class="pill"><div class="v">3</div><div class="l">爬升窗口</div></div>
+          </div>
+          <p class="muted" style="margin:0">三名合成个案分别代表持续高危 / 风险爬升 / 平稳向好，便于评审快速检验区分能力。</p>
+        </div>
+        <div class="card accent" style="margin-top:16px">
+          <h3>个案页能力</h3>
+          <ul class="clean">
+            <li>渴求五维雷达图</li>
+            <li>60 日趋势 + 爬升窗口标注</li>
+            <li>证据链与帮教三步</li>
+            <li>处置留痕与重跑评估</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>合成数据策略（合规优先）</h3>
+          <p class="muted" style="font-size:15px;line-height:1.75">
+            心理数据属高度敏感个人信息。演示全程使用<strong>固定随机种子合成数据</strong>（3 人 × 60 天 ≈ 1440 条），
+            界面显著标注「全部为合成虚构数据」。推广路径：合成验证 → 脱敏校准 → 多所协同，数据始终不出域。
+          </p>
+          <div class="chart" id="chartRadar" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 东盟 -->
+  <section class="slide dark" data-title="面向东盟">
+    <div class="kicker">ASEAN ready</div>
+    <h2>规则可翻译 · 方案可复用 · 数据不出境</h2>
+    <p class="lead" style="color:#C5D9EC">
+      广西是我国面向东盟开放合作的前沿，禁毒与戒治是区域内共同关切。
+      心锚将评估维度与帮教方案库设计为可本地化对象，服务中国—东盟经验交流与跨境风险联防联控。
+    </p>
+    <div class="grid3">
+      <div class="card">
+        <h3>五语界面</h3>
+        <div class="badge-row">
+          <span class="badge">中文</span>
+          <span class="badge">English</span>
+          <span class="badge">Tiếng Việt</span>
+          <span class="badge">ภาษาไทย</span>
+          <span class="badge">Bahasa Indonesia</span>
+        </div>
+        <p class="muted small">一键切换导航、风险色标、情境标签与关键业务文案。</p>
+      </div>
+      <div class="card">
+        <h3>本地化接口</h3>
+        <ul class="clean">
+          <li>量表用语按对象国习惯替换</li>
+          <li>帮教方案库可按法律文化裁剪</li>
+          <li>阈值与权重可按场所重标定</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>合规外延</h3>
+        <ul class="clean">
+          <li>数据留在本地，不跨境</li>
+          <li>人工最终决策，AI 不越权</li>
+          <li>审计留痕，责任可追溯</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 合规 -->
+  <section class="slide" data-title="安全合规">
+    <div class="kicker">Compliance</div>
+    <h2>五条硬约束，写进系统而不是写进 PPT</h2>
+    <div class="grid2">
+      <div>
+        <ul class="clean">
+          <li><strong>数据不出域</strong>——可完全离线部署于政务内网</li>
+          <li><strong>零真实个人信息</strong>——演示与测试全部合成数据</li>
+          <li><strong>全程可审计</strong>——规则可复现，LLM 输出单独留档</li>
+          <li><strong>人工最终决策</strong>——AI 不替代执法判断</li>
+          <li><strong>传输与账号安全</strong>——会话管理，可平滑升级 HTTPS</li>
+        </ul>
+      </div>
+      <div class="card gold">
+        <h3>责任边界表述（对内对外一致）</h3>
+        <p class="lead" style="font-size:16px">
+          系统定位为<strong>人工智能辅助评估工具</strong>，所有预警与方案须经管教人员 / 社区矫正工作人员审核确认后执行，
+          不得作为处分、诊断或强制措施的依据。
+        </p>
+        <p class="muted">不使用「预测复吸」「必然复吸」等确定性表述，仅提示风险相对变化与关注窗口期。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 效益 -->
+  <section class="slide" data-title="效益指标">
+    <div class="kicker">Impact</div>
+    <h2>可量化目标：把时间还给真正需要面对面的人</h2>
+    <div class="grid4">
+      <div class="card brand"><div class="stat">≥85%</div><div class="muted">红橙预警召回率</div></div>
+      <div class="card accent"><div class="stat teal">≤10 分钟</div><div class="muted">人均研判时间<br><span class="small">（原约 30 分钟）</span></div></div>
+      <div class="card gold"><div class="stat gold">≥90%</div><div class="muted">爬升窗口 24h 闭环率</div></div>
+      <div class="card red"><div class="stat red">3 类</div><div class="muted">稳定区分风险走势</div></div>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card">
+        <h3>对工作人员</h3>
+        <ul class="clean">
+          <li>从翻谈话记录找信号，变为看曲线定优先级</li>
+          <li>隐性经验沉淀为显性知识库</li>
+          <li>材料整理自动化，精力转向面对面</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>对社会与治理</h3>
+        <ul class="clean">
+          <li>降低复吸率与毒品再危害</li>
+          <li>减轻家庭破裂与基层治理成本</li>
+          <li>矫治记录更规范、透明、可追溯</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 路线图 -->
+  <section class="slide dark" data-title="路线图">
+    <div class="kicker">Roadmap</div>
+    <h2>合成验证 → 单所校准 → 区域复制 → 东盟交流</h2>
+    <div class="steps" style="margin-top:12px">
+      <div class="step"><div class="n">1</div><strong>合成数据验证</strong><div class="muted small" style="margin-top:8px">已完成演示闭环，TRL 6</div></div>
+      <div class="step t"><div class="n">2</div><strong>单场所校准</strong><div class="muted small" style="margin-top:8px">广西试点，实测重标定权重阈值，TRL 7</div></div>
+      <div class="step g"><div class="n">3</div><strong>区域复制</strong><div class="muted small" style="margin-top:8px">所内 + 所外一体化预防网络</div></div>
+      <div class="step"><div class="n">4</div><strong>东盟协同</strong><div class="muted small" style="margin-top:8px">多语方案库、经验交流、联防联控</div></div>
+    </div>
+    <div class="grid2" style="margin-top:20px">
+      <div class="card">
+        <h3>产品延伸</h3>
+        <ul class="clean">
+          <li>移动端打卡与家属端随访</li>
+          <li>帮教权重与提示词随反馈优化</li>
+          <li>软著与知识资产登记</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>合作机制</h3>
+        <ul class="clean">
+          <li>高校—司法局—戒毒所协同科研</li>
+          <li>技术授权与联合课题申报</li>
+          <li>面向东盟的培训与标准输出</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 二维码 -->
+  <section class="slide" data-title="体验">
+    <div class="kicker">Try it now</div>
+    <h2>扫码即刻体验心锚</h2>
+    <div class="qr-panel">
+      <div class="qr-box" id="qrBox"></div>
+      <div>
+        <h3>在线体验站</h3>
+        <p class="lead" style="font-size:18px;margin-bottom:10px" id="urlText">—</p>
+        <p class="muted">含风险驾驶舱、个案雷达与趋势、打卡评估、帮教方案与五语切换。<br>
+        演示账号 <strong>officer / 123456</strong> · 全部为合成虚构数据。</p>
+        <div class="chips">
+          <span class="chip teal">单文件 HTML · 可静态托管</span>
+          <span class="chip gold">本地 Flask 完整版随包交付</span>
+        </div>
+      </div>
+    </div>
+    <div class="card brand" style="margin-top:22px">
+      <h3>谢谢聆听 · 欢迎现场提问</h3>
+      <p class="muted" style="margin:0">
+        心锚队（广西警察学院）· 让干预窗口前移，让矫治更精准，让法律与 AI 一起跨越山海。
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<div class="chrome">
+  <div class="brand">心锚 · 路演</div>
+  <div class="muted" id="slideTitle">封面</div>
+  <div class="right">
+    <span class="page"><span id="pageNum">1</span> / <span id="pageTotal">14</span></span>
+    <button class="btn" onclick="prev()">←</button>
+    <button class="btn" onclick="next()">→</button>
+    <button class="btn" onclick="toggleHint()">?</button>
+  </div>
+</div>
+<div class="hint" id="hint">键盘：← → 翻页 · Home/End 首尾 · 数字键跳页 · F 全屏</div>
+
+<script>
+/* ---------- QR (byte mode, ECC M) ---------- */
+function qr_encode(text){
+  const EXP=new Array(512), LOG=new Array(256);
+  (function(){let x=1;for(let i=0;i<255;i++){EXP[i]=x;LOG[x]=i;x<<=1;if(x&0x100)x^=0x11D}
+    for(let i=255;i<512;i++)EXP[i]=EXP[i-255];})();
+  const gmul=(a,b)=>(a===0||b===0)?0:EXP[LOG[a]+LOG[b]];
+  function polyMul(a,b){const r=new Array(a.length+b.length-1).fill(0);
+    for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)r[i+j]^=gmul(a[i],b[j]);return r;}
+  function genPoly(n){let p=[1];for(let i=0;i<n;i++)p=polyMul(p,[1,EXP[i]]);return p;}
+  function rsEncode(data,ecLen){const gen=genPoly(ecLen);const res=data.concat(new Array(ecLen).fill(0));
+    for(let i=0;i<data.length;i++){const f=res[i];if(f!==0)for(let j=0;j<gen.length;j++)res[i+j]^=gmul(gen[j],f);}
+    return res.slice(data.length);}
+  const VER={1:{ec:10,blocks:[[16,1]]},2:{ec:16,blocks:[[28,1]]},3:{ec:26,blocks:[[44,1]]},
+    4:{ec:18,blocks:[[32,2]]},5:{ec:24,blocks:[[43,1],[27,1]]},6:{ec:16,blocks:[[27,2],[28,2]]}};
+  const bytes=Array.from(new TextEncoder().encode(text));
+  let ver=0;
+  for(let v=1;v<=6;v++){const cap=VER[v].blocks.reduce((s,b)=>s+b[0]*b[1],0);
+    if(bytes.length+2<=cap){ver=v;break;}}
+  if(!ver) throw new Error('too long');
+  const spec=VER[ver];const dataCap=spec.blocks.reduce((s,b)=>s+b[0]*b[1],0);
+  const bits=[];const push=(val,len)=>{for(let i=len-1;i>=0;i--)bits.push((val>>i)&1)};
+  push(0b0100,4);push(bytes.length,8);bytes.forEach(b=>push(b,8));
+  const capBits=dataCap*8;
+  for(let i=0;i<4&&bits.length<capBits;i++)bits.push(0);
+  while(bits.length%8)bits.push(0);
+  const pads=[0xEC,0x11];
+  for(let i=0;bits.length<capBits;i++)push(pads[i%2],8);
+  const dataCw=[];for(let i=0;i<bits.length;i+=8){let b=0;for(let j=0;j<8;j++)b=(b<<1)|bits[i+j];dataCw.push(b);}
+  const blocks=[];let idx=0;
+  spec.blocks.forEach(([n,count])=>{for(let c=0;c<count;c++){const d=dataCw.slice(idx,idx+n);idx+=n;
+    blocks.push({data:d,ec:rsEncode(d,spec.ec)});}});
+  const finalCw=[];const maxD=Math.max(...blocks.map(b=>b.data.length));
+  for(let i=0;i<maxD;i++)blocks.forEach(b=>{if(i<b.data.length)finalCw.push(b.data[i]);});
+  for(let i=0;i<spec.ec;i++)blocks.forEach(b=>finalCw.push(b.ec[i]));
+  const size=17+ver*4;
+  const m=Array.from({length:size},()=>new Array(size).fill(null));
+  const reserved=Array.from({length:size},()=>new Array(size).fill(false));
+  const setF=(r,c,v)=>{if(r>=0&&c>=0&&r<size&&c<size){m[r][c]=v;reserved[r][c]=true}};
+  function finder(r0,c0){for(let i=-1;i<=7;i++)for(let j=-1;j<=7;j++){
+    const on=(i>=0&&i<=6&&(j===0||j===6))||(j>=0&&j<=6&&(i===0||i===6))||(i>=2&&i<=4&&j>=2&&j<=4);
+    setF(r0+i,c0+j,on?1:0);}}
+  finder(0,0);finder(0,size-7);finder(size-7,0);
+  for(let i=8;i<size-8;i++){setF(6,i,i%2===0?1:0);setF(i,6,i%2===0?1:0);}
+  if(ver>=2){const centers={2:[6,18],3:[6,22],4:[6,26],5:[6,30],6:[6,34]}[ver];
+    for(const r of centers)for(const c of centers){
+      if((r<=7&&c<=7)||(r<=7&&c>=size-8)||(r>=size-8&&c<=7))continue;
+      for(let i=-2;i<=2;i++)for(let j=-2;j<=2;j++){
+        const on=Math.max(Math.abs(i),Math.abs(j))!==1;setF(r+i,c+j,on?1:0);}}}
+  for(let i=0;i<9;i++){if(i!==6){reserved[8][i]=true;reserved[i][8]=true;}}
+  for(let i=0;i<8;i++){reserved[8][size-1-i]=true;reserved[size-1-i][8]=true;}
+  m[size-8][8]=1;reserved[size-8][8]=true;
+  const dataBits=[];finalCw.forEach(cw=>{for(let i=7;i>=0;i--)dataBits.push((cw>>i)&1)});
+  let bi=0,upward=true;
+  for(let col=size-1;col>0;col-=2){
+    if(col===6)col=5;
+    for(let k=0;k<size;k++){
+      const row=upward?(size-1-k):k;
+      for(let d=0;d<2;d++){
+        const c=col-d;
+        if(!reserved[row][c]){
+          let bit=bi<dataBits.length?dataBits[bi++]:0;
+          if((row+c)%2===0)bit^=1;
+          m[row][c]=bit;
+        }
+      }
+    }
+    upward=!upward;
+  }
+  function formatBits(ecl,mask){const data=(ecl<<3)|mask;let rem=data;
+    for(let i=0;i<10;i++)rem=(rem<<1)^((rem>>9)*0x537);
+    return ((data<<10)|rem)^0x5412;}
+  const fmt=formatBits(0b00,0);const fbit=i=>(fmt>>i)&1;
+  for(let i=0;i<=5;i++)m[i][8]=fbit(i);
+  m[7][8]=fbit(6);m[8][8]=fbit(7);m[8][7]=fbit(8);
+  for(let i=9;i<15;i++)m[8][14-i]=fbit(i);
+  for(let i=0;i<8;i++)m[8][size-1-i]=fbit(i);
+  for(let i=8;i<15;i++)m[size-15+i][8]=fbit(i);
+  m[size-8][8]=1;
+  return m;
+}
+function renderQR(url){
+  try{
+    const m=qr_encode(url);const n=m.length;const scale=Math.floor(190/n)||2;const gap=1;
+    const px=n*(scale+gap);
+    let cells='';
+    for(let r=0;r<n;r++)for(let c=0;c<n;c++)
+      if(m[r][c])cells+=`<rect x="${c*(scale+gap)}" y="${r*(scale+gap)}" width="${scale}" height="${scale}" fill="#0B1F3A"/>`;
+    document.getElementById('qrBox').innerHTML=`<svg viewBox="0 0 ${px} ${px}">${cells}</svg>`;
+    document.getElementById('urlText').textContent=url;
+  }catch(e){
+    document.getElementById('qrBox').innerHTML=`<div style="display:grid;place-items:center;height:100%;font-size:12px;color:#7A8A9C;text-align:center">${url}</div>`;
+    document.getElementById('urlText').textContent=url;
+  }
+}
+
+/* ---------- charts ---------- */
+function drawTrend(){
+  const peaks=[4,5,5,6,6,7,6,7,7,8,7,8,8,7,8,8,9,8,8,9,8,9,9,8,9,9,8,9,9,9,
+               8,9,9,9,9,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9];
+  const ma=peaks.map((_,i)=>{const s=Math.max(0,i-6);const a=peaks.slice(s,i+1);
+    return a.reduce((x,y)=>x+y,0)/a.length;});
+  const w=520,h=260,padL=36,padR=12,padT=16,padB=28;
+  const iw=w-padL-padR,ih=h-padT-padB,n=peaks.length;
+  const x=i=>padL+i*(iw/(n-1)),y=v=>padT+ih-(v/10)*ih;
+  let grid='';
+  for(let v=0;v<=10;v+=2){
+    grid+=`<line x1="${padL}" y1="${y(v)}" x2="${w-padR}" y2="${y(v)}" stroke="rgba(255,255,255,.12)"/>
+           <text x="${padL-8}" y="${y(v)}" text-anchor="end" font-size="10" fill="#8FB0CC">${v}</text>`;
+  }
+  const path=a=>a.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+  document.getElementById('chartTrend').innerHTML=`<svg viewBox="0 0 ${w} ${h}">
+    ${grid}
+    <path d="${path(peaks)}" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+    <path d="${path(ma)}" fill="none" stroke="#2EC4B6" stroke-width="2.6"/>
+    <rect x="${padL}" y="${padT}" width="12" height="3" fill="rgba(255,255,255,.28)"/>
+    <text x="${padL+18}" y="${padT+2}" font-size="10" fill="#8FB0CC">每日峰值</text>
+    <rect x="${padL+80}" y="${padT}" width="12" height="3" fill="#2EC4B6"/>
+    <text x="${padL+98}" y="${padT+2}" font-size="10" fill="#8FB0CC">7日均线</text>
+  </svg>`;
+}
+function drawRadar(){
+  const labels=['强度','频率','持续','失控','应对'];
+  const vals=[8.2,7.6,6.8,7.9,6.4];
+  const w=320,h=260,cx=w/2,cy=h/2+4,R=88,n=5;
+  const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]};
+  let rings='';
+  [0.25,0.5,0.75,1].forEach(f=>{
+    const pts=Array.from({length:n},(_,i)=>pt(i,R*f).join(',')).join(' ');
+    rings+=`<polygon points="${pts}" fill="none" stroke="#E2EAF2"/>`;
+  });
+  let axes='';
+  for(let i=0;i<n;i++){const [x,y]=pt(i,R);axes+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#E2EAF2"/>`}
+  const dp=vals.map((v,i)=>pt(i,R*v/10).join(',')).join(' ');
+  let dots='';
+  vals.forEach((v,i)=>{const [x,y]=pt(i,R*v/10);dots+=`<circle cx="${x}" cy="${y}" r="4" fill="#1A5490"/>`});
+  let texts='';
+  labels.forEach((lb,i)=>{const [x,y]=pt(i,R+22);
+    texts+=`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#4A5A6E">${lb}</text>`});
+  document.getElementById('chartRadar').innerHTML=`<svg viewBox="0 0 ${w} ${h}">
+    ${rings}${axes}
+    <polygon points="${dp}" fill="rgba(26,84,144,0.22)" stroke="#1A5490" stroke-width="2"/>
+    ${dots}${texts}
+  </svg>`;
+}
+
+/* ---------- deck nav ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+let idx=0;
+document.getElementById('pageTotal').textContent=slides.length;
+function show(i){
+  idx=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,k)=>s.classList.toggle('on',k===idx));
+  document.getElementById('pageNum').textContent=idx+1;
+  document.getElementById('slideTitle').textContent=slides[idx].dataset.title||'';
+  document.getElementById('progress').style.width=((idx+1)/slides.length*100)+'%';
+}
+function next(){show(idx+1)}
+function prev(){show(idx-1)}
+function toggleHint(){
+  const h=document.getElementById('hint');
+  h.style.display=h.style.display==='none'?'block':'none';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+  else if(e.key==='Home'){show(0)}
+  else if(e.key==='End'){show(slides.length-1)}
+  else if(e.key==='f'||e.key==='F'){
+    if(!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  }
+  else if(/^[1-9]$/.test(e.key)) show(+e.key-1);
+  else if(e.key==='0') show(9);
+});
+document.addEventListener('click',e=>{
+  if(e.target.closest('.chrome')||e.target.closest('.hint'))return;
+  if(e.clientX > window.innerWidth*0.65) next();
+  else if(e.clientX < window.innerWidth*0.2) prev();
+});
+
+// QR URL: same directory experience site if available, else current page
+const qurl = (function(){
+  try{
+    const u=new URL(location.href);
+    // if this ppt sits next to 体验站/index.html
+    return u.href.replace(/[^/]*$/, '') + '体验站/index.html';
+  }catch(e){ return location.href; }
+})();
+// Prefer explicit query ?url=
+const params=new URLSearchParams(location.search);
+const target=params.get('url')||qurl;
+renderQR(target);
+drawTrend();
+drawRadar();
+show(0);
+setTimeout(()=>{document.getElementById('hint').style.display='none'},6000);
+</script>
+</body>
+</html>
