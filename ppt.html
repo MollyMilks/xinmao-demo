@@ -287,6 +287,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 
 .row-cards{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
 .row-cards>*{flex:1 1 120px;min-width:0}
+.row-cards.tight{gap:8px}
+.row-cards.tight>*{padding:12px!important}
 
 /* ========== COVER PREMIUM FX ========== */
 #coverFx{
@@ -412,6 +414,72 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 .flow.vertical .node{width:100%}
 .flow.vertical .arrow{transform:rotate(90deg);align-self:center}
 
+
+/* ===== balanced full-height layout ===== */
+.slide>.kicker{flex:0 0 auto}
+.slide>h2{flex:0 0 auto;margin-bottom:12px}
+.split{
+  flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:22px;
+  min-height:0;align-items:stretch
+}
+.split>div{min-width:0;display:flex;flex-direction:column;gap:12px}
+.split>div>.glass,.split>div>.ui-panel,.split>div>.step-rail,
+.split>div>.row-cards,.split>div>.qr-panel{min-width:0}
+.split>div>.glass{flex:1 1 auto}
+.split>div>.row-cards{flex:0 0 auto}
+.split>div>.last-fill{flex:1 1 auto;display:flex;flex-direction:column;justify-content:flex-end}
+
+/* left col filler card - always anchors bottom */
+.fill-card{
+  margin-top:auto;flex:0 0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px
+}
+.fill-card .fc{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;padding:12px 12px 10px
+}
+.fill-card .fc .k{font-size:11px;color:#8FB0CC;letter-spacing:.4px;margin-bottom:4px}
+.fill-card .fc .v{font-size:15px;font-weight:750;color:#EAF2FF;line-height:1.35}
+
+/* taller mini stats strip */
+.mini-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:0 0 auto}
+.mini-stats .ms{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;padding:12px 10px;text-align:center
+}
+.mini-stats .ms .n{font-size:22px;font-weight:800;line-height:1.15}
+.mini-stats .ms .l{font-size:11px;color:#8FB0CC;margin-top:3px}
+
+/* content list block that grows */
+.bullets{margin:0;padding:0;list-style:none;flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-evenly}
+.bullets li{
+  position:relative;padding:8px 0 8px 18px;font-size:14px;line-height:1.65;color:#D7E6F5
+}
+.bullets li::before{
+  content:"";position:absolute;left:0;top:15px;width:7px;height:7px;border-radius:50%;
+  background:#2EE6D6;box-shadow:0 0 10px rgba(46,230,214,.55)
+}
+
+/* bottom banner strip */
+.bottom-strip{
+  margin-top:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:11px 14px;border-radius:12px;
+  background:linear-gradient(90deg,rgba(46,230,214,.12),rgba(110,200,255,.06),transparent);
+  border:1px solid rgba(46,230,214,.18);
+  font-size:12px;color:#B8D0E8
+}
+.bottom-strip .dotp{width:7px;height:7px;border-radius:50%;background:#2EE6D6;
+  box-shadow:0 0 10px rgba(46,230,214,.7);flex:0 0 auto}
+
+/* QR slide left: vertical stack fills */
+.qr-left{display:flex;flex-direction:column;gap:14px;height:100%}
+.qr-left .qr-panel{margin:0}
+
+@media(max-width:1100px){
+  .split{grid-template-columns:1fr}
+  .fill-card{grid-template-columns:1fr 1fr}
+}
+
 </style>
 </head>
 <body>
@@ -451,6 +519,10 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
         <span class="badge">广西警察学院 · 心锚队</span>
         <span class="badge">AI 让法律跨越山海</span>
       </div>
+      <div class="bottom-strip rv d6" style="margin-top:18px">
+        <span class="dotp"></span>
+        <span>规则引擎 + 大模型 · 面向东盟五语 · 数据不出域</span>
+      </div>
     </div>
     <div class="glass  rv d3" style="display:flex;flex-direction:column;justify-content:center">
       <h3>核心能力速览</h3>
@@ -485,6 +557,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       <div class="chips rv d4">
         <span class="chip">先进性</span><span class="chip">示范性</span>
         <span class="chip gold">可推广性</span><span class="chip">实效性</span>
+      </div>
+
+      <div class="fill-card rv d5">
+        <div class="fc"><div class="k">方向</div><div class="v">刑罚执行与监管安全</div></div>
+        <div class="fc"><div class="k">赛道</div><div class="v">高校学生</div></div>
+        <div class="fc"><div class="k">主题</div><div class="v">AI 让法律跨越山海</div></div>
       </div>
     </div>
     <div class="ui-panel rv d3">
@@ -540,6 +618,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
         <div class="stat red">滞后</div>
         <p class="small muted" style="margin:8px 0 0">目标：风险爬升阶段就前置干预，而非复吸后处置。</p>
       </div>
+
+      <div class="fill-card rv d4">
+        <div class="fc"><div class="k">窗口</div><div class="v">复吸前爬升期</div></div>
+        <div class="fc"><div class="k">对象</div><div class="v">社区戒毒康复</div></div>
+        <div class="fc"><div class="k">目标</div><div class="v">前置干预</div></div>
+      </div>
     </div>
     <div class="ui-panel rv d3">
       <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -592,6 +676,11 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           面向<strong>社区戒毒矫治与康复</strong>，把「谁需要立刻干预、窗口在哪」变成可视化结论。
         </p>
       </div>
+
+      <div class="bottom-strip rv d5">
+        <span class="dotp"></span>
+        <span>把「谁需要立刻干预、窗口在哪」变成可视化结论</span>
+      </div>
     </div>
     <div class="ui-panel rv d3">
       <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -640,6 +729,11 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <tr><th>后端</th><td>Flask</td><th>数据</th><td>SQLite</td></tr>
           <tr><th>图表</th><td>ECharts 本地</td><th>研判</th><td>规则 + LLM</td></tr>
         </table>
+      </div>
+
+      <div class="bottom-strip rv d5">
+        <span class="dotp"></span>
+        <span>Flask + SQLite + ECharts 本地化 · 可离线政务内网部署</span>
       </div>
     </div>
     <div class="ui-panel rv d3">
@@ -698,6 +792,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <tr><th>NE</th><td>负性情绪</td><th>2.0</th></tr>
         </table>
       </div>
+
+      <div class="fill-card rv d4">
+        <div class="fc"><div class="k">可解释</div><div class="v">逐项可追溯</div></div>
+        <div class="fc"><div class="k">可复现</div><div class="v">同入同出</div></div>
+        <div class="fc"><div class="k">可标定</div><div class="v">系数可调</div></div>
+      </div>
     </div>
     <div class="ui-panel rv d3">
       <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -740,6 +840,11 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       </div>
       <div class="glass teal  rv d3" style="margin-top:12px">
         <div class="chart" id="chartTrend"></div>
+      </div>
+
+      <div class="bottom-strip rv d4">
+        <span class="dotp"></span>
+        <span>未越线也可上调一档预警 · 参数开放可调</span>
       </div>
     </div>
     <div class="ui-panel rv d3">
@@ -799,6 +904,11 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       <div class="step-item" data-i="6"><div class="idx">7</div><div>复评完成<br><span class="small muted">研判—处置—复评</span></div></div>
       <div class="glass teal" style="padding:12px 14px;margin-top:6px">
         <div class="small muted" id="demoHint">自动演示中 · 点击步骤可跳转 · 节奏已放慢</div>
+      </div>
+
+      <div class="bottom-strip rv d4">
+        <span class="dotp"></span>
+        <span>七幕自动演示 · 点击右侧步骤可跳转</span>
       </div>
     </div>
     <div class="ui-panel rv d3" id="device" style="min-height:420px">
@@ -1028,6 +1138,18 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <div class="node">迭代</div>
         </div>
       </div>
+
+      <div class="fill-card rv d5">
+        <div class="fc"><div class="k">八类情境</div><div class="v">均有标准三步</div></div>
+        <div class="fc"><div class="k">个性化</div><div class="v">LLM 仅改写表达</div></div>
+        <div class="fc"><div class="k">闭环</div><div class="v">回填复评</div></div>
+      </div>
+
+      <div class="fill-card rv d5">
+        <div class="fc"><div class="k">越南</div><div class="v">Tiếng Việt</div></div>
+        <div class="fc"><div class="k">泰国</div><div class="v">ภาษาไทย</div></div>
+        <div class="fc"><div class="k">印尼/马来</div><div class="v">Bahasa</div></div>
+      </div>
     </div>
     <div class="ui-panel rv d3">
       <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -1136,6 +1258,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           不得作为处分、诊断或强制措施依据。
         </p>
       </div>
+
+      <div class="fill-card rv d5">
+        <div class="fc"><div class="k">数据</div><div class="v">合成 · 不出域</div></div>
+        <div class="fc"><div class="k">决策</div><div class="v">人工最终确认</div></div>
+        <div class="fc"><div class="k">审计</div><div class="v">全程留痕</div></div>
+      </div>
     </div>
     <div class="ui-panel rv d3">
       <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -1184,6 +1312,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <li>隐性经验沉淀为显性知识库</li>
           <li>降低复吸率与毒品再危害</li>
         </ul>
+      </div>
+
+      <div class="fill-card rv d5">
+        <div class="fc"><div class="k">对民警</div><div class="v">研判时间下降</div></div>
+        <div class="fc"><div class="k">对对象</div><div class="v">方案更精准</div></div>
+        <div class="fc"><div class="k">对治理</div><div class="v">复吸危害降低</div></div>
       </div>
     </div>
     <div class="ui-panel rv d3">
@@ -1235,6 +1369,12 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <li>高校—司法局—戒毒所协同</li>
         </ul>
       </div>
+
+      <div class="fill-card rv d5">
+        <div class="fc"><div class="k">现在</div><div class="v">TRL 6 验证完成</div></div>
+        <div class="fc"><div class="k">下一步</div><div class="v">单所真实校准</div></div>
+        <div class="fc"><div class="k">目标</div><div class="v">区域 + 东盟</div></div>
+      </div>
     </div>
     <div class="ui-panel rv d3">
       <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -1283,6 +1423,11 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       </div>
       <div class="glass  rv d3" style="margin-top:14px">
         <h3 style="margin:0">谢谢聆听 · 心锚队（广西警察学院）</h3>
+      </div>
+
+      <div class="bottom-strip rv d4">
+        <span class="dotp"></span>
+        <span>演示账号 officer / 123456 · 合成数据 · AI 辅助 · 人工最终决策</span>
       </div>
     </div>
     <div class="ui-panel rv d3">
