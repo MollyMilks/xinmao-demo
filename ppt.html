@@ -6,212 +6,145 @@
 <title>心锚 · 社区戒毒矫治与康复智能辅助系统 · 路演</title>
 <style>
 :root{
-  --navy:#050D1A; --navy2:#0A1B30; --brand:#1A5490; --brand2:#2E7BD6;
-  --teal:#2EE6D6; --cyan:#6EC8FF; --gold:#F0C56A; --paper:#F4F8FF;
+  --navy:#050D1A; --brand:#1A5490; --brand2:#2E7BD6;
+  --teal:#2EE6D6; --cyan:#6EC8FF; --gold:#F0C56A;
   --ink:#12203A; --ink2:#3E5070; --ink3:#7189A8;
   --red:#FF6B7A; --orange:#FFB454; --green:#3DFFA8;
-  --glass:rgba(255,255,255,.10);
-  --glass-brd:rgba(255,255,255,.22);
-  --shadow:0 24px 60px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;height:100%;overflow:hidden;
-  background:var(--navy);color:#fff;
-  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
-  -webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--navy);color:#fff;
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
 
-/* ================= stage ================= */
 #stage{position:relative;width:100vw;height:100vh;overflow:hidden}
-
-/* particles + aurora */
-#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.7}
-.aurora{
-  position:absolute;inset:-20%;z-index:0;pointer-events:none;opacity:.55;
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
+.aurora{position:absolute;inset:-25%;z-index:0;pointer-events:none;opacity:.65;
   background:
-    radial-gradient(48% 40% at 20% 25%, rgba(46,230,214,.28), transparent 60%),
-    radial-gradient(42% 38% at 80% 20%, rgba(110,200,255,.22), transparent 60%),
-    radial-gradient(50% 42% at 60% 85%, rgba(240,197,106,.18), transparent 60%);
-  filter:blur(40px);
-  animation:auroraMove 16s ease-in-out infinite alternate;
-}
+    radial-gradient(45% 40% at 18% 22%, rgba(46,230,214,.32), transparent 60%),
+    radial-gradient(40% 36% at 82% 18%, rgba(110,200,255,.26), transparent 60%),
+    radial-gradient(48% 40% at 55% 88%, rgba(240,197,106,.20), transparent 60%),
+    radial-gradient(30% 28% at 40% 50%, rgba(120,160,255,.14), transparent 60%);
+  filter:blur(48px);animation:auroraMove 14s ease-in-out infinite alternate}
 @keyframes auroraMove{
   0%{transform:translate3d(-2%,-1%,0) scale(1)}
-  50%{transform:translate3d(3%,2%,0) scale(1.05)}
-  100%{transform:translate3d(-1%,3%,0) scale(1.02)}
+  50%{transform:translate3d(4%,2%,0) scale(1.08)}
+  100%{transform:translate3d(-1%,3%,0) scale(1.03)}
 }
 
-#progress{
-  position:absolute;left:0;top:0;height:3px;z-index:70;width:0;
+#progress{position:absolute;left:0;top:0;height:3px;z-index:70;width:0;
   background:linear-gradient(90deg,var(--teal),var(--cyan),var(--gold),var(--teal));
-  background-size:200% 100%;
-  box-shadow:0 0 18px rgba(46,230,214,.75);
-  animation:progShift 6s linear infinite;
-  transition:width .45s cubic-bezier(.22,.8,.3,1)
-}
-@keyframes progShift{to{background-position:200% 0}}
+  background-size:220% 100%;box-shadow:0 0 20px rgba(46,230,214,.8);
+  animation:progShift 5s linear infinite;transition:width .5s ease}
+@keyframes progShift{to{background-position:220% 0}}
 
-/* ================= slides ================= */
+/* ========== slides ========== */
 .slide{
   position:absolute;inset:0;display:flex;flex-direction:column;
-  padding:60px 78px 96px;
-  opacity:0;visibility:hidden;pointer-events:none;
-  transform:translateY(26px) scale(.985);filter:blur(4px);
-  transition:opacity .55s ease,transform .55s cubic-bezier(.22,.8,.3,1),
-    filter .55s ease,visibility .55s;
-  z-index:2;overflow:hidden
+  padding:52px 64px 88px;opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(22px) scale(.99);filter:blur(3px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.22,.8,.3,1),
+    filter .6s ease,visibility .6s;z-index:2;overflow:hidden
 }
 .slide.on{opacity:1;visibility:visible;pointer-events:auto;transform:none;filter:none}
-.slide.dark{
-  background:
-    linear-gradient(145deg,rgba(10,27,48,.92),rgba(14,42,78,.88),rgba(8,22,42,.94));
-}
-.slide.light{
-  background:linear-gradient(165deg,#F7FAFF 0%,#E8F1FB 50%,#DCE8F8 100%);
-  color:var(--ink)
-}
-.slide.cover{
-  background:
-    radial-gradient(900px 520px at 75% 15%, rgba(46,230,214,.22), transparent 55%),
-    radial-gradient(800px 480px at 15% 85%, rgba(240,197,106,.16), transparent 55%),
-    linear-gradient(135deg,#050D1A 0%,#0A1B30 45%,#123A6B 100%);
-}
-.slide.light .aurora{opacity:.28}
+.slide.dark{background:linear-gradient(145deg,rgba(8,22,42,.90),rgba(12,36,68,.86),rgba(6,18,36,.93))}
+.slide.light{background:linear-gradient(165deg,#F6FAFF,#E7F0FB,#DAE6F6);color:var(--ink)}
+.slide.cover{background:
+  radial-gradient(900px 520px at 72% 12%, rgba(46,230,214,.26), transparent 55%),
+  radial-gradient(800px 480px at 12% 88%, rgba(240,197,106,.18), transparent 55%),
+  linear-gradient(135deg,#050D1A,#0A1B30 45%,#123A6B)}
+.slide.light .aurora{opacity:.30}
 
-/* ================= liquid glass ================= */
+/* two-column default: text | live ui */
+.split{flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:26px;min-height:0;align-items:stretch}
+.split.wide-ui{grid-template-columns:.95fr 1.15fr}
+@media(max-width:1100px){.split{grid-template-columns:1fr}}
+
+/* ========== liquid glass ========== */
 .glass{
   position:relative;overflow:hidden;
-  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.05));
-  border:1px solid var(--glass-brd);
-  border-radius:22px;
-  backdrop-filter:blur(22px) saturate(160%);
-  -webkit-backdrop-filter:blur(22px) saturate(160%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.35),
-    inset 0 -1px 0 rgba(255,255,255,.08),
-    var(--shadow);
-  padding:26px 28px
+  background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.22);border-radius:22px;
+  backdrop-filter:blur(24px) saturate(170%);
+  -webkit-backdrop-filter:blur(24px) saturate(170%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 0 -1px 0 rgba(255,255,255,.08),
+    0 24px 60px rgba(0,0,0,.32);padding:22px 24px
 }
-.glass::before{
-  content:"";position:absolute;inset:-40%;
-  background:linear-gradient(115deg,
-    transparent 35%,
-    rgba(255,255,255,.28) 48%,
-    rgba(255,255,255,.08) 55%,
-    transparent 70%);
-  transform:translateX(-70%) rotate(8deg);
-  animation:sweep 7s ease-in-out infinite;
-  pointer-events:none
-}
-.glass::after{
-  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:radial-gradient(120% 90% at 0% 0%, rgba(255,255,255,.18), transparent 45%);
-}
-@keyframes sweep{
-  0%,100%{transform:translateX(-80%) rotate(8deg);opacity:.55}
-  50%{transform:translateX(80%) rotate(8deg);opacity:1}
-}
-.glass.teal{border-color:rgba(46,230,214,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 24px 60px rgba(46,230,214,.14)}
-.glass.gold{border-color:rgba(240,197,106,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 24px 60px rgba(240,197,106,.14)}
-.glass.brand{border-color:rgba(110,200,255,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 24px 60px rgba(110,200,255,.14)}
-.glass.red{border-color:rgba(255,107,122,.40);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 24px 60px rgba(255,107,122,.14)}
-
+.glass::before{content:"";position:absolute;inset:-45%;
+  background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.32) 48%,
+    rgba(255,255,255,.10) 56%,transparent 72%);
+  transform:translateX(-75%) rotate(8deg);animation:sweep 6.5s ease-in-out infinite;pointer-events:none}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(120% 90% at 0% 0%,rgba(255,255,255,.20),transparent 46%)}
+@keyframes sweep{0%,100%{transform:translateX(-85%) rotate(8deg);opacity:.5}50%{transform:translateX(85%) rotate(8deg);opacity:1}}
+.glass.teal{border-color:rgba(46,230,214,.40);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 24px 60px rgba(46,230,214,.16)}
+.glass.gold{border-color:rgba(240,197,106,.40);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 24px 60px rgba(240,197,106,.16)}
+.glass.brand{border-color:rgba(110,200,255,.40);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 24px 60px rgba(110,200,255,.16)}
+.glass.red{border-color:rgba(255,107,122,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.30),0 24px 60px rgba(255,107,122,.16)}
 .slide.light .glass{
-  background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.62));
-  border:1px solid rgba(255,255,255,.75);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 18px 50px rgba(26,84,144,.12)
-}
-.slide.light .glass::after{
-  background:radial-gradient(120% 90% at 0% 0%, rgba(255,255,255,.7), transparent 50%);
-}
+  background:linear-gradient(145deg,rgba(255,255,255,.90),rgba(255,255,255,.62));
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 18px 50px rgba(26,84,144,.12)}
 
-/* glow ring */
 .glow-ring{position:relative}
-.glow-ring::before{
-  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
-  background:conic-gradient(from var(--a,0deg),
-    rgba(46,230,214,.0),rgba(46,230,214,.85),rgba(110,200,255,.2),
-    rgba(240,197,106,.75),rgba(46,230,214,0));
+.glow-ring::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.2px;
+  background:conic-gradient(from var(--a,0deg),rgba(46,230,214,0),rgba(46,230,214,.9),
+    rgba(110,200,255,.25),rgba(240,197,106,.8),rgba(46,230,214,0));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;
-  animation:spinA 6s linear infinite;opacity:.9;pointer-events:none
-}
+  animation:spinA 5s linear infinite;opacity:.92;pointer-events:none}
 @property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
 @keyframes spinA{to{--a:360deg}}
 
-/* ================= type ================= */
-.kicker{font-size:13px;letter-spacing:3.2px;text-transform:uppercase;font-weight:800;
-  color:var(--teal);margin:0 0 14px;display:flex;align-items:center;gap:12px}
-.kicker::before{content:"";width:34px;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,var(--teal),transparent)}
-h1{font-size:clamp(42px,5.4vw,68px);line-height:1.1;margin:0 0 18px;font-weight:850;letter-spacing:.5px}
-h2{font-size:clamp(28px,3.4vw,42px);line-height:1.24;margin:0 0 16px;font-weight:780}
-h3{font-size:20px;line-height:1.45;margin:0 0 12px;font-weight:720}
-.lead{font-size:clamp(17px,1.7vw,21px);line-height:1.85;max-width:920px;margin:0 0 26px}
+/* ========== type ========== */
+.kicker{font-size:12.5px;letter-spacing:3px;text-transform:uppercase;font-weight:800;
+  color:var(--teal);margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:30px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--teal),transparent)}
+h1{font-size:clamp(40px,5vw,64px);line-height:1.1;margin:0 0 16px;font-weight:850}
+h2{font-size:clamp(26px,3.1vw,38px);line-height:1.25;margin:0 0 14px;font-weight:780}
+h3{font-size:18px;line-height:1.45;margin:0 0 10px;font-weight:720}
+.lead{font-size:17px;line-height:1.85;max-width:640px;margin:0 0 18px}
 .slide.light .lead{color:var(--ink2)}
 .muted{opacity:.72}.slide.light .muted{color:var(--ink3);opacity:1}
-.small{font-size:14px;line-height:1.75}
+.small{font-size:13px;line-height:1.7}
 
-.rv{opacity:0;transform:translateY(18px);
-  transition:opacity .6s ease,transform .6s cubic-bezier(.22,.8,.3,1)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .slide.on .rv{opacity:1;transform:none}
-.slide.on .d1{transition-delay:.10s}.slide.on .d2{transition-delay:.18s}
-.slide.on .d3{transition-delay:.28s}.slide.on .d4{transition-delay:.38s}
-.slide.on .d5{transition-delay:.48s}.slide.on .d6{transition-delay:.58s}
+.slide.on .d1{transition-delay:.08s}.slide.on .d2{transition-delay:.16s}
+.slide.on .d3{transition-delay:.24s}.slide.on .d4{transition-delay:.32s}
+.slide.on .d5{transition-delay:.40s}.slide.on .d6{transition-delay:.48s}
 
-/* layout */
-.body{flex:1;display:flex;flex-direction:column;gap:22px;min-height:0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;min-width:0}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;min-width:0}
-.row{display:flex;gap:18px;flex-wrap:wrap;align-items:stretch}
-.row>*{flex:1 1 200px;min-width:0}
-@media(max-width:1100px){.grid2,.grid3{grid-template-columns:1fr}}
-.footer{margin-top:auto;padding-top:16px;font-size:13px;opacity:.6}
-
-.stat{font-size:clamp(34px,3.8vw,50px);font-weight:850;line-height:1.15;font-variant-numeric:tabular-nums}
-.stat.teal{color:var(--teal)}.stat.gold{color:var(--gold)}
-.stat.red{color:var(--red)}.stat.blue{color:var(--cyan)}
-.stat-l{font-size:14.5px;margin-top:8px;opacity:.75;line-height:1.55}
+.stat{font-size:clamp(30px,3.2vw,42px);font-weight:850;line-height:1.15}
+.stat.teal{color:var(--teal)}.stat.gold{color:var(--gold)}.stat.red{color:var(--red)}.stat.blue{color:var(--cyan)}
+.stat-l{font-size:13px;margin-top:6px;opacity:.75;line-height:1.5}
 
 ul.clean{margin:0;padding:0;list-style:none}
-ul.clean li{position:relative;padding:13px 0 13px 28px;font-size:16.5px;line-height:1.75;
+ul.clean li{position:relative;padding:10px 0 10px 24px;font-size:14.5px;line-height:1.7;
   border-bottom:1px dashed rgba(255,255,255,.12)}
 .slide.light ul.clean li{border-color:rgba(26,84,144,.12);color:var(--ink2)}
 ul.clean li:last-child{border-bottom:none}
-ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;height:10px;
-  border-radius:50%;background:var(--teal);
-  box-shadow:0 0 0 4px rgba(46,230,214,.18),0 0 12px rgba(46,230,214,.55)}
+ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;height:8px;border-radius:50%;
+  background:var(--teal);box-shadow:0 0 0 3px rgba(46,230,214,.2),0 0 12px rgba(46,230,214,.6)}
 
-.chips{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
-.chip{
-  padding:10px 16px;border-radius:999px;font-size:14px;font-weight:650;
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.chip{padding:8px 14px;border-radius:999px;font-size:13px;font-weight:650;
   background:rgba(46,230,214,.14);color:#9DFFF4;border:1px solid rgba(46,230,214,.32);
-  box-shadow:0 8px 24px rgba(46,230,214,.12)
-}
+  box-shadow:0 8px 22px rgba(46,230,214,.14)}
 .slide.light .chip{background:rgba(46,200,190,.12);color:#0B7A72;border-color:rgba(46,200,190,.3)}
 .chip.gold{background:rgba(240,197,106,.14);color:#FFE3A1;border-color:rgba(240,197,106,.34)}
 .slide.light .chip.gold{color:#8A6820}
-.badge{padding:9px 16px;border-radius:999px;font-size:14px;font-weight:750;
+.badge{padding:8px 14px;border-radius:999px;font-size:13px;font-weight:750;
   background:rgba(46,230,214,.16);color:#9DFFF4;border:1px solid rgba(46,230,214,.32)}
 .slide.light .badge{background:rgba(46,200,190,.14);color:#0B7A72}
-.badge-row{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
 
-.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0}
-.node{
-  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
-  border-radius:14px;padding:13px 16px;font-size:14.5px;font-weight:700;
-  min-width:92px;text-align:center;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.2)
-}
-.slide.light .node{background:rgba(255,255,255,.8);border:1px solid rgba(26,84,144,.12)}
-.arrow{color:var(--teal);font-size:22px;font-weight:800;
-  text-shadow:0 0 16px rgba(46,230,214,.65)}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+.node{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:10px 12px;font-size:12.5px;font-weight:700;min-width:78px;text-align:center}
+.slide.light .node{background:rgba(255,255,255,.82);border:1px solid rgba(26,84,144,.12)}
+.arrow{color:var(--teal);font-size:18px;font-weight:800;text-shadow:0 0 14px rgba(46,230,214,.7)}
 .slide.on .node{animation:pulseN 2.8s ease-in-out infinite}
-@keyframes pulseN{
-  0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 0 0 rgba(46,230,214,0)}
-  50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 0 10px rgba(46,230,214,.12)}
-}
+@keyframes pulseN{0%,100%{box-shadow:0 0 0 0 rgba(46,230,214,0)}50%{box-shadow:0 0 0 8px rgba(46,230,214,.12)}}
 
-.tag{display:inline-block;padding:5px 12px;border-radius:8px;font-size:13px;font-weight:800;margin-right:6px}
+.tag{display:inline-block;padding:3px 9px;border-radius:7px;font-size:11px;font-weight:800;margin-right:5px}
 .tag.red{background:rgba(255,107,122,.18);color:#FF8A96}
 .tag.orange{background:rgba(255,180,84,.18);color:#FFC98A}
 .tag.green{background:rgba(61,255,168,.16);color:#7DFFC4}
@@ -219,188 +152,147 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
 .slide.light .tag.orange{background:#FFF4E5;color:#C47A12}
 .slide.light .tag.green{background:#E7F7F0;color:#0F7A55}
 
-.shine{
-  background:linear-gradient(120deg,#fff 10%,#9DFFF4 35%,#F0C56A 60%,#fff 90%);
-  background-size:220% auto;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:shine 5.5s linear infinite;
-  filter:drop-shadow(0 0 28px rgba(46,230,214,.35))
-}
+.shine{background:linear-gradient(120deg,#fff,#9DFFF4 35%,#F0C56A 60%,#fff 90%);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 5s linear infinite;filter:drop-shadow(0 0 26px rgba(46,230,214,.4))}
 @keyframes shine{to{background-position:220% center}}
-.type::after{content:"|";color:var(--teal);animation:blink 1s step-end infinite;
-  text-shadow:0 0 12px var(--teal)}
+.type::after{content:"|";color:var(--teal);animation:blink 1s step-end infinite;text-shadow:0 0 12px var(--teal)}
 @keyframes blink{50%{opacity:0}}
 
-/* floating orbs */
-.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(8px);opacity:.55}
-.orb-t{width:380px;height:380px;right:-90px;top:-110px;
-  background:radial-gradient(circle,rgba(46,230,214,.5),transparent 70%);
-  animation:fA 10s ease-in-out infinite}
-.orb-g{width:320px;height:320px;left:-90px;bottom:-70px;
-  background:radial-gradient(circle,rgba(240,197,106,.4),transparent 70%);
-  animation:fB 12s ease-in-out infinite}
-.orb-c{width:280px;height:280px;right:18%;bottom:-40px;
-  background:radial-gradient(circle,rgba(110,200,255,.35),transparent 70%);
-  animation:fA 9s ease-in-out infinite reverse}
-@keyframes fA{0%,100%{transform:translate(0,0)}50%{transform:translate(-22px,26px)}}
-@keyframes fB{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-22px)}}
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(6px);opacity:.55}
+.orb-t{width:340px;height:340px;right:-70px;top:-90px;background:radial-gradient(circle,rgba(46,230,214,.5),transparent 70%);animation:fA 9s ease-in-out infinite}
+.orb-g{width:280px;height:280px;left:-70px;bottom:-50px;background:radial-gradient(circle,rgba(240,197,106,.4),transparent 70%);animation:fB 11s ease-in-out infinite}
+.orb-c{width:240px;height:240px;right:22%;bottom:-30px;background:radial-gradient(circle,rgba(110,200,255,.38),transparent 70%);animation:fA 8s ease-in-out infinite reverse}
+@keyframes fA{0%,100%{transform:translate(0,0)}50%{transform:translate(-18px,22px)}}
+@keyframes fB{0%,100%{transform:translate(0,0)}50%{transform:translate(16px,-18px)}}
 
-/* ================= device / demo ================= */
-.demo-wrap{display:grid;grid-template-columns:1.4fr .85fr;gap:24px;align-items:stretch;min-height:0;flex:1}
-@media(max-width:1100px){.demo-wrap{grid-template-columns:1fr}}
-.device{
-  position:relative;border-radius:20px;overflow:hidden;
-  background:linear-gradient(160deg,rgba(10,27,48,.95),rgba(14,42,78,.92));
+/* ========== live UI panel (every slide) ========== */
+.ui-panel{
+  position:relative;display:flex;flex-direction:column;min-height:0;
+  border-radius:20px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(10,27,48,.92),rgba(14,42,78,.90));
   border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.18);
-  display:flex;flex-direction:column;min-height:440px
+  box-shadow:0 28px 70px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.18)
 }
-.device::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.08) 50%,transparent 60%);
-  background-size:200% 100%;animation:deviceSheen 8s linear infinite
+.slide.light .ui-panel{
+  background:linear-gradient(160deg,rgba(255,255,255,.88),rgba(232,241,252,.78));
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 22px 55px rgba(26,84,144,.14),inset 0 1px 0 rgba(255,255,255,.9)
 }
+.ui-panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.10) 50%,transparent 62%);
+  background-size:200% 100%;animation:deviceSheen 7s linear infinite}
 @keyframes deviceSheen{to{background-position:-200% 0}}
-.device-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;
-  background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1)}
-.dot{width:10px;height:10px;border-radius:50%}
-.dot.r{background:#FF5F57}.dot.y{background:#FEBC2E}.dot.g{background:#28C840}
-.device-title{margin-left:10px;font-size:13px;opacity:.8}
-.screen{position:relative;flex:1;padding:16px 18px;overflow:hidden;min-height:360px}
-.scene{position:absolute;inset:0;padding:16px 18px;opacity:0;visibility:hidden;
-  transition:opacity .5s ease,transform .5s ease;transform:translateY(12px)}
-.scene.on{opacity:1;visibility:visible;transform:none}
 
-.ui-nav{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.ui-logo{font-size:13px;font-weight:800;margin-right:6px}
-.ui-tab{padding:7px 12px;border-radius:8px;font-size:12px;opacity:.75}
-.ui-tab.act{background:rgba(46,230,214,.22);opacity:1;
-  box-shadow:0 0 18px rgba(46,230,214,.25)}
-.ui-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-.ui-kpi-i{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
-  border-radius:12px;padding:10px}
-.ui-kpi-i .n{font-size:20px;font-weight:800;line-height:1.2}
-.ui-kpi-i .l{font-size:10.5px;opacity:.65;margin-top:3px}
-.ui-card{
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
-  border-radius:12px;padding:11px 12px;margin-bottom:9px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.12)
-}
-.ui-row{display:flex;gap:10px;align-items:center;font-size:12.5px;padding:8px 0;
+.ui-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;
+  background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.slide.light .ui-bar{background:rgba(26,84,144,.06);border-color:rgba(26,84,144,.08)}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot.r{background:#FF5F57}.dot.y{background:#FEBC2E}.dot.g{background:#28C840}
+.ui-title{margin-left:8px;font-size:12px;opacity:.8;font-weight:600}
+.ui-body{padding:12px 14px;overflow:hidden;flex:1;min-height:0;position:relative;z-index:2}
+
+.ui-nav{display:flex;gap:6px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.ui-logo{font-size:12px;font-weight:800;margin-right:4px}
+.ui-tab{padding:6px 10px;border-radius:8px;font-size:11px;opacity:.75;
+  background:rgba(255,255,255,.06);border:1px solid transparent}
+.slide.light .ui-tab{background:rgba(26,84,144,.06)}
+.ui-tab.act{opacity:1;background:rgba(46,230,214,.22);border-color:rgba(46,230,214,.35);
+  box-shadow:0 0 16px rgba(46,230,214,.25)}
+.ui-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:10px}
+.ui-kpi-i{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);
+  border-radius:11px;padding:9px}
+.slide.light .ui-kpi-i{background:rgba(255,255,255,.75);border-color:rgba(26,84,144,.08)}
+.ui-kpi-i .n{font-size:18px;font-weight:800;line-height:1.2}
+.ui-kpi-i .l{font-size:10px;opacity:.65;margin-top:2px}
+.ui-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
+  border-radius:11px;padding:10px 11px;margin-bottom:8px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.slide.light .ui-card{background:rgba(255,255,255,.78);border-color:rgba(26,84,144,.08)}
+.ui-row{display:flex;gap:8px;align-items:center;font-size:11.5px;padding:7px 0;
   border-bottom:1px solid rgba(255,255,255,.07)}
+.slide.light .ui-row{border-color:rgba(26,84,144,.08)}
 .ui-row:last-child{border-bottom:none}
-.ui-btn{
-  padding:8px 14px;border-radius:9px;background:linear-gradient(135deg,#2E7BD6,#245FA8);
-  color:#fff;font-size:12px;font-weight:700;
-  box-shadow:0 8px 20px rgba(46,123,214,.35)
-}
+.ui-btn{padding:6px 11px;border-radius:8px;font-size:11px;font-weight:700;
+  background:linear-gradient(135deg,#2E7BD6,#245FA8);color:#fff;
+  box-shadow:0 6px 16px rgba(46,123,214,.35)}
 .ui-btn.teal{background:linear-gradient(135deg,#2EE6D6,#18B8AC);color:#04302C;
-  box-shadow:0 8px 22px rgba(46,230,214,.35)}
-.ui-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin:8px 0}
-.ui-bar i{display:block;height:100%;width:0;border-radius:99px;
+  box-shadow:0 6px 18px rgba(46,230,214,.35)}
+.ui-btn.ghost{background:rgba(255,255,255,.1);color:#fff;box-shadow:none}
+.slide.light .ui-btn.ghost{background:rgba(26,84,144,.08);color:var(--brand)}
+.progress{height:7px;border-radius:99px;background:rgba(255,255,255,.10);overflow:hidden;margin:6px 0}
+.slide.light .progress{background:rgba(26,84,144,.10)}
+.progress i{display:block;height:100%;width:0;border-radius:99px;
   background:linear-gradient(90deg,var(--teal),var(--cyan));
-  box-shadow:0 0 12px rgba(46,230,214,.55);transition:width 1s ease}
-.ui-input{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
-  border-radius:8px;padding:8px 10px;font-size:12px;color:#EAF2FF;margin:5px 0;min-height:32px
-}
-.cursor{
-  position:absolute;width:18px;height:18px;border-radius:50% 50% 50% 0;
-  background:#fff;transform:rotate(-20deg);
-  box-shadow:0 6px 18px rgba(0,0,0,.4),0 0 20px rgba(46,230,214,.55);
-  opacity:0;transition:left .75s cubic-bezier(.22,.8,.3,1),top .75s cubic-bezier(.22,.8,.3,1),opacity .3s;
-  z-index:20;pointer-events:none
-}
+  box-shadow:0 0 12px rgba(46,230,214,.55);transition:width 1.1s ease}
+.ui-input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  border-radius:8px;padding:7px 9px;font-size:11px;color:#EAF2FF;margin:4px 0;min-height:28px}
+.slide.light .ui-input{background:rgba(255,255,255,.85);border-color:rgba(26,84,144,.12);color:var(--ink)}
+.cursor{position:absolute;width:16px;height:16px;border-radius:50% 50% 50% 0;background:#fff;
+  transform:rotate(-20deg);box-shadow:0 6px 18px rgba(0,0,0,.4),0 0 18px rgba(46,230,214,.55);
+  opacity:0;transition:left .9s cubic-bezier(.22,.8,.3,1),top .9s cubic-bezier(.22,.8,.3,1),opacity .3s;
+  z-index:20;pointer-events:none}
 .cursor.click{animation:clickPulse .4s ease}
 @keyframes clickPulse{0%{transform:rotate(-20deg) scale(1)}50%{transform:rotate(-20deg) scale(1.3)}100%{transform:rotate(-20deg) scale(1)}}
 .cursor::after{content:"";position:absolute;inset:0;border-radius:50%;
-  background:rgba(46,230,214,.55);animation:ripple 1.5s ease-out infinite}
+  background:rgba(46,230,214,.55);animation:ripple 1.6s ease-out infinite}
 @keyframes ripple{0%{transform:scale(.5);opacity:.85}100%{transform:scale(2.4);opacity:0}}
 
-.demo-side{display:flex;flex-direction:column;gap:12px;min-height:0}
-.step-list{display:flex;flex-direction:column;gap:9px;overflow:auto}
-.step-item{
-  display:flex;gap:12px;align-items:flex-start;padding:11px 13px;border-radius:14px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  transition:all .35s ease;font-size:13.5px;line-height:1.5;cursor:pointer
+/* floating mini particles inside ui */
+.ui-spark{position:absolute;width:3px;height:3px;border-radius:50%;
+  background:rgba(46,230,214,.85);box-shadow:0 0 8px rgba(46,230,214,.8);
+  animation:spark 4s linear infinite;pointer-events:none;z-index:3}
+@keyframes spark{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  15%{opacity:1}
+  100%{transform:translateY(-70px) scale(.4);opacity:0}
 }
-.step-item.act{
-  background:linear-gradient(135deg,rgba(46,230,214,.22),rgba(110,200,255,.12));
-  border-color:rgba(46,230,214,.5);
-  box-shadow:0 12px 32px rgba(46,230,214,.18),inset 0 1px 0 rgba(255,255,255,.25)
-}
-.step-item .idx{
-  width:26px;height:26px;border-radius:9px;background:rgba(255,255,255,.12);
-  display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0
-}
+
+/* demo steps */
+.step-list{display:flex;flex-direction:column;gap:7px}
+.step-item{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:11px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  transition:all .35s ease;font-size:12px;line-height:1.45;cursor:pointer}
+.step-item.act{background:linear-gradient(135deg,rgba(46,230,214,.22),rgba(110,200,255,.12));
+  border-color:rgba(46,230,214,.5);box-shadow:0 10px 28px rgba(46,230,214,.18)}
+.step-item .idx{width:22px;height:22px;border-radius:8px;background:rgba(255,255,255,.12);
+  display:grid;place-items:center;font-size:11px;font-weight:800;flex-shrink:0}
 .step-item.act .idx{background:var(--teal);color:#04302C}
 
-/* chrome */
-.chrome{
-  position:absolute;left:0;right:0;bottom:0;height:62px;z-index:50;
-  display:flex;align-items:center;gap:12px;padding:0 28px;
-  background:rgba(5,13,26,.72);backdrop-filter:blur(18px) saturate(150%);
-  -webkit-backdrop-filter:blur(18px) saturate(150%);
-  border-top:1px solid rgba(255,255,255,.1);font-size:13px
-}
-.chrome .brand{font-weight:800;letter-spacing:.6px}
-.chrome .right{margin-left:auto;display:flex;align-items:center;gap:10px}
-.btn{
-  border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.08);color:#fff;
-  border-radius:12px;padding:9px 15px;cursor:pointer;font-size:13px;font-family:inherit;
-  backdrop-filter:blur(10px);transition:all .2s
-}
-.btn:hover{background:rgba(255,255,255,.16);transform:translateY(-1px);
-  box-shadow:0 10px 28px rgba(46,230,214,.22)}
-.btn.on{background:linear-gradient(135deg,var(--teal),#18B8AC);color:#04302C;
-  border-color:transparent;font-weight:700;box-shadow:0 10px 28px rgba(46,230,214,.35)}
-.page{font-weight:700;font-variant-numeric:tabular-nums}
-
-/* QR */
-.qr-panel{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:center}
-@media(max-width:820px){.qr-panel{grid-template-columns:1fr}}
-.qr-\boxed{
-  width:240px;height:240px;background:#fff;border-radius:22px;padding:14px;
-  box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.2),
-    0 0 40px rgba(46,230,214,.28)
-}
-.qr-box svg{width:100%;height:100%}
-
-.chart{width:100%;height:230px}
+.chart{width:100%;height:160px}
 .chart svg{width:100%;height:100%;overflow:visible}
 .chart .draw{stroke-dasharray:1200;stroke-dashoffset:1200}
-.slide.on .chart .draw{animation:drawL 1.5s ease .25s forwards}
+.slide.on .chart .draw{animation:drawL 1.6s ease .3s forwards}
 @keyframes drawL{to{stroke-dashoffset:0}}
-.slide.on .pop{animation:popIn .45s ease 1.1s both}
+.slide.on .pop{animation:popIn .5s ease 1.3s both}
 @keyframes popIn{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
 
-.table{width:100%;border-collapse:collapse;font-size:15px}
-.table th,.table td{padding:11px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
-.slide.light .table th,.slide.light .table td{border-color:rgba(26,84,144,.12)}
-.table th{font-size:12.5px;letter-spacing:.4px;opacity:.65;font-weight:700}
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th,.table td{padding:8px 9px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
+.slide.light .table th,.slide.light .table td{border-color:rgba(26,84,144,.10)}
+.table th{font-size:11px;opacity:.65;font-weight:700}
 
-.steps3{display:flex;gap:16px;flex-wrap:wrap}
-.step3{flex:1 1 200px;min-width:0}
+.chrome{position:absolute;left:0;right:0;bottom:0;height:58px;z-index:50;
+  display:flex;align-items:center;gap:12px;padding:0 26px;
+  background:rgba(5,13,26,.72);backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-top:1px solid rgba(255,255,255,.1);font-size:12.5px}
+.chrome .brand{font-weight:800;letter-spacing:.5px}
+.chrome .right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;
+  border-radius:11px;padding:8px 13px;cursor:pointer;font-size:12.5px;font-family:inherit;
+  backdrop-filter:blur(10px);transition:all .2s}
+.btn:hover{background:rgba(255,255,255,.16);transform:translateY(-1px);box-shadow:0 10px 26px rgba(46,230,214,.22)}
+.btn.on{background:linear-gradient(135deg,var(--teal),#18B8AC);color:#04302C;font-weight:700;border-color:transparent}
 
-/* mini live widgets on slides */
-.mini{
-  position:relative;border-radius:16px;overflow:hidden;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
-  padding:14px 16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)
-}
-.slide.light .mini{background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.8)}
-.mini .lbl{font-size:11.5px;opacity:.65;margin-bottom:6px}
-.wave{
-  height:64px;border-radius:12px;overflow:hidden;position:relative;
-  background:linear-gradient(180deg,rgba(46,230,214,.12),rgba(110,200,255,.08))
-}
-.wave svg{width:100%;height:100%}
-.pulse-dot{
-  width:10px;height:10px;border-radius:50%;background:var(--teal);
-  box-shadow:0 0 0 0 rgba(46,230,214,.7);animation:pd 1.8s ease-out infinite
-}
-@keyframes pd{100%{box-shadow:0 0 0 16px rgba(46,230,214,0)}}
+.qr-panel{display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:center}
+@media(max-width:820px){.qr-panel{grid-template-columns:1fr}}
+.qr-\boxed{width:220px;height:220px;background:#fff;border-radius:20px;padding:12px;
+  box-shadow:0 22px 55px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.2),0 0 36px rgba(46,230,214,.3)}
+.qr-box svg{width:100%;height:100%}
+
+.row-cards{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.row-cards>*{flex:1 1 120px;min-width:0}
 </style>
 </head>
 <body>
@@ -412,72 +304,104 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
 <!-- ========== 1 COVER ========== -->
 <section class="slide cover on" data-title="封面">
   <div class="orb orb-t"></div><div class="orb orb-g"></div><div class="orb orb-c"></div>
-  <div style="margin:auto 0;position:relative;z-index:2;max-width:1000px">
-    <div class="kicker rv">2026 中国（广西）—东盟「AI+法律」应用创新大赛</div>
-    <h1 class="rv d1"><span class="shine">心锚</span></h1>
-    <div class="rv d2" style="font-size:clamp(22px,2.7vw,36px);font-weight:650;letter-spacing:1px;margin-bottom:22px;line-height:1.4">
-      社区戒毒矫治与康复智能辅助系统
+  <div class="split">
+    <div style="display:flex;flex-direction:column;justify-content:center">
+      <div class="kicker rv">2026 中国（广西）—东盟「AI+法律」应用创新大赛</div>
+      <h1 class="rv d1"><span class="shine">心锚</span></h1>
+      <div class="rv d2" style="font-size:clamp(20px,2.4vw,30px);font-weight:650;letter-spacing:1px;margin-bottom:16px;line-height:1.4">
+        社区戒毒矫治与康复智能辅助系统
+      </div>
+      <p class="lead rv d3" style="color:#C9DCEF">
+        多维心理渴求评估 · 风险前置预警 · 复吸阻断闭环<br>
+        <span class="type" id="typeLine">让干预窗口从「复吸之后」前移至「渴求爬升之中」</span>
+      </p>
+      <div class="chips rv d4">
+        <span class="chip">规则引擎 + 大模型</span>
+        <span class="chip gold">面向东盟 · 五语</span>
+        <span class="chip">数据不出域</span>
+      </div>
+      <div class="badge-row rv d5">
+        <span class="badge">广西警察学院 · 心锚队</span>
+        <span class="badge">AI 让法律跨越山海</span>
+      </div>
     </div>
-    <p class="lead rv d3" style="color:#C9DCEF">
-      多维心理渴求评估 · 风险前置预警 · 复吸阻断闭环<br>
-      <span class="type" id="typeLine">让干预窗口从「复吸之后」前移至「渴求爬升之中」</span>
-    </p>
-    <div class="chips rv d4">
-      <span class="chip">规则引擎 + 大模型</span>
-      <span class="chip gold">面向东盟 · 五语</span>
-      <span class="chip">数据不出域</span>
-    </div>
-    <div class="badge-row rv d5" style="margin-top:26px">
-      <span class="badge">广西警察学院 · 心锚队</span>
-      <span class="badge">AI 让法律跨越山海</span>
+    <div class="glass glow-ring rv d3" style="display:flex;flex-direction:column;justify-content:center">
+      <h3>核心能力速览</h3>
+      <ul class="clean">
+        <li>每日打卡 · 五维渴求建模</li>
+        <li>红橙绿三级预警 · 爬升窗口</li>
+        <li>帮教三步 · 处置复评闭环</li>
+        <li>五语界面 · 面向东盟</li>
+      </ul>
+      <div class="row-cards">
+        <div class="glass teal" style="padding:12px"><div class="stat teal" style="font-size:26px">60 天</div><div class="stat-l">合成演示数据</div></div>
+        <div class="glass gold" style="padding:12px"><div class="stat gold" style="font-size:26px">5 语</div><div class="stat-l">界面切换</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 2 TRACK ========== -->
+<!-- ========== 2 TRACK + About UI ========== -->
 <section class="slide light" data-title="赛道契合">
   <div class="kicker rv">Why this track</div>
   <h2 class="rv d1">紧扣「刑罚执行与监管安全」</h2>
-  <p class="lead rv d2">大赛方向二明确征集「戒毒康复智能管理与科学戒治」「社区矫正精准矫治」。</p>
-  <div class="body">
-    <div class="grid3">
-      <div class="glass glow-ring rv d2">
-        <h3>法律锚点</h3>
+  <div class="split">
+    <div>
+      <p class="lead rv d2">大赛方向二明确征集「戒毒康复智能管理与科学戒治」「社区矫正精准矫治」。</p>
+      <div class="glass glow-ring rv d3">
         <ul class="clean">
-          <li>《禁毒法》社区戒毒康复</li>
-          <li>《戒毒条例》出所衔接</li>
-          <li>风险分级精准矫治</li>
+          <li><strong>法律锚点</strong>：《禁毒法》《戒毒条例》社区戒毒康复</li>
+          <li><strong>服务对象</strong>：社区矫正 / 司法所 / 禁毒社工 / 管教民警</li>
+          <li><strong>技术主张</strong>：规则可审计 · LLM 不越权 · 可进内网</li>
         </ul>
       </div>
-      <div class="glass teal glow-ring rv d3">
-        <h3>服务对象</h3>
-        <ul class="clean">
-          <li>社区矫正 / 司法所</li>
-          <li>禁毒社工与矫正对象</li>
-          <li>戒毒所管教民警</li>
-        </ul>
+      <div class="chips rv d4">
+        <span class="chip">先进性</span><span class="chip">示范性</span>
+        <span class="chip gold">可推广性</span><span class="chip">实效性</span>
       </div>
-      <div class="glass gold glow-ring rv d4">
-        <h3>技术主张</h3>
-        <ul class="clean">
-          <li>规则可解释可审计</li>
-          <li>LLM 增强不越权</li>
-          <li>轻量可进内网</li>
-        </ul>
+    </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">心锚 · 系统说明</span></div>
+      <div class="ui-body">
+        <div class="ui-nav">
+          <span class="ui-logo">心锚</span>
+          <span class="ui-tab">工作台</span><span class="ui-tab">康复人员</span>
+          <span class="ui-tab act">系统说明</span>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">一、要解决的问题</div>
+          <div class="small" style="opacity:.8;line-height:1.7">
+            渴求测不准 · 数据不采集 · 方案同质化 · 出所后监管真空
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">二、评估链路</div>
+          <div class="small" style="opacity:.8;line-height:1.75">
+            信号抽取 → 渴求建模 → 风险评估 → 阻断生成 → 趋势追踪
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">四、数据合规声明</div>
+          <div class="small" style="opacity:.8;line-height:1.7">
+            全部为合成虚构数据 · AI 辅助研判 · 人工最终决策
+          </div>
+        </div>
+        <div class="ui-spark" style="left:20%;bottom:10%"></div>
+        <div class="ui-spark" style="left:70%;bottom:20%;animation-delay:1.4s"></div>
       </div>
     </div>
   </div>
-  <div class="footer">先进性 · 示范性 · 可推广性 · 实效性 · 项目完整性</div>
 </section>
 
-<!-- ========== 3 PROBLEM ========== -->
+<!-- ========== 3 PROBLEM + Data UI ========== -->
 <section class="slide dark" data-title="痛点">
   <div class="orb orb-t"></div>
   <div class="kicker rv">The problem</div>
   <h2 class="rv d1">堵点不在脱毒，而在回归社会之后</h2>
-  <div class="body">
-    <div class="grid2" style="flex:1">
-      <div class="rv d2">
+  <div class="split">
+    <div>
+      <div class="glass red glow-ring rv d2">
         <ul class="clean">
           <li><strong>渴求测不准</strong>——最强近端预测因子，却主观隐蔽</li>
           <li><strong>数据不采集</strong>——纸质台账，渴求维度未结构化</li>
@@ -485,249 +409,399 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
           <li><strong>出所后真空</strong>——复吸高发，事后才被动处置</li>
         </ul>
       </div>
-      <div class="glass red glow-ring rv d3" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="glass gold glow-ring rv d3" style="margin-top:12px">
         <div class="stat red">滞后</div>
-        <p class="small muted" style="margin:14px 0 0">
-          识别时点普遍晚于风险形成。<br>
-          <strong style="color:#fff">目标：风险爬升阶段就前置干预。</strong>
-        </p>
+        <p class="small muted" style="margin:8px 0 0">目标：风险爬升阶段就前置干预，而非复吸后处置。</p>
+      </div>
+    </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">传统模式 vs 心锚</span></div>
+      <div class="ui-body">
+        <div class="ui-card">
+          <div class="small" style="opacity:.7;margin-bottom:6px">过去：依赖经验与纸质台账</div>
+          <div class="progress"><i data-w="28%"></i></div>
+          <div class="small" style="opacity:.75">识别时点滞后 · 平均研判 30 分钟</div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.7;margin-bottom:6px">心锚：分钟级研判 + 趋势预警</div>
+          <div class="progress"><i data-w="92%"></i></div>
+          <div class="small" style="opacity:.75">前置干预窗口 · 人均研判 ≤ 10 分钟</div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">关键差异</div>
+          <div class="ui-row"><span class="tag red">滞后</span><span>事后处置</span><span style="margin-left:auto;opacity:.7">传统</span></div>
+          <div class="ui-row"><span class="tag green">前置</span><span>爬升窗口预警</span><span style="margin-left:auto;opacity:.7">心锚</span></div>
+        </div>
+        <div class="ui-spark" style="left:30%;bottom:8%"></div>
+        <div class="ui-spark" style="left:80%;bottom:18%;animation-delay:2s"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 4 SOLUTION ========== -->
+<!-- ========== 4 SOLUTION + Checkin UI ========== -->
 <section class="slide light" data-title="方案总览">
   <div class="kicker rv">Solution</div>
   <h2 class="rv d1">从每日一打，到可执行的阻断动作</h2>
-  <div class="body">
-    <div class="flow rv d2">
-      <div class="node">每日打卡</div><div class="arrow">→</div>
-      <div class="node">信号抽取</div><div class="arrow">→</div>
-      <div class="node">五维建模</div><div class="arrow">→</div>
-      <div class="node">净风险</div><div class="arrow">→</div>
-      <div class="node">帮教三步</div><div class="arrow">→</div>
-      <div class="node">复评留痕</div>
+  <div class="split">
+    <div>
+      <div class="flow rv d2" style="margin-bottom:12px">
+        <div class="node">打卡</div><div class="arrow">→</div>
+        <div class="node">建模</div><div class="arrow">→</div>
+        <div class="node">净风险</div><div class="arrow">→</div>
+        <div class="node">预警</div><div class="arrow">→</div>
+        <div class="node">三步</div><div class="arrow">→</div>
+        <div class="node">复评</div>
+      </div>
+      <div class="row-cards rv d3">
+        <div class="glass teal" style="padding:14px"><div class="stat teal" style="font-size:28px">1 次/日</div><div class="stat-l">EMA 打卡</div></div>
+        <div class="glass brand" style="padding:14px"><div class="stat blue" style="font-size:28px">5 维</div><div class="stat-l">渴求建模</div></div>
+        <div class="glass gold" style="padding:14px"><div class="stat gold" style="font-size:28px">8 类</div><div class="stat-l">高危情境</div></div>
+        <div class="glass red" style="padding:14px"><div class="stat red" style="font-size:28px">3 步</div><div class="stat-l">当下阻断</div></div>
+      </div>
+      <div class="glass glow-ring rv d4" style="margin-top:12px">
+        <p class="small" style="margin:0;line-height:1.8">
+          面向<strong>社区戒毒矫治与康复</strong>，把「谁需要立刻干预、窗口在哪」变成可视化结论。
+        </p>
+      </div>
     </div>
-    <div class="row">
-      <div class="glass teal glow-ring rv d3"><div class="stat teal">1 次/日</div><div class="stat-l">生态瞬时评估</div></div>
-      <div class="glass brand glow-ring rv d3"><div class="stat blue">5 维</div><div class="stat-l">渴求可计算</div></div>
-      <div class="glass gold glow-ring rv d4"><div class="stat gold">8 类</div><div class="stat-l">高危情境</div></div>
-      <div class="glass red glow-ring rv d4"><div class="stat red">3 步</div><div class="stat-l">当下阻断</div></div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">心锚 · 每日打卡录入</span></div>
+      <div class="ui-body">
+        <div class="ui-nav"><span class="ui-logo">EMA</span><span class="ui-tab act">6 题约 30 秒</span></div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.7">康复人员</div>
+          <div class="ui-input">P001 陈立辉（巩固期）</div>
+          <div class="small" style="opacity:.7">1. 今日渴求峰值</div>
+          <div class="ui-input">6 / 10</div>
+          <div class="small" style="opacity:.7">2. 高危情境</div>
+          <div class="ui-input">CE · 线索／诱因暴露（权重 4.0）</div>
+          <div class="small" style="opacity:.7">3. 今日自述</div>
+          <div class="ui-input" style="min-height:42px">路过以前那个地方，脑子里突然全是……</div>
+          <div class="ui-btn teal" id="btnCheckSubmit" style="display:inline-block;margin-top:6px">提交并触发评估</div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.75">提交后立即执行：信号抽取 → 五维建模 → 净风险 → 方案 → 趋势</div>
+        </div>
+        <div class="ui-spark" style="left:15%;bottom:12%"></div>
+        <div class="ui-spark" style="left:65%;bottom:8%;animation-delay:1.6s"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 5 ARCHITECTURE ========== -->
+<!-- ========== 5 ARCH + Engine UI ========== -->
 <section class="slide dark" data-title="架构">
   <div class="kicker rv">Architecture</div>
-  <h2 class="rv d1">六层流水线</h2>
-  <div class="body">
-    <div class="grid2" style="flex:1">
-      <div class="rv d2">
-        <div class="flow" style="flex-direction:column;align-items:stretch;gap:12px">
-          <div class="node">1 · 数据接入　打卡 / 档案 / 观察</div>
-          <div class="node">2 · 数据治理　清洗 / 结构化 / 情境</div>
-          <div class="node">3 · 智能研判　规则 + LLM 语义</div>
-          <div class="node">4 · 风险决策　净风险 / 预警 / 趋势</div>
-          <div class="node">5 · 干预输出　方案 / 任务 / 复评</div>
-          <div class="node">6 · 应用展示　驾驶舱 / 个案 / 留痕</div>
-        </div>
+  <h2 class="rv d1">六层流水线 · 轻量可部署</h2>
+  <div class="split">
+    <div>
+      <div class="glass brand glow-ring rv d2">
+        <ul class="clean">
+          <li>1 数据接入　打卡 / 档案 / 观察</li>
+          <li>2 数据治理　清洗 / 结构化 / 情境</li>
+          <li>3 智能研判　规则 + LLM 语义</li>
+          <li>4 风险决策　净风险 / 预警 / 趋势</li>
+          <li>5 干预输出　方案 / 任务 / 复评</li>
+          <li>6 应用展示　驾驶舱 / 个案 / 留痕</li>
+        </ul>
       </div>
-      <div class="glass brand glow-ring rv d3" style="display:flex;flex-direction:column;justify-content:center">
-        <h3>轻量 · 可离线 · 可审计</h3>
-        <p class="small muted" style="margin:0 0 14px">Flask + SQLite + ECharts 本地化，普通电脑或政务云即可部署。</p>
+      <div class="glass glow-ring rv d3" style="margin-top:12px">
         <table class="table">
-          <tr><th>研判</th><td>规则为主 + LLM 为辅</td></tr>
-          <tr><th>数据</th><td>全程不出域</td></tr>
-          <tr><th>决策</th><td>人工最终确认</td></tr>
+          <tr><th>后端</th><td>Flask</td><th>数据</th><td>SQLite</td></tr>
+          <tr><th>图表</th><td>ECharts 本地</td><th>研判</th><td>规则 + LLM</td></tr>
         </table>
       </div>
     </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">评估引擎 · 规则可追溯</span></div>
+      <div class="ui-body">
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:6px">净风险计算</div>
+          <div class="ui-row"><span>R 原始风险</span><span style="margin-left:auto;opacity:.85">92.4</span></div>
+          <div class="progress"><i data-w="92%"></i></div>
+          <div class="ui-row"><span>C 康复资本</span><span style="margin-left:auto;opacity:.85">38</span></div>
+          <div class="progress"><i data-w="38%"></i></div>
+          <div class="ui-row"><span>N 净风险</span><span style="margin-left:auto;font-weight:800;color:var(--red)">85.9</span></div>
+          <div class="progress"><i data-w="86%"></i></div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">证据链</div>
+          <div class="small" style="opacity:.8;line-height:1.75">
+            · 近 7 日渴求峰值均值 7.2<br>
+            · 线索暴露 3 次，权重累加<br>
+            · 康复资本 38/100，家庭支持薄弱
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.75">规则为主、模型为辅 · 结论差异过大提示人工复核</div>
+        </div>
+        <div class="ui-spark" style="left:25%;bottom:10%"></div>
+        <div class="ui-spark" style="left:75%;bottom:16%;animation-delay:2.2s"></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ========== 6 SCORING ========== -->
+<!-- ========== 6 SCORING + Formula UI ========== -->
 <section class="slide light" data-title="评估算法">
   <div class="kicker rv">Scoring</div>
   <h2 class="rv d1">可审计的风险公式</h2>
-  <div class="body">
-    <div class="grid2" style="flex:1">
+  <div class="split">
+    <div>
       <div class="glass brand glow-ring rv d2">
         <h3>两步计算</h3>
-        <div class="steps3" style="margin:8px 0">
-          <div class="glass teal" style="padding:18px">
-            <div class="stat teal" style="font-size:32px">R</div>
-            <div class="small muted" style="margin-top:8px">五维之和 × (1 + Σ情境权重/10)</div>
+        <div class="small" style="line-height:1.9">
+          <div class="glass teal" style="padding:12px;margin:8px 0">
+            <strong style="color:var(--teal)">R</strong> = 五维之和 × (1 + Σ情境权重 / 10)
           </div>
-          <div class="glass gold" style="padding:18px">
-            <div class="stat gold" style="font-size:32px">N</div>
-            <div class="small muted" style="margin-top:8px">0.7×R − 0.3×康复资本 + 30</div>
+          <div class="glass gold" style="padding:12px">
+            <strong style="color:var(--gold)">N</strong> = 0.7 × R − 0.3 × 康复资本 + 30
           </div>
         </div>
       </div>
-      <div class="glass glow-ring rv d3">
-        <h3>高危情境加权</h3>
+      <div class="glass glow-ring rv d3" style="margin-top:12px">
         <table class="table">
-          <tr><th>代码</th><th>情境</th><th>权重</th></tr>
-          <tr><td>CE</td><td>线索／诱因暴露</td><td><strong>4.0</strong></td></tr>
-          <tr><td>IC</td><td>人际冲突</td><td><strong>3.0</strong></td></tr>
-          <tr><td>SP</td><td>社会压力</td><td><strong>2.5</strong></td></tr>
-          <tr><td>NE</td><td>负性情绪</td><td><strong>2.0</strong></td></tr>
+          <tr><th>CE</th><td>线索／诱因暴露</td><th>4.0</th></tr>
+          <tr><th>IC</th><td>人际冲突</td><th>3.0</th></tr>
+          <tr><th>SP</th><td>社会压力</td><th>2.5</th></tr>
+          <tr><th>NE</th><td>负性情绪</td><th>2.0</th></tr>
         </table>
+      </div>
+    </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">五维打分 · 实时试算</span></div>
+      <div class="ui-body">
+        <div class="ui-card">
+          <div class="small" style="opacity:.75;margin-bottom:4px">渴求五维（0–10）</div>
+          <div class="small" style="opacity:.7">强度</div><div class="progress"><i data-w="82%"></i></div>
+          <div class="small" style="opacity:.7">频率</div><div class="progress"><i data-w="76%"></i></div>
+          <div class="small" style="opacity:.7">持续</div><div class="progress"><i data-w="68%"></i></div>
+          <div class="small" style="opacity:.7">失控感</div><div class="progress"><i data-w="79%"></i></div>
+          <div class="small" style="opacity:.7">应对不足</div><div class="progress"><i data-w="64%"></i></div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.75">情境加成：CE 4.0 + IC 3.0 = +7.0</div>
+          <div class="small" style="opacity:.75;margin-top:4px">R = 92.4　→　N = 85.9（红）</div>
+        </div>
+        <div class="ui-spark" style="left:40%;bottom:12%"></div>
+        <div class="ui-spark" style="left:85%;bottom:20%;animation-delay:1.8s"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 7 WARNING ========== -->
+<!-- ========== 7 WARNING + Dashboard UI ========== -->
 <section class="slide dark" data-title="预警与趋势">
-  <div class="orb orb-g"></div><div class="orb orb-c"></div>
+  <div class="orb orb-g"></div>
   <div class="kicker rv">Early warning</div>
   <h2 class="rv d1">既看「今天多危险」，也看「是否在变危险」</h2>
-  <div class="body">
-    <div class="grid2" style="flex:1">
+  <div class="split">
+    <div>
       <div class="glass glow-ring rv d2">
-        <h3>三级预警</h3>
-        <table class="table" style="margin-bottom:12px">
+        <table class="table">
           <tr><th>色标</th><th>条件</th><th>响应</th></tr>
           <tr><td><span class="tag red">红</span></td><td>N ≥ 70</td><td>24–48h 危机面谈</td></tr>
           <tr><td><span class="tag orange">橙</span></td><td>40–69</td><td>48h 跟进</td></tr>
           <tr><td><span class="tag green">绿</span></td><td>N &lt; 40</td><td>常规跟踪</td></tr>
         </table>
-        <div class="mini" style="margin-top:10px">
-          <div class="lbl">趋势爬升窗口 · 实时示意</div>
-          <div class="wave">
-            <svg viewBox="0 0 320 64" preserveAspectRatio="none">
-              <path class="draw" d="M0,50 C40,48 60,40 90,38 S150,30 180,22 S250,12 320,8"
-                fill="none" stroke="#2EE6D6" stroke-width="3"/>
-              <circle class="pop" cx="250" cy="12" r="5" fill="#FF6B7A"/>
-            </svg>
-          </div>
-        </div>
+        <p class="small muted" style="margin:10px 0 0">7 日均线连续上升 → 爬升窗口，预警自动上调一档</p>
       </div>
-      <div class="glass teal glow-ring rv d3">
-        <h3>趋势示例</h3>
+      <div class="glass teal glow-ring rv d3" style="margin-top:12px">
         <div class="chart" id="chartTrend"></div>
+      </div>
+    </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">风险驾驶舱</span></div>
+      <div class="ui-body">
+        <div class="ui-nav">
+          <span class="ui-logo">心锚</span>
+          <span class="ui-tab act">工作台</span>
+          <span class="ui-tab">康复人员</span>
+          <span class="ui-tab">打卡录入</span>
+          <span class="ui-tab">系统说明</span>
+        </div>
+        <div class="ui-kpi">
+          <div class="ui-kpi-i"><div class="n" data-c="3">0</div><div class="l">在册</div></div>
+          <div class="ui-kpi-i"><div class="n" style="color:var(--red)" data-c="1">0</div><div class="l">红色</div></div>
+          <div class="ui-kpi-i"><div class="n" style="color:var(--orange)" data-c="1">0</div><div class="l">橙色</div></div>
+          <div class="ui-kpi-i"><div class="n" style="color:var(--teal)" data-c="3">0</div><div class="l">爬升</div></div>
+        </div>
+        <div class="ui-card">
+          <div class="ui-row"><span class="tag red">红</span><span>P001 陈立辉</span>
+            <span style="margin-left:auto;opacity:.85">85.9</span>
+            <span class="ui-btn" id="btnDashView" style="margin-left:6px">查看</span></div>
+          <div class="ui-row"><span class="tag orange">橙</span><span>P002 李兆文</span>
+            <span style="margin-left:auto;opacity:.85">58.4</span>
+            <span class="ui-btn ghost" style="margin-left:6px">查看</span></div>
+          <div class="ui-row"><span class="tag green">绿</span><span>P003 王建平</span>
+            <span style="margin-left:auto;opacity:.85">26.9</span>
+            <span class="ui-btn ghost" style="margin-left:6px">查看</span></div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.75;font-weight:700">待处置预警</div>
+          <div class="ui-row"><span class="tag red">红</span><span>线索暴露 + 失控感</span>
+            <span style="margin-left:auto;opacity:.7">去处置</span></div>
+          <div class="ui-row"><span class="tag orange">橙</span><span>社会压力爬升</span>
+            <span style="margin-left:auto;opacity:.7">去处置</span></div>
+        </div>
+        <div class="ui-spark" style="left:20%;bottom:10%"></div>
+        <div class="ui-spark" style="left:70%;bottom:14%;animation-delay:1.5s"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 8 FULL FEATURE DEMO ========== -->
+<!-- ========== 8 FULL WALKTHROUGH (slower) ========== -->
 <section class="slide dark" data-title="功能演示">
   <div class="kicker rv">Live product tour</div>
   <h2 class="rv d1">全功能真实界面 · 自动演示</h2>
-  <div class="demo-wrap rv d2">
-    <div class="device" id="device">
-      <div class="device-bar">
-        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-        <span class="device-title" id="deviceTitle">心锚 · 登录</span>
+  <div class="split wide-ui" style="flex:1;min-height:0">
+    <div class="step-list rv d2" id="stepList">
+      <div class="step-item act" data-i="0"><div class="idx">1</div><div>登录<br><span class="small muted">演示账号一键进入</span></div></div>
+      <div class="step-item" data-i="1"><div class="idx">2</div><div>风险驾驶舱<br><span class="small muted">红橙绿态势与待办</span></div></div>
+      <div class="step-item" data-i="2"><div class="idx">3</div><div>个案详情<br><span class="small muted">雷达 / 趋势 / 三步</span></div></div>
+      <div class="step-item" data-i="3"><div class="idx">4</div><div>打卡评估<br><span class="small muted">六题即时研判</span></div></div>
+      <div class="step-item" data-i="4"><div class="idx">5</div><div>多语言 · 东盟<br><span class="small muted">五语一键切换</span></div></div>
+      <div class="step-item" data-i="5"><div class="idx">6</div><div>处置留痕<br><span class="small muted">方案派发审计</span></div></div>
+      <div class="step-item" data-i="6"><div class="idx">7</div><div>复评完成<br><span class="small muted">研判—处置—复评</span></div></div>
+      <div class="glass teal" style="padding:12px 14px;margin-top:6px">
+        <div class="small muted" id="demoHint">自动演示中 · 点击步骤可跳转 · 节奏已放慢</div>
       </div>
-      <div class="screen" id="screen">
+    </div>
+    <div class="ui-panel rv d3" id="device" style="min-height:420px">
+      <div class="ui-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title" id="deviceTitle">心锚 · 登录</span>
+      </div>
+      <div class="ui-body" id="screen" style="position:relative;min-height:360px">
         <div class="cursor" id="cursor"></div>
+        <div class="ui-spark" style="left:12%;bottom:6%"></div>
+        <div class="ui-spark" style="left:55%;bottom:12%;animation-delay:1.2s"></div>
+        <div class="ui-spark" style="left:88%;bottom:8%;animation-delay:2.4s"></div>
 
-        <!-- 0 登录 -->
-        <div class="scene on" data-s="0">
-          <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:14px;height:100%">
+        <!-- 0 -->
+        <div class="scene on" data-s="0" style="position:absolute;inset:0;padding:12px 14px;opacity:1">
+          <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:12px;height:100%">
             <div>
-              <div style="font-size:24px;font-weight:850;margin:16px 0 8px" class="shine">心锚</div>
-              <div class="small" style="opacity:.8;line-height:1.8">社区戒毒矫治与康复<br>智能辅助系统</div>
+              <div style="font-size:26px;font-weight:850;margin:20px 0 8px" class="shine">心锚</div>
+              <div class="small" style="opacity:.8;line-height:1.85">社区戒毒矫治与康复<br>智能辅助系统</div>
               <div class="chips" style="margin-top:14px">
                 <span class="chip" style="font-size:11px;padding:5px 10px">规则 + LLM</span>
                 <span class="chip gold" style="font-size:11px;padding:5px 10px">五语</span>
+              </div>
+              <div class="small muted" style="margin-top:14px;line-height:1.8">
+                渴求五维建模 · 净风险分级 · 爬升窗口 · 阻断三步
               </div>
             </div>
             <div class="ui-card" style="align-self:center">
               <div class="small" style="font-weight:700;margin-bottom:6px">进入系统</div>
               <div class="ui-input" id="loginUser">officer</div>
-              <div class="ui-input" id="loginPass">••••••</div>
+              <div class="ui-input">••••••</div>
+              <div class="small muted" style="margin:4px 0">演示账号 officer / 123456</div>
               <div class="ui-btn teal" id="btnLogin" style="text-align:center;margin-top:8px">登 录</div>
             </div>
           </div>
         </div>
 
-        <!-- 1 驾驶舱 -->
-        <div class="scene" data-s="1">
+        <!-- 1 -->
+        <div class="scene" data-s="1" style="position:absolute;inset:0;padding:12px 14px">
           <div class="ui-nav">
             <span class="ui-logo">心锚</span>
-            <span class="ui-tab act">工作台</span>
-            <span class="ui-tab">康复人员</span>
-            <span class="ui-tab">打卡录入</span>
-            <span class="ui-tab">系统说明</span>
+            <span class="ui-tab act">工作台</span><span class="ui-tab">康复人员</span>
+            <span class="ui-tab">打卡录入</span><span class="ui-tab">系统说明</span>
             <span class="ui-tab" style="margin-left:auto">中文 ▾</span>
           </div>
           <div class="ui-kpi">
             <div class="ui-kpi-i"><div class="n" data-c="3">0</div><div class="l">在册</div></div>
             <div class="ui-kpi-i"><div class="n" style="color:var(--red)" data-c="1">0</div><div class="l">红色</div></div>
             <div class="ui-kpi-i"><div class="n" style="color:var(--orange)" data-c="1">0</div><div class="l">橙色</div></div>
-            <div class="ui-kpi-i"><div class="n" style="color:var(--teal)" data-c="3">0</div><div class="l">爬升窗口</div></div>
+            <div class="ui-kpi-i"><div class="n" style="color:var(--teal)" data-c="3">0</div><div class="l">爬升</div></div>
           </div>
           <div class="ui-card">
-            <div class="ui-row"><span class="tag red">红</span><span>P001 陈立辉</span>
+            <div class="small" style="opacity:.7;font-weight:700">人员当前状态</div>
+            <div class="ui-row"><span class="tag red">红</span><span>P001 陈立辉 · 巩固期</span>
               <span style="margin-left:auto;opacity:.85">85.9</span>
-              <span class="ui-btn" id="btnView1" style="margin-left:8px">查看</span></div>
-            <div class="ui-row"><span class="tag orange">橙</span><span>P002 李兆文</span>
+              <span class="ui-btn" id="btnView1" style="margin-left:6px">查看</span></div>
+            <div class="ui-row"><span class="tag orange">橙</span><span>P002 李兆文 · 巩固期</span>
               <span style="margin-left:auto;opacity:.85">58.4</span>
-              <span class="ui-btn" style="margin-left:8px;opacity:.75">查看</span></div>
-            <div class="ui-row"><span class="tag green">绿</span><span>P003 王建平</span>
+              <span class="ui-btn ghost" style="margin-left:6px">查看</span></div>
+            <div class="ui-row"><span class="tag green">绿</span><span>P003 王建平 · 回归期</span>
               <span style="margin-left:auto;opacity:.85">26.9</span>
-              <span class="ui-btn" style="margin-left:8px;opacity:.75">查看</span></div>
+              <span class="ui-btn ghost" style="margin-left:6px">查看</span></div>
+          </div>
+          <div class="ui-card">
+            <div class="small" style="opacity:.7;font-weight:700">待处置预警</div>
+            <div class="ui-row"><span class="tag red">红</span><span>2026-10-08 线索暴露</span>
+              <span style="margin-left:auto;opacity:.7">去处置</span></div>
+            <div class="ui-row"><span class="tag orange">橙</span><span>2026-10-07 社会压力</span>
+              <span style="margin-left:auto;opacity:.7">去处置</span></div>
           </div>
         </div>
 
-        <!-- 2 个案详情 -->
-        <div class="scene" data-s="2">
+        <!-- 2 -->
+        <div class="scene" data-s="2" style="position:absolute;inset:0;padding:12px 14px">
           <div class="ui-nav">
             <span class="ui-logo">P001 陈立辉</span>
             <span class="tag red">红 · 85.9</span>
             <span class="ui-tab">巩固期</span>
             <span class="ui-tab" id="btnRerun" style="margin-left:auto">重跑评估</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
             <div class="ui-card">
-              <div class="small" style="opacity:.7;margin-bottom:4px">渴求五维</div>
-              <div class="ui-bar"><i data-w="82%"></i></div>
-              <div class="ui-bar"><i data-w="76%"></i></div>
-              <div class="ui-bar"><i data-w="68%"></i></div>
-              <div class="ui-bar"><i data-w="79%"></i></div>
-              <div class="ui-bar"><i data-w="64%"></i></div>
+              <div class="small" style="opacity:.7;margin-bottom:4px">渴求五维雷达</div>
+              <div class="small" style="opacity:.7">强度</div><div class="progress"><i data-w="82%"></i></div>
+              <div class="small" style="opacity:.7">频率</div><div class="progress"><i data-w="76%"></i></div>
+              <div class="small" style="opacity:.7">持续</div><div class="progress"><i data-w="68%"></i></div>
+              <div class="small" style="opacity:.7">失控感</div><div class="progress"><i data-w="79%"></i></div>
             </div>
             <div class="ui-card">
               <div class="small" style="opacity:.7;margin-bottom:4px">60 日趋势 · 爬升窗口</div>
-              <svg viewBox="0 0 220 88" style="width:100%;height:88px">
-                <path class="draw" d="M5,72 L30,64 L55,58 L80,52 L105,46 L130,36 L155,28 L180,20 L210,12"
+              <svg viewBox="0 0 220 100" style="width:100%;height:100px">
+                <path class="draw" d="M5,82 L30,74 L55,66 L80,58 L105,50 L130,40 L155,30 L180,20 L210,10"
                   fill="none" stroke="#2EE6D6" stroke-width="2.6"/>
                 <circle class="pop" cx="180" cy="20" r="5" fill="#FF6B7A"/>
+                <circle class="pop" cx="130" cy="40" r="4" fill="#FFB454"/>
               </svg>
             </div>
           </div>
-          <div class="ui-card" style="margin-top:8px">
+          <div class="ui-card">
             <div class="small" style="font-weight:700;margin-bottom:4px">阻断三步</div>
-            <div class="small" style="opacity:.85;line-height:1.75">
-              ① 立即离开诱发现场　② 线索—后果链条梳理　③ 绕行路线 + 紧急联系人
+            <div class="small" style="opacity:.85;line-height:1.8">
+              ① 立即离开诱发现场<br>
+              ② 线索—后果链条梳理<br>
+              ③ 绕行路线 + 紧急联系人 + 有氧替代
             </div>
             <div class="ui-btn teal" id="btnHandle" style="display:inline-block;margin-top:8px">提交处置留痕</div>
           </div>
         </div>
 
-        <!-- 3 打卡评估 -->
-        <div class="scene" data-s="3">
-          <div class="ui-nav"><span class="ui-logo">每日打卡录入</span>
-            <span class="ui-tab act">EMA · 6 题</span></div>
+        <!-- 3 -->
+        <div class="scene" data-s="3" style="position:absolute;inset:0;padding:12px 14px">
+          <div class="ui-nav"><span class="ui-logo">每日打卡录入</span><span class="ui-tab act">EMA · 6 题</span></div>
           <div class="ui-card">
-            <div class="small" style="opacity:.7">1. 今日渴求峰值</div>
-            <div class="ui-input" id="inCrave">6</div>
+            <div class="small" style="opacity:.7">康复人员</div>
+            <div class="ui-input">P001 陈立辉</div>
+            <div class="small" style="opacity:.7">1. 今日情绪（1-5） / 渴求峰值（0-10）</div>
+            <div class="ui-input">3　/　6</div>
             <div class="small" style="opacity:.7">2. 高危情境</div>
-            <div class="ui-input" id="inSit">CE · 线索／诱因暴露</div>
+            <div class="ui-input">CE · 线索／诱因暴露</div>
             <div class="small" style="opacity:.7">3. 今日自述</div>
-            <div class="ui-input" id="inNote" style="min-height:48px">路过以前那个地方，脑子里突然全是……</div>
+            <div class="ui-input" style="min-height:48px">路过以前那个地方，脑子里突然全是，差点没忍住……</div>
             <div class="ui-btn teal" id="btnSubmit" style="display:inline-block;margin-top:6px">提交并触发评估</div>
+          </div>
+          <div class="ui-card">
+            <div class="small" style="opacity:.75">评估链路：信号抽取 → 五维建模 → 净风险 → 阻断 → 趋势</div>
           </div>
         </div>
 
-        <!-- 4 多语言 -->
-        <div class="scene" data-s="4">
+        <!-- 4 -->
+        <div class="scene" data-s="4" style="position:absolute;inset:0;padding:12px 14px">
           <div class="ui-nav">
             <span class="ui-logo">系统说明 · 面向东盟</span>
             <span class="ui-tab act" id="langZh">中文</span>
@@ -737,10 +811,11 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
             <span class="ui-tab" id="langId">Bahasa</span>
           </div>
           <div class="ui-card">
-            <div class="small" style="font-weight:700;margin-bottom:6px" id="langTitle">规则可翻译 · 方案可复用 · 数据不出境</div>
-            <div class="small" style="opacity:.8;line-height:1.8" id="langBody">
-              界面已支持中文 / English / Tiếng Việt / ภาษาไทย / Bahasa Indonesia，
-              导航、风险色标、情境标签与关键业务文案一键切换。
+            <div class="small" style="font-weight:700;margin-bottom:6px">规则可翻译 · 方案可复用 · 数据不出境</div>
+            <div class="small" style="opacity:.85;line-height:1.85">
+              界面支持中文 / English / Tiếng Việt / ภาษาไทย / Bahasa Indonesia。<br>
+              导航、风险色标、情境标签、关键业务文案一键切换。<br>
+              方案库可按对象国法律与文化习惯本地化。
             </div>
           </div>
           <div class="ui-card">
@@ -750,9 +825,9 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
           </div>
         </div>
 
-        <!-- 5 处置闭环 -->
-        <div class="scene" data-s="5">
-          <div class="ui-nav"><span class="ui-logo">预警与阻断</span></div>
+        <!-- 5 -->
+        <div class="scene" data-s="5" style="position:absolute;inset:0;padding:12px 14px">
+          <div class="ui-nav"><span class="ui-logo">预警与阻断</span><span class="ui-tab act">处置留痕</span></div>
           <div class="ui-card">
             <div class="ui-row"><span class="tag red">红</span><span>2026-10-08</span>
               <span style="margin-left:auto;opacity:.8">待处置</span></div>
@@ -760,28 +835,30 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
               净风险 85.9 ≥ 70，线索暴露叠加失控感升高
             </div>
             <div class="small" style="opacity:.8;line-height:1.8">
-              ① 离开诱发现场 ② CBT 认知重构 ③ 替代行为 + 紧急联系人
+              ① 离开诱发现场　② CBT 认知重构　③ 替代行为 + 紧急联系人
             </div>
             <div style="display:flex;gap:8px;margin-top:8px">
-              <div class="ui-input" style="flex:1;margin:0">处置说明……</div>
+              <div class="ui-input" style="flex:1;margin:0">处置说明：已完成一对一面谈……</div>
               <div class="ui-btn teal" id="btnAudit">提交留痕</div>
             </div>
           </div>
           <div class="ui-card">
-            <div class="small" style="opacity:.7">已处置记录</div>
-            <div class="small" style="opacity:.85;margin-top:4px">张警官 · 2026-10-06 · 一对一面谈完成</div>
+            <div class="small" style="opacity:.7;font-weight:700">审计记录</div>
+            <div class="small" style="opacity:.85;margin-top:4px;line-height:1.8">
+              张警官 · 2026-10-06 · 一对一面谈完成<br>
+              张警官 · 2026-10-08 · 处置说明提交
+            </div>
           </div>
         </div>
 
-        <!-- 6 完成 -->
-        <div class="scene" data-s="6">
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px">
-            <div class="pulse-dot" style="width:18px;height:18px"></div>
-            <div style="width:68px;height:68px;border-radius:50%;background:rgba(61,255,168,.18);
-              display:grid;place-items:center;font-size:30px;color:var(--green);
-              box-shadow:0 0 40px rgba(61,255,168,.35)">✓</div>
-            <div style="font-size:22px;font-weight:850">研判 — 处置 — 复评 闭环完成</div>
-            <div class="small muted" style="text-align:center;line-height:1.9">
+        <!-- 6 -->
+        <div class="scene" data-s="6" style="position:absolute;inset:0;padding:12px 14px">
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px">
+            <div style="width:64px;height:64px;border-radius:50%;background:rgba(61,255,168,.18);
+              display:grid;place-items:center;font-size:28px;color:var(--green);
+              box-shadow:0 0 40px rgba(61,255,168,.4)">✓</div>
+            <div style="font-size:20px;font-weight:850">研判 — 处置 — 复评 闭环完成</div>
+            <div class="small muted" style="text-align:center;line-height:1.95">
               信号抽取 → 五维建模 → 净风险 → 阻断方案 → 趋势检测<br>
               合成数据 · AI 辅助研判 · 人工最终决策
             </div>
@@ -789,93 +866,135 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
         </div>
       </div>
     </div>
-
-    <div class="demo-side">
-      <div class="step-list" id="stepList">
-        <div class="step-item act" data-i="0"><div class="idx">1</div><div>登录<br><span class="small muted">一键进入</span></div></div>
-        <div class="step-item" data-i="1"><div class="idx">2</div><div>风险驾驶舱<br><span class="small muted">红橙绿态势</span></div></div>
-        <div class="step-item" data-i="2"><div class="idx">3</div><div>个案详情<br><span class="small muted">雷达 / 趋势 / 三步</span></div></div>
-        <div class="step-item" data-i="3"><div class="idx">4</div><div>打卡评估<br><span class="small muted">六题即时研判</span></div></div>
-        <div class="step-item" data-i="4"><div class="idx">5</div><div>多语言 · 东盟<br><span class="small muted">五语一键切换</span></div></div>
-        <div class="step-item" data-i="5"><div class="idx">6</div><div>处置留痕<br><span class="small muted">方案派发闭环</span></div></div>
-        <div class="step-item" data-i="6"><div class="idx">7</div><div>复评完成<br><span class="small muted">全程可审计</span></div></div>
-      </div>
-      <div class="glass teal" style="padding:14px 16px">
-        <div class="small muted" id="demoHint">自动演示中 · 点击右侧步骤可跳转</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ========== 9 INTERVENTION ========== -->
+<!-- ========== 9 INTERVENTION + Plan UI ========== -->
 <section class="slide light" data-title="帮教闭环">
   <div class="kicker rv">Intervention</div>
   <h2 class="rv d1">标准动作打底，个性化表达润色</h2>
-  <div class="body">
-    <div class="steps3">
-      <div class="glass red glow-ring rv d2 step3">
-        <div class="stat red" style="font-size:32px">01</div>
-        <h3 style="margin-top:8px">即时应激处理</h3>
-        <p class="small muted">离开现场、安全确认、紧急联系人、呼吸放松。</p>
+  <div class="split">
+    <div>
+      <div class="row-cards rv d2">
+        <div class="glass red" style="padding:14px">
+          <div class="stat red" style="font-size:26px">01</div>
+          <h3 style="margin-top:6px;font-size:15px">即时应激</h3>
+          <p class="small muted" style="margin:0">离开现场、安全确认、紧急联系人</p>
+        </div>
+        <div class="glass gold" style="padding:14px">
+          <div class="stat gold" style="font-size:26px">02</div>
+          <h3 style="margin-top:6px;font-size:15px">认知重构</h3>
+          <p class="small muted" style="margin:0">CBT 线索—后果，识别合理化</p>
+        </div>
+        <div class="glass teal" style="padding:14px">
+          <div class="stat teal" style="font-size:26px">03</div>
+          <h3 style="margin-top:6px;font-size:15px">替代行为</h3>
+          <p class="small muted" style="margin:0">绕行路线、有氧、同伴互助</p>
+        </div>
       </div>
-      <div class="glass gold glow-ring rv d3 step3">
-        <div class="stat gold" style="font-size:32px">02</div>
-        <h3 style="margin-top:8px">认知重构</h3>
-        <p class="small muted">CBT 线索—后果链条，识别借口合理化。</p>
-      </div>
-      <div class="glass teal glow-ring rv d4 step3">
-        <div class="stat teal" style="font-size:32px">03</div>
-        <h3 style="margin-top:8px">替代行为</h3>
-        <p class="small muted">绕行路线、有氧运动、同伴互助。</p>
+      <div class="glass glow-ring rv d3" style="margin-top:12px">
+        <div class="flow" style="margin:0">
+          <div class="node">研判</div><div class="arrow">→</div>
+          <div class="node">派发</div><div class="arrow">→</div>
+          <div class="node">留痕</div><div class="arrow">→</div>
+          <div class="node">复评</div><div class="arrow">→</div>
+          <div class="node">迭代</div>
+        </div>
       </div>
     </div>
-    <div class="glass brand glow-ring rv d5">
-      <div class="flow" style="margin:0">
-        <div class="node">研判</div><div class="arrow">→</div>
-        <div class="node">派发</div><div class="arrow">→</div>
-        <div class="node">留痕</div><div class="arrow">→</div>
-        <div class="node">复评</div><div class="arrow">→</div>
-        <div class="node">迭代</div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">帮教方案库 · 八类情境</span></div>
+      <div class="ui-body">
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:6px">线索／诱因暴露（CE）</div>
+          <div class="small" style="opacity:.85;line-height:1.8">
+            ① 立即离开现场<br>
+            ② 「线索—渴求—后果」链条梳理<br>
+            ③ 预设绕行路线 + 紧急联系人
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:6px">负性情绪状态（NE）</div>
+          <div class="small" style="opacity:.85;line-height:1.8">
+            ① 情绪命名与身体放松<br>
+            ② 识别压抑、自责等想法<br>
+            ③ 有氧运动 / 呼吸训练替代
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.75">LLM 仅做口语化改写 · 干预内核不变 · 循证底线</div>
+        </div>
+        <div class="ui-spark" style="left:35%;bottom:10%"></div>
+        <div class="ui-spark" style="left:80%;bottom:18%;animation-delay:2s"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 10 ASEAN ========== -->
+<!-- ========== 10 ASEAN + Lang UI ========== -->
 <section class="slide cover" data-title="面向东盟">
   <div class="orb orb-t"></div><div class="orb orb-c"></div>
   <div class="kicker rv">ASEAN ready</div>
   <h2 class="rv d1">规则可翻译 · 方案可复用 · 数据不出境</h2>
-  <p class="lead rv d2" style="color:#C9DCEF">广西是面向东盟的前沿。评估维度与方案库可按对象国法律文化本地化。</p>
-  <div class="body">
-    <div class="grid3">
+  <div class="split">
+    <div>
+      <p class="lead rv d2" style="color:#C9DCEF">广西是面向东盟的前沿。评估维度与方案库可按对象国法律文化本地化。</p>
       <div class="glass glow-ring rv d3">
-        <h3>五语界面</h3>
-        <div class="badge-row">
-          <span class="badge">中文</span><span class="badge">English</span>
-          <span class="badge">Tiếng Việt</span><span class="badge">ภาษาไทย</span>
-          <span class="badge">Bahasa</span>
+        <ul class="clean">
+          <li>量表用语按对象国习惯替换</li>
+          <li>帮教方案库按法律文化裁剪</li>
+          <li>阈值权重按场所重标定</li>
+          <li>数据不跨境 · 人工最终决策</li>
+        </ul>
+      </div>
+      <div class="badge-row rv d4">
+        <span class="badge">中文</span><span class="badge">English</span>
+        <span class="badge">Tiếng Việt</span><span class="badge">ภาษาไทย</span>
+        <span class="badge">Bahasa</span>
+      </div>
+    </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">多语言切换 · 实时</span></div>
+      <div class="ui-body">
+        <div class="ui-nav">
+          <span class="ui-tab act">中文</span>
+          <span class="ui-tab">English</span>
+          <span class="ui-tab">Tiếng Việt</span>
+          <span class="ui-tab">ไทย</span>
+          <span class="ui-tab">Bahasa</span>
         </div>
-      </div>
-      <div class="glass gold glow-ring rv d4">
-        <h3>本地化</h3>
-        <p class="small muted">量表用语、方案库、阈值权重均可按场所调整。</p>
-      </div>
-      <div class="glass teal glow-ring rv d5">
-        <h3>合规</h3>
-        <p class="small muted">数据不跨境 · 人工最终决策 · 审计可追溯。</p>
+        <div class="ui-card">
+          <div class="small" style="opacity:.7;margin-bottom:4px">导航</div>
+          <div class="ui-row"><span>工作台</span><span style="margin-left:auto;opacity:.6">Dashboard</span></div>
+          <div class="ui-row"><span>康复人员</span><span style="margin-left:auto;opacity:.6">Clients</span></div>
+          <div class="ui-row"><span>打卡录入</span><span style="margin-left:auto;opacity:.6">Check-in</span></div>
+          <div class="ui-row"><span>系统说明</span><span style="margin-left:auto;opacity:.6">About</span></div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.7;margin-bottom:4px">风险色标</div>
+          <div class="ui-row"><span class="tag red">红</span><span>Red</span>
+            <span class="tag orange" style="margin-left:8px">橙</span><span>Orange</span>
+            <span class="tag green" style="margin-left:8px">绿</span><span>Green</span></div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.75">越南语 · 泰语 · 印尼/马来语均可一键切换</div>
+        </div>
+        <div class="ui-spark" style="left:22%;bottom:8%"></div>
+        <div class="ui-spark" style="left:72%;bottom:14%;animation-delay:1.7s"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 11 COMPLIANCE ========== -->
+<!-- ========== 11 COMPLIANCE + About UI ========== -->
 <section class="slide light" data-title="安全合规">
   <div class="kicker rv">Compliance</div>
   <h2 class="rv d1">五条硬约束</h2>
-  <div class="body">
-    <div class="grid2" style="flex:1">
-      <div class="rv d2">
+  <div class="split">
+    <div>
+      <div class="glass glow-ring rv d2">
         <ul class="clean">
           <li><strong>数据不出域</strong>——可离线政务内网部署</li>
           <li><strong>零真实个人信息</strong>——全合成演示</li>
@@ -884,44 +1003,136 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
           <li><strong>会话与传输安全</strong>——可升级 HTTPS</li>
         </ul>
       </div>
-      <div class="glass gold glow-ring rv d3" style="display:flex;align-items:center">
-        <p class="lead" style="margin:0;font-size:18px">
+      <div class="glass gold glow-ring rv d3" style="margin-top:12px">
+        <p class="small" style="margin:0;line-height:1.85">
           系统定位为<strong>人工智能辅助评估工具</strong>，预警与方案须经工作人员审核确认后执行，
           不得作为处分、诊断或强制措施依据。
         </p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ========== 12 IMPACT ========== -->
-<section class="slide dark" data-title="效益指标">
-  <div class="kicker rv">Impact</div>
-  <h2 class="rv d1">可量化目标</h2>
-  <div class="body">
-    <div class="row">
-      <div class="glass brand glow-ring rv d2"><div class="stat blue"><span data-count="85">0</span>%+</div><div class="stat-l">红橙预警召回率</div></div>
-      <div class="glass teal glow-ring rv d3"><div class="stat teal">≤10 分</div><div class="stat-l">人均研判（原约 30 分）</div></div>
-      <div class="glass gold glow-ring rv d4"><div class="stat gold"><span data-count="90">0</span>%+</div><div class="stat-l">爬升窗口 24h 闭环</div></div>
-      <div class="glass red glow-ring rv d5"><div class="stat red">3 类</div><div class="stat-l">稳定区分风险走势</div></div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">系统说明 · 数据治理</span></div>
+      <div class="ui-body">
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">四、数据合规声明</div>
+          <div class="small" style="opacity:.85;line-height:1.8">
+            本系统全部数据均为虚构合成数据，不含任何真实戒毒人员信息，不涉及司法警务秘密。
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">五、面向东盟</div>
+          <div class="small" style="opacity:.85;line-height:1.8">
+            规则可翻译、方案可复用、数据不出境。评估维度与帮教方案库可按对象国法律与文化习惯本地化。
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:4px">六、运行模式</div>
+          <div class="ui-row"><span>当前模式</span><span style="margin-left:auto;opacity:.85">纯规则 / 可开 LLM</span></div>
+          <div class="ui-row"><span>技术栈</span><span style="margin-left:auto;opacity:.85">Flask + SQLite + ECharts</span></div>
+          <div class="ui-row"><span>演示数据</span><span style="margin-left:auto;opacity:.85">一键恢复</span></div>
+        </div>
+        <div class="ui-spark" style="left:18%;bottom:12%"></div>
+        <div class="ui-spark" style="left:68%;bottom:8%;animation-delay:1.9s"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 13 ROADMAP ========== -->
+<!-- ========== 12 IMPACT + Metric UI ========== -->
+<section class="slide dark" data-title="效益指标">
+  <div class="kicker rv">Impact</div>
+  <h2 class="rv d1">可量化目标</h2>
+  <div class="split">
+    <div>
+      <div class="row-cards rv d2">
+        <div class="glass brand" style="padding:14px"><div class="stat blue" style="font-size:28px"><span data-count="85">0</span>%+</div><div class="stat-l">红橙召回率</div></div>
+        <div class="glass teal" style="padding:14px"><div class="stat teal" style="font-size:28px">≤10 分</div><div class="stat-l">人均研判</div></div>
+        <div class="glass gold" style="padding:14px"><div class="stat gold" style="font-size:28px"><span data-count="90">0</span>%+</div><div class="stat-l">24h 闭环</div></div>
+        <div class="glass red" style="padding:14px"><div class="stat red" style="font-size:28px">3 类</div><div class="stat-l">走势区分</div></div>
+      </div>
+      <div class="glass glow-ring rv d3" style="margin-top:12px">
+        <ul class="clean">
+          <li>从翻记录找信号 → 看曲线定优先级</li>
+          <li>隐性经验沉淀为显性知识库</li>
+          <li>降低复吸率与毒品再危害</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">成效看板</span></div>
+      <div class="ui-body">
+        <div class="ui-kpi">
+          <div class="ui-kpi-i"><div class="n" data-c="85">0</div><div class="l">召回率%</div></div>
+          <div class="ui-kpi-i"><div class="n" style="color:var(--teal)" data-c="9">0</div><div class="l">分钟研判</div></div>
+          <div class="ui-kpi-i"><div class="n" style="color:var(--gold)" data-c="90">0</div><div class="l">闭环率%</div></div>
+          <div class="ui-kpi-i"><div class="n" style="color:var(--cyan)" data-c="3">0</div><div class="l">风险类型</div></div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.7;margin-bottom:4px">红橙预警召回</div>
+          <div class="progress"><i data-w="85%"></i></div>
+          <div class="small" style="opacity:.7;margin:6px 0 4px">爬升窗口 24h 闭环</div>
+          <div class="progress"><i data-w="90%"></i></div>
+          <div class="small" style="opacity:.7;margin:6px 0 4px">平均研判时长下降</div>
+          <div class="progress"><i data-w="70%"></i></div>
+        </div>
+        <div class="ui-card">
+          <div class="ui-row"><span class="tag red">陈立辉</span><span>持续高危</span><span style="margin-left:auto;opacity:.7">已检出</span></div>
+          <div class="ui-row"><span class="tag orange">李兆文</span><span>风险爬升</span><span style="margin-left:auto;opacity:.7">已预警</span></div>
+          <div class="ui-row"><span class="tag green">王建平</span><span>平稳向好</span><span style="margin-left:auto;opacity:.7">已回落</span></div>
+        </div>
+        <div class="ui-spark" style="left:30%;bottom:10%"></div>
+        <div class="ui-spark" style="left:78%;bottom:16%;animation-delay:2.1s"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 13 ROADMAP + Path UI ========== -->
 <section class="slide light" data-title="路线图">
   <div class="kicker rv">Roadmap</div>
   <h2 class="rv d1">合成验证 → 单所校准 → 区域复制 → 东盟</h2>
-  <div class="body">
-    <div class="steps3">
-      <div class="glass glow-ring rv d2 step3"><div class="stat blue" style="font-size:32px">1</div>
-        <h3 style="margin-top:8px">合成验证</h3><p class="small muted">已完成闭环 · TRL 6</p></div>
-      <div class="glass teal glow-ring rv d3 step3"><div class="stat teal" style="font-size:32px">2</div>
-        <h3 style="margin-top:8px">单所校准</h3><p class="small muted">广西试点 · TRL 7</p></div>
-      <div class="glass gold glow-ring rv d4 step3"><div class="stat gold" style="font-size:32px">3</div>
-        <h3 style="margin-top:8px">区域复制</h3><p class="small muted">所内 + 所外一体</p></div>
-      <div class="glass brand glow-ring rv d5 step3"><div class="stat blue" style="font-size:32px">4</div>
-        <h3 style="margin-top:8px">东盟协同</h3><p class="small muted">多语 · 联防联控</p></div>
+  <div class="split">
+    <div>
+      <div class="row-cards rv d2">
+        <div class="glass brand" style="padding:14px"><div class="stat blue" style="font-size:26px">1</div><h3 style="margin:6px 0 0;font-size:14px">合成验证</h3><p class="small muted" style="margin:4px 0 0">已完成 · TRL 6</p></div>
+        <div class="glass teal" style="padding:14px"><div class="stat teal" style="font-size:26px">2</div><h3 style="margin:6px 0 0;font-size:14px">单所校准</h3><p class="small muted" style="margin:4px 0 0">广西试点 · TRL 7</p></div>
+        <div class="glass gold" style="padding:14px"><div class="stat gold" style="font-size:26px">3</div><h3 style="margin:6px 0 0;font-size:14px">区域复制</h3><p class="small muted" style="margin:4px 0 0">所内 + 所外</p></div>
+        <div class="glass brand" style="padding:14px"><div class="stat blue" style="font-size:26px">4</div><h3 style="margin:6px 0 0;font-size:14px">东盟协同</h3><p class="small muted" style="margin:4px 0 0">多语 · 联防</p></div>
+      </div>
+      <div class="glass glow-ring rv d3" style="margin-top:12px">
+        <ul class="clean">
+          <li>移动端打卡与家属端随访</li>
+          <li>帮教权重随处置反馈优化</li>
+          <li>高校—司法局—戒毒所协同</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">落地节奏</span></div>
+      <div class="ui-body">
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:6px">阶段进度</div>
+          <div class="small" style="opacity:.7">合成数据验证</div>
+          <div class="progress"><i data-w="100%"></i></div>
+          <div class="small" style="opacity:.7;margin-top:6px">单场所真实校准</div>
+          <div class="progress"><i data-w="35%"></i></div>
+          <div class="small" style="opacity:.7;margin-top:6px">区域复制推广</div>
+          <div class="progress"><i data-w="12%"></i></div>
+          <div class="small" style="opacity:.7;margin-top:6px">东盟经验交流</div>
+          <div class="progress"><i data-w="20%"></i></div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.8;line-height:1.8">
+            合成验证 → 脱敏校准 → 多所协同<br>
+            数据始终留在本地，不出域
+          </div>
+        </div>
+        <div class="ui-spark" style="left:25%;bottom:12%"></div>
+        <div class="ui-spark" style="left:70%;bottom:8%;animation-delay:1.6s"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -931,19 +1142,48 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
   <div class="orb orb-t"></div><div class="orb orb-g"></div><div class="orb orb-c"></div>
   <div class="kicker rv">Try it now</div>
   <h2 class="rv d1">扫码即刻体验心锚</h2>
-  <div class="qr-panel rv d2" style="margin-top:8px">
-    <div class="qr-box glow-ring" id="qrBox"></div>
+  <div class="split">
     <div>
-      <h3>在线体验站</h3>
-      <p class="lead" style="font-size:19px;word-break:break-all;margin-bottom:12px" id="urlText">—</p>
-      <p class="muted small" style="line-height:1.9">
-        风险驾驶舱 · 个案雷达与趋势 · 打卡评估 · 帮教方案 · 五语切换<br>
-        合成虚构数据 · AI 辅助研判 · 人工最终决策
-      </p>
+      <div class="qr-panel rv d2" style="grid-template-columns:200px 1fr">
+        <div class="qr-box glow-ring" id="qrBox"></div>
+        <div>
+          <h3>在线体验站</h3>
+          <p class="lead" style="font-size:16px;word-break:break-all;margin-bottom:10px" id="urlText">—</p>
+          <p class="muted small" style="line-height:1.9">
+            风险驾驶舱 · 个案雷达与趋势 · 打卡评估 · 帮教方案 · 五语切换
+          </p>
+        </div>
+      </div>
+      <div class="glass glow-ring rv d3" style="margin-top:14px">
+        <h3 style="margin:0">谢谢聆听 · 心锚队（广西警察学院）</h3>
+      </div>
     </div>
-  </div>
-  <div class="glass glow-ring rv d3" style="margin-top:22px">
-    <h3 style="margin:0">谢谢聆听 · 心锚队（广西警察学院）</h3>
+    <div class="ui-panel rv d3">
+      <div class="ui-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="ui-title">体验入口</span></div>
+      <div class="ui-body">
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:6px">在线体验站</div>
+          <div class="small" style="opacity:.85;line-height:1.8">
+            手机扫码即可体验驾驶舱、个案、打卡与五语切换。<br>
+            合成虚构数据 · AI 辅助研判 · 人工最终决策。
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="font-weight:700;margin-bottom:6px">本地完整版</div>
+          <div class="small" style="opacity:.85;line-height:1.8">
+            Flask 源码随包交付，双击启动。<br>
+            演示账号：officer / 123456
+          </div>
+        </div>
+        <div class="ui-card">
+          <div class="small" style="opacity:.75">让干预窗口前移，让矫治更精准</div>
+        </div>
+        <div class="ui-spark" style="left:20%;bottom:10%"></div>
+        <div class="ui-spark" style="left:65%;bottom:16%;animation-delay:1.8s"></div>
+        <div class="ui-spark" style="left:90%;bottom:6%;animation-delay:2.6s"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -961,45 +1201,40 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
 </div>
 
 <script>
-/* ========== particles + glow field ========== */
+/* ===== particles (denser + glowing) ===== */
 (function(){
   const c=document.getElementById('fx'),ctx=c.getContext('2d');
   let w,h,parts=[],t=0;
   function resize(){
     w=c.width=innerWidth; h=c.height=innerHeight;
-    const n=Math.min(80,Math.floor(w*h/18000));
+    const n=Math.min(110,Math.floor(w*h/14000));
     parts=Array.from({length:n},(_,i)=>({
       x:Math.random()*w,y:Math.random()*h,
-      r:Math.random()*1.8+.4,
-      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
-      a:Math.random()*.5+.2,
-      hue:[172,200,220,42][i%4]
+      r:Math.random()*2+.4,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,
+      a:Math.random()*.5+.25,hue:[172,195,215,42,280][i%5]
     }));
   }
   function tick(){
-    t+=0.008;
+    t+=0.01;
     ctx.clearRect(0,0,w,h);
-    // soft moving lights
-    for(let i=0;i<3;i++){
-      const gx=w*(.25+.22*i+Math.sin(t+i)*0.08);
-      const gy=h*(.3+.18*i+Math.cos(t*.8+i)*0.1);
-      const g=ctx.createRadialGradient(gx,gy,0,gx,gy,Math.min(w,h)*0.35);
-      g.addColorStop(0,`hsla(${[172,205,42][i]},80%,60%,0.07)`);
+    for(let i=0;i<4;i++){
+      const gx=w*(.2+.2*i+Math.sin(t+i)*.1), gy=h*(.25+.18*i+Math.cos(t*.8+i)*.12);
+      const g=ctx.createRadialGradient(gx,gy,0,gx,gy,Math.min(w,h)*.4);
+      g.addColorStop(0,`hsla(${[172,205,42,280][i]},85%,62%,.08)`);
       g.addColorStop(1,'transparent');
       ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
     }
     for(let i=0;i<parts.length;i++){
-      const p=parts[i];
-      p.x+=p.vx; p.y+=p.vy;
+      const p=parts[i]; p.x+=p.vx; p.y+=p.vy;
       if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
-      const glow=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4);
-      glow.addColorStop(0,`hsla(${p.hue},90%,70%,${p.a})`);
+      const glow=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*5);
+      glow.addColorStop(0,`hsla(${p.hue},90%,72%,${p.a})`);
       glow.addColorStop(1,'transparent');
-      ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*4,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*5,0,Math.PI*2); ctx.fill();
       for(let j=i+1;j<parts.length;j++){
         const q=parts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;
-        if(d<10000){
-          ctx.strokeStyle=`hsla(${p.hue},80%,70%,${.12*(1-d/10000)})`;
+        if(d<9000){
+          ctx.strokeStyle=`hsla(${p.hue},80%,70%,${.13*(1-d/9000)})`;
           ctx.lineWidth=.55;
           ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
         }
@@ -1010,7 +1245,7 @@ ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;he
   addEventListener('resize',resize); resize(); tick();
 })();
 
-/* ========== QR ========== */
+/* ===== QR ===== */
 function qr_encode(text){
   const EXP=new Array(512),LOG=new Array(256);
   (function(){let x=1;for(let i=0;i<255;i++){EXP[i]=x;LOG[x]=i;x<<=1;if(x&0x100)x^=0x11D}
@@ -1083,7 +1318,7 @@ function qr_encode(text){
 }
 function renderQR(url){
   try{
-    const m=qr_encode(url),n=m.length,s=Math.floor(210/n)||2,g=1,px=n*(s+g);
+    const m=qr_encode(url),n=m.length,s=Math.floor(190/n)||2,g=1,px=n*(s+g);
     let cells='';
     for(let r=0;r<n;r++)for(let c=0;c<n;c++)
       if(m[r][c])cells+=`<rect x="${c*(s+g)}" y="${r*(s+g)}" width="${s}" height="${s}" fill="#0B1F3A"/>`;
@@ -1092,45 +1327,45 @@ function renderQR(url){
   document.getElementById('urlText').textContent=url;
 }
 
-/* ========== trend ========== */
+/* ===== trend ===== */
 function drawTrend(){
   const peaks=[4,5,5,6,6,7,6,7,7,8,7,8,8,7,8,8,9,8,8,9,8,9,9,8,9,9,8,9,9,9,
                8,9,9,9,9,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9];
   const ma=peaks.map((_,i)=>{const s=Math.max(0,i-6),a=peaks.slice(s,i+1);
     return a.reduce((x,y)=>x+y,0)/a.length;});
-  const w=520,h=230,pl=36,pr=14,pt=14,pb=24,iw=w-pl-pr,ih=h-pt-pb,n=peaks.length;
+  const w=480,h=170,pl=32,pr=10,pt=10,pb=18,iw=w-pl-pr,ih=h-pt-pb,n=peaks.length;
   const x=i=>pl+i*(iw/(n-1)),y=v=>pt+ih-(v/10)*ih;
   let grid='';
   for(let v=0;v<=10;v+=2) grid+=`<line x1="${pl}" y1="${y(v)}" x2="${w-pr}" y2="${y(v)}" stroke="rgba(255,255,255,.12)"/>
-    <text x="${pl-8}" y="${y(v)}" text-anchor="end" dominant-baseline="middle" font-size="11" fill="#8FB0CC">${v}</text>`;
+    <text x="${pl-6}" y="${y(v)}" text-anchor="end" dominant-baseline="middle" font-size="10" fill="#8FB0CC">${v}</text>`;
   const path=a=>a.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
   document.getElementById('chartTrend').innerHTML=`<svg viewBox="0 0 ${w} ${h}">
     ${grid}
-    <path class="draw" d="${path(peaks)}" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
-    <path class="draw" d="${path(ma)}" fill="none" stroke="#2EE6D6" stroke-width="2.8" stroke-linecap="round"
-      style="filter:drop-shadow(0 0 8px rgba(46,230,214,.65))"/>
-    <circle class="pop" cx="${x(56)}" cy="${y(ma[56])}" r="6" fill="#FF6B7A"/>
+    <path class="draw" d="${path(peaks)}" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.4"/>
+    <path class="draw" d="${path(ma)}" fill="none" stroke="#2EE6D6" stroke-width="2.6" stroke-linecap="round"
+      style="filter:drop-shadow(0 0 8px rgba(46,230,214,.7))"/>
+    <circle class="pop" cx="${x(56)}" cy="${y(ma[56])}" r="5" fill="#FF6B7A"/>
   </svg>`;
 }
 
-/* ========== counters ========== */
+/* ===== counters / bars ===== */
 function animCounts(root){
   root.querySelectorAll('[data-count],[data-c]').forEach(el=>{
     const target=+(el.dataset.count||el.dataset.c||0);
     if(el.dataset.done) return; el.dataset.done='1';
-    const t0=performance.now(),dur=1000;
+    const t0=performance.now(),dur=1200;
     (function step(t){
       const p=Math.min(1,(t-t0)/dur);
       el.textContent=Math.round(target*(1-Math.pow(1-p,3)));
       if(p<1)requestAnimationFrame(step); else el.textContent=target;
     })(t0);
   });
-  root.querySelectorAll('.ui-bar i[data-w]').forEach(bar=>{
-    setTimeout(()=>{bar.style.width=bar.dataset.w;},220);
+  root.querySelectorAll('.progress i[data-w],.ui-bar i[data-w]').forEach(bar=>{
+    setTimeout(()=>{bar.style.width=bar.dataset.w;},250);
   });
 }
 
-/* ========== DEMO ========== */
+/* ===== DEMO (slower) ===== */
 const SCENE_META=[
   {title:'心锚 · 登录',hint:'演示账号一键进入系统'},
   {title:'心锚 · 风险驾驶舱',hint:'红橙绿态势与待处置一屏掌握'},
@@ -1140,6 +1375,8 @@ const SCENE_META=[
   {title:'心锚 · 处置留痕',hint:'方案派发与审计闭环'},
   {title:'心锚 · 复评完成',hint:'研判—处置—复评全程留痕'}
 ];
+// slower: 3.2s ~ 4.2s per step
+const STEP_DELAY=[3800,4200,4200,3800,3800,3800,4200];
 let demoIdx=0,demoTimer=null,demoRunning=false;
 
 function moveCursor(id){
@@ -1157,7 +1394,13 @@ function clickCursor(){
 }
 function showScene(i){
   demoIdx=i;
-  document.querySelectorAll('#screen .scene').forEach(s=>s.classList.toggle('on',+s.dataset.s===i));
+  document.querySelectorAll('#screen .scene').forEach(s=>{
+    const on=+s.dataset.s===i;
+    s.classList.toggle('on',on);
+    s.style.opacity=on?'1':'0';
+    s.style.visibility=on?'visible':'hidden';
+    s.style.transform=on?'none':'translateY(12px)';
+  });
   document.querySelectorAll('#stepList .step-item').forEach(s=>s.classList.toggle('act',+s.dataset.i===i));
   document.getElementById('deviceTitle').textContent=SCENE_META[i].title;
   document.getElementById('demoHint').textContent=SCENE_META[i].hint;
@@ -1166,15 +1409,15 @@ function showScene(i){
 }
 function runDemoStep(){
   if(!demoRunning) return;
-  const i=demoIdx,cur=document.getElementById('cursor');
-  const next=(to,delay)=>{ demoTimer=setTimeout(()=>{ showScene(to); runDemoStep(); },delay); };
-  if(i===0){ moveCursor('btnLogin'); clickCursor(); next(1,1400); }
-  else if(i===1){ moveCursor('btnView1'); clickCursor(); next(2,1600); }
-  else if(i===2){ moveCursor('btnHandle'); clickCursor(); next(3,1600); }
-  else if(i===3){ moveCursor('btnSubmit'); clickCursor(); next(4,1500); }
-  else if(i===4){ moveCursor('langEn'); clickCursor(); next(5,1600); }
-  else if(i===5){ moveCursor('btnAudit'); clickCursor(); next(6,1500); }
-  else { if(cur) cur.style.opacity='0'; next(0,2000); }
+  const i=demoIdx;
+  const next=(to)=>{ demoTimer=setTimeout(()=>{ showScene(to); runDemoStep(); }, STEP_DELAY[i]||3800); };
+  if(i===0){ moveCursor('btnLogin'); clickCursor(); next(1); }
+  else if(i===1){ moveCursor('btnView1'); clickCursor(); next(2); }
+  else if(i===2){ moveCursor('btnHandle'); clickCursor(); next(3); }
+  else if(i===3){ moveCursor('btnSubmit'); clickCursor(); next(4); }
+  else if(i===4){ moveCursor('langEn'); clickCursor(); next(5); }
+  else if(i===5){ moveCursor('btnAudit'); clickCursor(); next(6); }
+  else { const cur=document.getElementById('cursor'); if(cur) cur.style.opacity='0'; next(0); }
 }
 function startDemo(){ if(demoRunning) return; demoRunning=true; showScene(0); runDemoStep(); }
 function stopDemo(){
@@ -1184,11 +1427,11 @@ function stopDemo(){
 document.querySelectorAll('#stepList .step-item').forEach(el=>{
   el.addEventListener('click',()=>{
     stopDemo(); showScene(+el.dataset.i);
-    demoRunning=true; setTimeout(runDemoStep,700);
+    demoRunning=true; setTimeout(runDemoStep,900);
   });
 });
 
-/* ========== deck ========== */
+/* ===== deck ===== */
 const slides=[...document.querySelectorAll('.slide')];
 let idx=0,autoTimer=null;
 document.getElementById('pageTotal').textContent=slides.length;
@@ -1208,7 +1451,8 @@ function toggleAuto(){
   const b=document.getElementById('btnAuto');
   if(autoTimer){ clearInterval(autoTimer); autoTimer=null; b.classList.remove('on'); b.textContent='▶ 自动'; return; }
   b.classList.add('on'); b.textContent='❚❚ 暂停';
-  autoTimer=setInterval(()=>{ if(idx>=slides.length-1) show(0); else next(); }, 12000);
+  // slower auto-advance for reading + embedded UI
+  autoTimer=setInterval(()=>{ if(idx>=slides.length-1) show(0); else next(); }, 16000);
 }
 function toggleFull(){
   if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();
@@ -1238,7 +1482,7 @@ document.addEventListener('touchend',e=>{
 (function(){
   const el=document.getElementById('typeLine'); if(!el)return;
   const full=el.textContent; el.textContent=''; let i=0;
-  (function type(){ if(i<=full.length){el.textContent=full.slice(0,i++); setTimeout(type,36);} })();
+  (function type(){ if(i<=full.length){el.textContent=full.slice(0,i++); setTimeout(type,40);} })();
 })();
 
 const params=new URLSearchParams(location.search);
