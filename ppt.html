@@ -69,9 +69,8 @@ html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--navy);
     0 24px 60px rgba(0,0,0,.32);padding:22px 24px
 }
 .glass::before{content:"";position:absolute;inset:-45%;
-  background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.32) 48%,
-    rgba(255,255,255,.10) 56%,transparent 72%);
-  transform:translateX(-75%) rotate(8deg);animation:sweep 6.5s ease-in-out infinite;pointer-events:none}
+  background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.18) 50%,transparent 66%);
+  transform:translateX(-75%) rotate(8deg);animation:sweep 10s ease-in-out infinite;pointer-events:none}
 .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
   background:radial-gradient(120% 90% at 0% 0%,rgba(255,255,255,.20),transparent 46%)}
 @keyframes sweep{0%,100%{transform:translateX(-85%) rotate(8deg);opacity:.5}50%{transform:translateX(85%) rotate(8deg);opacity:1}}
@@ -84,15 +83,7 @@ html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--navy);
   border:1px solid rgba(255,255,255,.8);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 18px 50px rgba(26,84,144,.12)}
 
-.glow-ring{position:relative}
-.glow-ring::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.2px;
-  background:conic-gradient(from var(--a,0deg),rgba(46,230,214,0),rgba(46,230,214,.9),
-    rgba(110,200,255,.25),rgba(240,197,106,.8),rgba(46,230,214,0));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;
-  animation:spinA 5s linear infinite;opacity:.92;pointer-events:none}
-@property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
-@keyframes spinA{to{--a:360deg}}
+
 
 /* ========== type ========== */
 .kicker{font-size:12.5px;letter-spacing:3px;text-transform:uppercase;font-weight:800;
@@ -240,7 +231,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 
 /* floating mini particles inside ui */
 .ui-spark{position:absolute;width:3px;height:3px;border-radius:50%;
-  background:rgba(46,230,214,.85);box-shadow:0 0 8px rgba(46,230,214,.8);
+  background:rgba(46,230,214,.55);box-shadow:0 0 6px rgba(46,230,214,.5);
   animation:spark 4s linear infinite;pointer-events:none;z-index:3}
 @keyframes spark{
   0%{transform:translateY(0) scale(1);opacity:0}
@@ -305,7 +296,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 .slide.cover{isolation:isolate}
 .slide.cover .split{position:relative;z-index:3}
 .cover-grid{
-  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.18;
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.10;
   background-image:
     linear-gradient(rgba(110,200,255,.35) 1px,transparent 1px),
     linear-gradient(90deg,rgba(110,200,255,.35) 1px,transparent 1px);
@@ -317,21 +308,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   animation:gridDrift 18s linear infinite
 }
 @keyframes gridDrift{to{background-position:0 56px, 56px 0}}
-.ring{
-  position:absolute;left:50%;top:48%;width:520px;height:520px;margin:-260px 0 0 -260px;
-  border-radius:50%;border:1px solid rgba(46,230,214,.22);pointer-events:none;z-index:1;
-  box-shadow:0 0 40px rgba(46,230,214,.12), inset 0 0 40px rgba(46,230,214,.08)
-}
-.ring.r2{width:680px;height:680px;margin:-340px 0 0 -340px;border-color:rgba(110,200,255,.16);
-  animation:ringSpin 28s linear infinite}
-.ring.r3{width:860px;height:860px;margin:-430px 0 0 -430px;border-color:rgba(240,197,106,.12);
-  animation:ringSpin 40s linear infinite reverse}
-@keyframes ringSpin{to{transform:rotate(360deg)}}
-.ring::after{
-  content:"";position:absolute;inset:-1px;border-radius:50%;
-  background:conic-gradient(from 0deg,transparent 0 70%,rgba(46,230,214,.55) 82%,transparent 95%);
-  animation:ringSpin 10s linear infinite
-}
+
 .cover-title{
   position:relative;display:inline-block;
   font-size:clamp(52px,7vw,88px);font-weight:900;letter-spacing:2px;line-height:1.05
@@ -342,7 +319,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   background:linear-gradient(120deg,#fff 10%,#9DFFF4 32%,#D4A853 55%,#7EC8FF 78%,#fff 95%);
   background-size:220% auto;
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 30px rgba(46,230,214,.55)) drop-shadow(0 0 80px rgba(110,200,255,.35));
+  filter:drop-shadow(0 0 12px rgba(46,230,214,.28));
   animation:charIn .8s cubic-bezier(.2,.9,.25,1) forwards, shine 5s linear infinite
 }
 .cover-title .char:nth-child(1){animation-delay:.15s, .8s}
@@ -352,7 +329,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 }
 .cover-glow{
   position:absolute;left:50%;top:48%;width:420px;height:420px;transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(46,230,214,.35),rgba(110,200,255,.12) 40%,transparent 70%);
+  background:radial-gradient(circle,rgba(46,230,214,.22),rgba(110,200,255,.08) 45%,transparent 70%);
   filter:blur(10px);pointer-events:none;z-index:1;
   animation:glowPulse 4s ease-in-out infinite
 }
@@ -366,8 +343,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 }
 .horizon{
   position:absolute;left:0;right:0;top:58%;height:1px;z-index:1;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(46,230,214,.55),rgba(110,200,255,.7),rgba(240,197,106,.45),transparent);
-  box-shadow:0 0 30px rgba(46,230,214,.5)
+  background:linear-gradient(90deg,transparent,rgba(46,230,214,.35),rgba(110,200,255,.45),rgba(240,197,106,.28),transparent);
+  box-shadow:0 0 18px rgba(46,230,214,.28)
 }
 .horizon::before{
   content:"";position:absolute;left:20%;right:20%;top:-2px;height:4px;
@@ -388,9 +365,6 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <canvas id="coverFx"></canvas>
   <div class="cover-grid"></div>
   <div class="cover-glow"></div>
-  <div class="ring"></div>
-  <div class="ring r2"></div>
-  <div class="ring r3"></div>
   <div class="horizon"></div>
   <div class="orb orb-t"></div><div class="orb orb-g"></div><div class="orb orb-c"></div>
   <div class="split">
@@ -418,7 +392,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
         <span class="badge">AI 让法律跨越山海</span>
       </div>
     </div>
-    <div class="glass glow-ring rv d3" style="display:flex;flex-direction:column;justify-content:center">
+    <div class="glass  rv d3" style="display:flex;flex-direction:column;justify-content:center">
       <h3>核心能力速览</h3>
       <ul class="clean">
         <li>每日打卡 · 五维渴求建模</li>
@@ -441,7 +415,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <div class="split">
     <div>
       <p class="lead rv d2">大赛方向二明确征集「戒毒康复智能管理与科学戒治」「社区矫正精准矫治」。</p>
-      <div class="glass glow-ring rv d3">
+      <div class="glass  rv d3">
         <ul class="clean">
           <li><strong>法律锚点</strong>：《禁毒法》《戒毒条例》社区戒毒康复</li>
           <li><strong>服务对象</strong>：社区矫正 / 司法所 / 禁毒社工 / 管教民警</li>
@@ -494,7 +468,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <h2 class="rv d1">堵点不在脱毒，而在回归社会之后</h2>
   <div class="split">
     <div>
-      <div class="glass red glow-ring rv d2">
+      <div class="glass red  rv d2">
         <ul class="clean">
           <li><strong>渴求测不准</strong>——最强近端预测因子，却主观隐蔽</li>
           <li><strong>数据不采集</strong>——纸质台账，渴求维度未结构化</li>
@@ -502,7 +476,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <li><strong>出所后真空</strong>——复吸高发，事后才被动处置</li>
         </ul>
       </div>
-      <div class="glass gold glow-ring rv d3" style="margin-top:12px">
+      <div class="glass gold  rv d3" style="margin-top:12px">
         <div class="stat red">滞后</div>
         <p class="small muted" style="margin:8px 0 0">目标：风险爬升阶段就前置干预，而非复吸后处置。</p>
       </div>
@@ -553,7 +527,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
         <div class="glass gold" style="padding:14px"><div class="stat gold" style="font-size:28px">8 类</div><div class="stat-l">高危情境</div></div>
         <div class="glass red" style="padding:14px"><div class="stat red" style="font-size:28px">3 步</div><div class="stat-l">当下阻断</div></div>
       </div>
-      <div class="glass glow-ring rv d4" style="margin-top:12px">
+      <div class="glass  rv d4" style="margin-top:12px">
         <p class="small" style="margin:0;line-height:1.8">
           面向<strong>社区戒毒矫治与康复</strong>，把「谁需要立刻干预、窗口在哪」变成可视化结论。
         </p>
@@ -591,7 +565,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <h2 class="rv d1">六层流水线 · 轻量可部署</h2>
   <div class="split">
     <div>
-      <div class="glass brand glow-ring rv d2">
+      <div class="glass brand  rv d2">
         <ul class="clean">
           <li>1 数据接入　打卡 / 档案 / 观察</li>
           <li>2 数据治理　清洗 / 结构化 / 情境</li>
@@ -601,7 +575,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <li>6 应用展示　驾驶舱 / 个案 / 留痕</li>
         </ul>
       </div>
-      <div class="glass glow-ring rv d3" style="margin-top:12px">
+      <div class="glass  rv d3" style="margin-top:12px">
         <table class="table">
           <tr><th>后端</th><td>Flask</td><th>数据</th><td>SQLite</td></tr>
           <tr><th>图表</th><td>ECharts 本地</td><th>研判</th><td>规则 + LLM</td></tr>
@@ -645,7 +619,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <h2 class="rv d1">可审计的风险公式</h2>
   <div class="split">
     <div>
-      <div class="glass brand glow-ring rv d2">
+      <div class="glass brand  rv d2">
         <h3>两步计算</h3>
         <div class="small" style="line-height:1.9">
           <div class="glass teal" style="padding:12px;margin:8px 0">
@@ -656,7 +630,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           </div>
         </div>
       </div>
-      <div class="glass glow-ring rv d3" style="margin-top:12px">
+      <div class="glass  rv d3" style="margin-top:12px">
         <table class="table">
           <tr><th>CE</th><td>线索／诱因暴露</td><th>4.0</th></tr>
           <tr><th>IC</th><td>人际冲突</td><th>3.0</th></tr>
@@ -695,7 +669,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <h2 class="rv d1">既看「今天多危险」，也看「是否在变危险」</h2>
   <div class="split">
     <div>
-      <div class="glass glow-ring rv d2">
+      <div class="glass  rv d2">
         <table class="table">
           <tr><th>色标</th><th>条件</th><th>响应</th></tr>
           <tr><td><span class="tag red">红</span></td><td>N ≥ 70</td><td>24–48h 危机面谈</td></tr>
@@ -704,7 +678,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
         </table>
         <p class="small muted" style="margin:10px 0 0">7 日均线连续上升 → 爬升窗口，预警自动上调一档</p>
       </div>
-      <div class="glass teal glow-ring rv d3" style="margin-top:12px">
+      <div class="glass teal  rv d3" style="margin-top:12px">
         <div class="chart" id="chartTrend"></div>
       </div>
     </div>
@@ -985,7 +959,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <p class="small muted" style="margin:0">绕行路线、有氧、同伴互助</p>
         </div>
       </div>
-      <div class="glass glow-ring rv d3" style="margin-top:12px">
+      <div class="glass  rv d3" style="margin-top:12px">
         <div class="flow" style="margin:0">
           <div class="node">研判</div><div class="arrow">→</div>
           <div class="node">派发</div><div class="arrow">→</div>
@@ -1033,7 +1007,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <div class="split">
     <div>
       <p class="lead rv d2" style="color:#C9DCEF">广西是面向东盟的前沿。评估维度与方案库可按对象国法律文化本地化。</p>
-      <div class="glass glow-ring rv d3">
+      <div class="glass  rv d3">
         <ul class="clean">
           <li>量表用语按对象国习惯替换</li>
           <li>帮教方案库按法律文化裁剪</li>
@@ -1087,7 +1061,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <h2 class="rv d1">五条硬约束</h2>
   <div class="split">
     <div>
-      <div class="glass glow-ring rv d2">
+      <div class="glass  rv d2">
         <ul class="clean">
           <li><strong>数据不出域</strong>——可离线政务内网部署</li>
           <li><strong>零真实个人信息</strong>——全合成演示</li>
@@ -1096,7 +1070,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           <li><strong>会话与传输安全</strong>——可升级 HTTPS</li>
         </ul>
       </div>
-      <div class="glass gold glow-ring rv d3" style="margin-top:12px">
+      <div class="glass gold  rv d3" style="margin-top:12px">
         <p class="small" style="margin:0;line-height:1.85">
           系统定位为<strong>人工智能辅助评估工具</strong>，预警与方案须经工作人员审核确认后执行，
           不得作为处分、诊断或强制措施依据。
@@ -1144,7 +1118,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
         <div class="glass gold" style="padding:14px"><div class="stat gold" style="font-size:28px"><span data-count="90">0</span>%+</div><div class="stat-l">24h 闭环</div></div>
         <div class="glass red" style="padding:14px"><div class="stat red" style="font-size:28px">3 类</div><div class="stat-l">走势区分</div></div>
       </div>
-      <div class="glass glow-ring rv d3" style="margin-top:12px">
+      <div class="glass  rv d3" style="margin-top:12px">
         <ul class="clean">
           <li>从翻记录找信号 → 看曲线定优先级</li>
           <li>隐性经验沉淀为显性知识库</li>
@@ -1194,7 +1168,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
         <div class="glass gold" style="padding:14px"><div class="stat gold" style="font-size:26px">3</div><h3 style="margin:6px 0 0;font-size:14px">区域复制</h3><p class="small muted" style="margin:4px 0 0">所内 + 所外</p></div>
         <div class="glass brand" style="padding:14px"><div class="stat blue" style="font-size:26px">4</div><h3 style="margin:6px 0 0;font-size:14px">东盟协同</h3><p class="small muted" style="margin:4px 0 0">多语 · 联防</p></div>
       </div>
-      <div class="glass glow-ring rv d3" style="margin-top:12px">
+      <div class="glass  rv d3" style="margin-top:12px">
         <ul class="clean">
           <li>移动端打卡与家属端随访</li>
           <li>帮教权重随处置反馈优化</li>
@@ -1247,7 +1221,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
           </p>
         </div>
       </div>
-      <div class="glass glow-ring rv d3" style="margin-top:14px">
+      <div class="glass  rv d3" style="margin-top:14px">
         <h3 style="margin:0">谢谢聆听 · 心锚队（广西警察学院）</h3>
       </div>
     </div>
@@ -1344,7 +1318,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   const canvas=document.getElementById('coverFx');
   if(!canvas) return;
   const ctx=canvas.getContext('2d');
-  let w,h,parts=[],comets=[],rings=[],t=0,raf=null,active=true;
+  let w,h,parts=[],comets=[],t=0,raf=null,active=true;
 
   function resize(){
     w=canvas.width=canvas.clientWidth||window.innerWidth;
@@ -1361,16 +1335,11 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       life:0, max:80+Math.random()*40,
       hue:Math.random()>.5?172:42
     });
-    setTimeout(spawnComet, 1800+Math.random()*2200);
-  }
-  function spawnRing(){
-    if(!active) return;
-    rings.push({x:w*0.5+(Math.random()-0.5)*w*0.15, y:h*0.48, r:20, a:0.45, hue:Math.random()>.5?172:200});
-    setTimeout(spawnRing, 2600+Math.random()*1800);
+    setTimeout(spawnComet, 4000+Math.random()*3500);
   }
   function init(){
     resize();
-    const n=Math.min(160, Math.floor(w*h/9000));
+    const n=Math.min(90, Math.floor(w*h/16000));
     parts=Array.from({length:n},(_,i)=>({
       x:Math.random()*w, y:Math.random()*h,
       r:Math.random()*2.2+.5,
@@ -1379,7 +1348,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       hue:[172,195,215,42,280][i%5],
       tw:Math.random()*Math.PI*2
     }));
-    comets=[]; rings=[];
+    comets=[];
   }
   function draw(){
     t+=0.012;
@@ -1395,22 +1364,6 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
     }
 
-    // expanding rings
-    for(let i=rings.length-1;i>=0;i--){
-      const r=rings[i];
-      r.r+=1.6; r.a*=0.986;
-      if(r.a<0.02){ rings.splice(i,1); continue; }
-      ctx.beginPath();
-      ctx.arc(r.x,r.y,r.r,0,Math.PI*2);
-      ctx.strokeStyle=`hsla(${r.hue},90%,72%,${r.a})`;
-      ctx.lineWidth=1.5;
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(r.x,r.y,r.r*0.72,0,Math.PI*2);
-      ctx.strokeStyle=`hsla(${r.hue},90%,72%,${r.a*0.45})`;
-      ctx.lineWidth=1;
-      ctx.stroke();
-    }
 
     // constellation
     for(let i=0;i<parts.length;i++){
@@ -1466,8 +1419,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 
     // orbiting sparks around center
     const cx=w*0.5, cy=h*0.48;
-    for(let i=0;i<8;i++){
-      const ang=t*0.7+i*Math.PI/4;
+    for(let i=0;i<4;i++){
+      const ang=t*0.7+i*Math.PI/2;
       const rad=120+Math.sin(t+i)*18;
       const x=cx+Math.cos(ang)*rad*1.35;
       const y=cy+Math.sin(ang)*rad*0.75;
@@ -1491,8 +1444,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 
   window.addEventListener('resize',resize);
   init(); draw();
-  setTimeout(spawnComet, 400);
-  setTimeout(spawnRing, 800);
+  setTimeout(spawnComet, 1200);
+  // rings removed
 
   // observe cover visibility
   const cover=document.getElementById('coverSlide');
