@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>心锚 · 社区戒毒矫治与康复智能辅助系统 · 在线体验</title>
+<meta name="description" content="心锚 — 基于复发预防模型的社区戒毒矫治与康复智能辅助系统。多语言演示站：中文 / English / Tiếng Việt / ภาษาไทย / Bahasa Indonesia。">
+<style>
+:root{
+  --navy:#0B1F3A; --navy2:#123055; --brand:#1A5490; --brand2:#2470B8;
+  --teal:#2EC4B6; --gold:#D4A853; --paper:#F4F7FB; --card:#FFFFFF;
+  --ink:#152033; --ink2:#4A5A6E; --ink3:#7A8A9C;
+  --line:#E2EAF2; --red:#D64545; --orange:#E08A1E; --green:#1F9D6B;
+  --red-s:#FDECEC; --orange-s:#FFF4E5; --green-s:#E7F7F0;
+  --shadow:0 10px 40px rgba(11,31,58,.10);
+  --r:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI","Noto Sans SC",sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--brand);text-decoration:none}
+
+/* ---------- top hero ---------- */
+.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--brand) 55%,#1E6BA8 100%);
+  color:#fff;padding:28px 28px 36px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(46,196,182,.22), transparent 40%),
+    radial-gradient(circle at 10% 90%, rgba(212,168,83,.16), transparent 35%);
+  pointer-events:none;
+}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:1}
+.top-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.logo-mark{
+  width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;
+}
+.logo-mark svg{width:24px;height:24px}
+.brand-text{font-size:18px;font-weight:600;letter-spacing:.5px}
+.brand-sub{font-size:12px;opacity:.75;letter-spacing:1.5px;text-transform:uppercase}
+.lang-bar{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.lang-btn{
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
+  color:#D7E6F5;padding:6px 12px;border-radius:999px;font-size:12.5px;cursor:pointer;
+  transition:.2s;font-family:inherit;
+}
+.lang-btn:hover{background:rgba(255,255,255,.2);color:#fff}
+.lang-btn.on{background:#fff;color:var(--navy);border-color:#fff;font-weight:600}
+.hero h1{font-size:clamp(28px,4vw,42px);margin:8px 0 12px;font-weight:700;letter-spacing:.5px}
+.hero .lead{font-size:16px;opacity:.9;max-width:760px;margin:0 0 18px}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:999px;font-size:12.5px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--teal)}
+.chip.gold .dot{background:var(--gold)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;
+  font-size:15px;font-weight:600;cursor:pointer;border:none;font-family:inherit;
+  transition:transform .18s, box-shadow .18s, background .18s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#fff;color:var(--navy);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.btn-brand{background:var(--brand);color:#fff;box-shadow:0 8px 24px rgba(26,84,144,.28)}
+.btn-teal{background:var(--teal);color:#062a28;box-shadow:0 8px 24px rgba(46,196,182,.3)}
+
+/* ---------- nav tabs ---------- */
+.tabs-wrap{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;box-shadow:0 4px 18px rgba(11,31,58,.05)}
+.tabs{max-width:1180px;margin:0 auto;display:flex;gap:4px;padding:0 18px;overflow-x:auto}
+.tab{
+  padding:16px 18px;font-size:14.5px;color:var(--ink2);cursor:pointer;
+  border-bottom:3px solid transparent;white-space:nowrap;font-weight:500;
+  background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;
+}
+.tab:hover{color:var(--brand)}
+.tab.on{color:var(--brand);border-bottom-color:var(--brand);font-weight:700}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+.page-title{font-size:26px;font-weight:700;margin:0 0 6px;letter-spacing:.3px}
+.page-sub{color:var(--ink3);margin:0 0 24px;font-size:14.5px}
+.grid-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:26px}
+.stat{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:20px 20px 18px;box-shadow:0 2px 10px rgba(11,31,58,.04);position:relative;overflow:hidden;
+}
+.stat .n{font-size:34px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.stat .l{color:var(--ink3);font-size:13px;margin-top:4px}
+.stat.red .n{color:var(--red)} .stat.orange .n{color:var(--orange)} .stat.green .n{color:var(--green)}
+.stat::after{content:"";position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,84,144,.10),transparent 70%)}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px 24px;margin-bottom:18px;box-shadow:0 2px 12px rgba(11,31,58,.05);
+}
+.card h3{margin:0 0 16px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px}
+.card h3::before{content:"";width:4px;height:16px;border-radius:3px;background:var(--brand)}
+.banner-note{
+  background:linear-gradient(90deg,#0B1F3A,#1A5490);color:#C9DCEF;
+  padding:10px 16px;border-radius:12px;font-size:12.5px;margin-bottom:18px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+}
+.banner-note strong{color:#fff}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:12px 12px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:#F0F5FA;color:var(--ink2);font-weight:600;font-size:13px}
+tr:hover td{background:#F8FBFD}
+.lv{display:inline-block;padding:3px 12px;border-radius:999px;font-size:12.5px;font-weight:700}
+.lv-red{background:var(--red-s);color:var(--red)}
+.lv-orange{background:var(--orange-s);color:var(--orange)}
+.lv-green{background:var(--green-s);color:var(--green)}
+.badge{display:inline-block;padding:2px 10px;border-radius:6px;font-size:12px;background:#EEF3F8;color:var(--ink2)}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:900px){.two-col{grid-template-columns:1fr}}
+
+.kv{display:grid;grid-template-columns:110px 1fr;gap:8px 14px;font-size:13.5px}
+.kv .k{color:var(--ink3);font-weight:600}
+
+.chart-\boxed{width:100%;height:280px}
+.chart-box svg{width:100%;height:100%}
+
+.steps{margin:0;padding-left:18px}
+.steps li{margin:6px 0}
+
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.field label{display:block;font-size:12.5px;color:var(--ink3);margin-bottom:6px;font-weight:600}
+.field input,.field select,.field textarea{
+  width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);
+  font-size:14px;font-family:inherit;background:#FAFCFE;
+}
+.field textarea{min-height:80px;resize:vertical}
+
+.alert-list{display:flex;flex-direction:column;gap:12px}
+.alert-item{
+  border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#FAFCFE;
+}
+.alert-item .head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+
+.compliance{
+  background:linear-gradient(135deg,#0B1F3A,#163A66);color:#D5E4F2;
+  border-radius:var(--r);padding:28px;margin-top:8px;
+}
+.compliance h3{color:#fff}
+.compliance ul{padding-left:18px;margin:0}
+.compliance li{margin:8px 0}
+
+.foot{
+  text-align:center;padding:28px 16px 40px;color:var(--ink3);font-size:12.5px;
+}
+.foot a{color:var(--brand)}
+
+.view{display:none}
+.view.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.toast{
+  position:fixed;right:20px;bottom:20px;background:#0B1F3A;color:#fff;
+  padding:12px 18px;border-radius:12px;font-size:13.5px;opacity:0;pointer-events:none;
+  transition:.3s;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.25)
+}
+.toast.show{opacity:1}
+
+.pill-group{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
+.pill{
+  padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;
+  cursor:pointer;font-size:13px;font-family:inherit;font-weight:600;color:var(--ink2);
+}
+.pill.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* QR */
+.qr-card{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center}
+@media (max-width:700px){.qr-card{grid-template-columns:1fr}}
+.qr-\boxed{width:200px;height:200px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:var(--shadow)}
+.qr-box svg{width:100%;height:100%}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="top-row">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="5.2" r="2.4"/><line x1="12" y1="7.6" x2="12" y2="21"/>
+          <line x1="5.5" y1="12.5" x2="18.5" y2="12.5"/>
+          <path d="M3.6 15.2 C3.6 19.3 7.4 21.6 12 21.6 C16.6 21.6 20.4 19.3 20.4 15.2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-text">心锚 Xinmao</div>
+        <div class="brand-sub">Community Rehab · ASEAN Ready</div>
+      </div>
+      <div class="lang-bar" id="langBar"></div>
+    </div>
+    <h1 id="heroTitle">社区戒毒矫治与康复智能辅助系统</h1>
+    <p class="lead" id="heroLead">基于复发预防模型，把心理渴求转化为可计算信号，在复吸风险爬升阶段触发前置干预。</p>
+    <div class="chip-row">
+      <span class="chip"><span class="dot"></span><span id="chip1">规则引擎 + 大模型双通道</span></span>
+      <span class="chip gold"><span class="dot"></span><span id="chip2">数据不出域 · 全合成演示</span></span>
+      <span class="chip"><span class="dot"></span><span id="chip3">面向东盟 · 五语切换</span></span>
+    </div>
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="go('dash')" id="btnEnter">进入体验驾驶舱</button>
+      <button class="btn btn-ghost" onclick="go('about')" id="btnLearn">了解评估链路</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-wrap">
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-view="dash" onclick="go('dash')" id="tabDash">风险驾驶舱</button>
+    <button class="tab" data-view="people" onclick="go('people')" id="tabPeople">康复人员</button>
+    <button class="tab" data-view="case" onclick="go('case')" id="tabCase">个案详情</button>
+    <button class="tab" data-view="checkin" onclick="go('checkin')" id="tabCheck">打卡评估</button>
+    <button class="tab" data-view="about" onclick="go('about')" id="tabAbout">系统与合规</button>
+    <button class="tab" data-view="qr" onclick="go('qr')" id="tabQr">分享体验</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="banner-note">
+    <strong id="bn1">全部为合成虚构数据</strong>
+    <span id="bn2">AI 辅助研判 · 人工最终决策 · 不得作为处分、诊断或强制措施依据</span>
+    <span id="bn3" style="margin-left:auto">Demo only · Synthetic data</span>
+  </div>
+
+  <!-- DASH -->
+  <section class="view on" id="view-dash">
+    <h2 class="page-title" id="dashTitle">风险驾驶舱</h2>
+    <p class="page-sub" id="dashSub">一屏掌握红 / 橙 / 绿态势、待处置事项与渴求爬升窗口。</p>
+    <div class="grid-stats" id="statGrid"></div>
+    <div class="card">
+      <h3 id="dashTableTitle">人员当前状态</h3>
+      <div style="overflow-x:auto">
+        <table id="dashTable"></table>
+      </div>
+    </div>
+    <div class="card">
+      <h3 id="pendingTitle">待处置预警</h3>
+      <div class="alert-list" id="pendingList"></div>
+    </div>
+  </section>
+
+  <!-- PEOPLE -->
+  <section class="view" id="view-people">
+    <h2 class="page-title" id="peopleTitle">康复人员台账</h2>
+    <p class="page-sub" id="peopleSub">三名虚拟个案分别覆盖「持续高危 / 风险爬升 / 平稳向好」三类走势。</p>
+    <div class="card">
+      <div style="overflow-x:auto">
+        <table id="peopleTable"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE -->
+  <section class="view" id="view-case">
+    <h2 class="page-title" id="caseTitle">个案详情</h2>
+    <p class="page-sub" id="caseSub">五维渴求雷达 + 60 日趋势 + 爬升窗口标注 + 当下三步阻断方案。</p>
+    <div class="pill-group" id="casePills"></div>
+    <div class="two-col">
+      <div class="card">
+        <h3 id="radarTitle">渴求五维雷达</h3>
+        <div class="chart-box" id="radarBox"></div>
+        <div class="kv" id="radarKv" style="margin-top:14px"></div>
+      </div>
+      <div class="card">
+        <h3 id="trendTitle">渴求趋势与爬升窗口</h3>
+        <div class="chart-box" id="trendBox"></div>
+        <div class="banner-note" id="trendNote" style="margin:14px 0 0"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 id="planTitle">预警与阻断方案（当下三步）</h3>
+      <div class="alert-list" id="caseAlerts"></div>
+    </div>
+  </section>
+
+  <!-- CHECKIN -->
+  <section class="view" id="view-checkin">
+    <h2 class="page-title" id="checkTitle">每日打卡评估</h2>
+    <p class="page-sub" id="checkSub">生态瞬时评估（EMA）：六题约 30 秒，提交后立即触发评估链路并刷新风险等级。</p>
+    <div class="card">
+      <div class="form-grid" id="checkForm"></div>
+      <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn btn-brand" id="btnSubmitCheck" onclick="submitCheckin()">提交并触发评估</button>
+        <button class="btn btn-teal" onclick="toast(T[lang].toastDemo)">重置演示数据</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3 id="flowTitle">评估链路</h3>
+      <ol class="steps" id="flowList"></ol>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="view" id="view-about">
+    <h2 class="page-title" id="aboutTitle">系统说明与合规</h2>
+    <p class="page-sub" id="aboutSub">规则可解释 · 数据不出域 · 人工最终决策 · 面向东盟本地化。</p>
+    <div class="two-col">
+      <div class="card">
+        <h3 id="a1t">评估链路</h3>
+        <ol class="steps" id="a1"></ol>
+      </div>
+      <div class="card">
+        <h3 id="a2t">为什么是「规则 + 大模型」</h3>
+        <p id="a2"></p>
+        <div class="kv" id="a2kv"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 id="a3t">面向东盟</h3>
+      <p id="a3"></p>
+      <div class="chip-row" id="langChips" style="margin-top:12px"></div>
+    </div>
+    <div class="compliance">
+      <h3 id="a4t">数据与责任边界</h3>
+      <ul id="a4"></ul>
+    </div>
+  </section>
+
+  <!-- QR -->
+  <section class="view" id="view-qr">
+    <h2 class="page-title" id="qrTitle">扫码即刻体验</h2>
+    <p class="page-sub" id="qrSub">将本页地址生成二维码，评委扫码即可进入在线体验站。</p>
+    <div class="card">
+      <div class="qr-card">
+        <div class="qr-box" id="qrBox"></div>
+        <div>
+          <h3 style="margin-top:0" id="qrH">在线体验地址</h3>
+          <p id="qrUrlText" style="word-break:break-all;font-size:15px;font-weight:600"></p>
+          <p id="qrHint" style="color:var(--ink3);font-size:13.5px"></p>
+          <div class="cta-row" style="margin-top:12px">
+            <button class="btn btn-brand" onclick="copyUrl()" id="btnCopy">复制链接</button>
+            <button class="btn btn-teal" onclick="window.print()" id="btnPrint">打印 / 导出 PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 id="localTitle">本地完整版（Flask）</h3>
+      <p id="localBody"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div>心锚 · 社区戒毒矫治与康复智能辅助系统 · 2026 中国（广西）—东盟「AI+法律」应用创新大赛</div>
+  <div style="margin-top:6px" id="footNote">本页为离线可运行演示站，数据均为合成虚构。</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ i18n ============ */
+const LANGS = {zh:'中文', en:'English', vi:'Tiếng Việt', th:'ภาษาไทย', id:'Bahasa Indonesia'};
+const T = {
+zh:{
+  heroTitle:'社区戒毒矫治与康复智能辅助系统',
+  heroLead:'基于复发预防模型，把心理渴求转化为可计算信号，在复吸风险爬升阶段触发前置干预。',
+  chip1:'规则引擎 + 大模型双通道', chip2:'数据不出域 · 全合成演示', chip3:'面向东盟 · 五语切换',
+  btnEnter:'进入体验驾驶舱', btnLearn:'了解评估链路',
+  tabDash:'风险驾驶舱', tabPeople:'康复人员', tabCase:'个案详情', tabCheck:'打卡评估', tabAbout:'系统与合规', tabQr:'分享体验',
+  bn1:'全部为合成虚构数据', bn2:'AI 辅助研判 · 人工最终决策 · 不得作为处分、诊断或强制措施依据', bn3:'Demo only',
+  dashTitle:'风险驾驶舱', dashSub:'一屏掌握红 / 橙 / 绿态势、待处置事项与渴求爬升窗口。',
+  dashTableTitle:'人员当前状态', pendingTitle:'待处置预警',
+  peopleTitle:'康复人员台账', peopleSub:'三名虚拟个案分别覆盖「持续高危 / 风险爬升 / 平稳向好」三类走势。',
+  caseTitle:'个案详情', caseSub:'五维渴求雷达 + 60 日趋势 + 爬升窗口标注 + 当下三步阻断方案。',
+  radarTitle:'渴求五维雷达', trendTitle:'渴求趋势与爬升窗口', planTitle:'预警与阻断方案（当下三步）',
+  checkTitle:'每日打卡评估', checkSub:'生态瞬时评估（EMA）：六题约 30 秒，提交后立即触发评估链路并刷新风险等级。',
+  flowTitle:'评估链路',
+  aboutTitle:'系统说明与合规', aboutSub:'规则可解释 · 数据不出域 · 人工最终决策 · 面向东盟本地化。',
+  a1t:'评估链路', a2t:'为什么是「规则 + 大模型」', a3t:'面向东盟', a4t:'数据与责任边界',
+  qrTitle:'扫码即刻体验', qrSub:'将本页地址生成二维码，评委扫码即可进入在线体验站。',
+  qrH:'在线体验地址', qrHint:'若以本地文件打开，请将本文件部署到任意静态托管后分享链接。',
+  btnCopy:'复制链接', btnPrint:'打印 / 导出 PDF',
+  localTitle:'本地完整版（Flask）',
+  localBody:'交付包中的「心锚平台」目录为可一键启动的 Flask 完整版，含打卡录入、处置留痕、演示数据恢复与五语切换。双击 启动.bat，浏览器打开 http://127.0.0.1:5000，演示账号 officer / 123456。',
+  footNote:'本页为离线可运行演示站，数据均为合成虚构。',
+  statTotal:'在册康复人员', statRed:'当前红色预警', statOrange:'当前橙色预警', statPending:'待处置预警', statWindows:'渴求爬升窗口',
+  colCode:'编号', colAlias:'化名', colStage:'阶段', colCapital:'康复资本', colIntensity:'渴求强度', colNet:'净风险', colLevel:'等级', colAction:'操作', colDate:'日期', colReason:'触发原因', colStatus:'状态',
+  view:'查看', handle:'处置', pendingEmpty:'暂无待处置预警',
+  levelRed:'红', levelOrange:'橙', levelGreen:'绿', levelSuffix:'级',
+  stageAcute:'急性期', stageConsol:'巩固期', stageReint:'回归期',
+  dimIntensity:'强度', dimFrequency:'频率', dimDuration:'持续', dimControl:'失控感', dimCoping:'应对不足',
+  pathLabel:'驱动路径', netLabel:'净风险', evidence:'评估证据',
+  step1:'即时应激处理', step2:'认知重构', step3:'替代行为',
+  toastDemo:'演示数据已就绪（静态站不写入数据库）',
+  toastCopied:'链接已复制', toastAssessed:'已触发模拟评估，净风险已刷新',
+  fPerson:'康复人员', fDate:'日期', fMood:'今日情绪（1-5）', fCrave:'渴求峰值（0-10）', fMin:'渴求分钟', fSit:'高危情境', fSleep:'睡眠（1-5）', fEff:'应对效能（1-5）', fNote:'今日自述',
+  fConflict:'人际冲突', fExposure:'线索暴露', fSubmit:'提交并触发评估',
+  flow1:'信号抽取：从打卡与自述提取渴求信号，完成高危情境分类',
+  flow2:'渴求建模：五维打分并判定驱动路径',
+  flow3:'风险评估：净风险 = 0.7 × 风险总分 − 0.3 × 康复资本 + 基线 30',
+  flow4:'阻断生成：按情境与路径匹配「当下三步可执行」动作',
+  flow5:'趋势追踪：7 日移动平均，识别渴求爬升窗口',
+  a2body:'量化部分由规则计算，保证可复现、可解释；语义抽取与方案润色由大模型完成。两者结论差异过大时提示人工复核。',
+  a3body:'广西是我国面向东盟开放合作的前沿。系统采用「规则可翻译、方案可复用、数据不出境」设计，评估维度与帮教方案库可按对象国法律与文化习惯本地化。',
+  a4:['全部数据为虚构合成数据，不含任何真实戒毒人员信息','AI 仅提供风险研判与建议，最终判断与处置由工作人员依法决定','不得作为处分、诊断或强制措施的依据','每一次人工处置均写入审计留痕','可完全离线部署于政务内网，数据不出域'],
+  sitNE:'负性情绪', sitIC:'人际冲突', sitSP:'社会压力', sitCE:'线索暴露', sitNP:'负性生理', sitOT:'其他',
+  case1:'陈立辉 · 持续高危', case2:'李兆文 · 风险爬升', case3:'王建平 · 平稳向好',
+  climbNote:'7 日均值连续上升 → 爬升窗口，预警自动上调一档',
+  e1:'近 7 日渴求峰值均值 7.2，处于高位', e2:'线索暴露情境 3 次，权重累加', e3:'康复资本 38/100，家庭支持薄弱',
+},
+en:{
+  heroTitle:'Community Drug Rehabilitation Intelligent Assistant',
+  heroLead:'Relapse-prevention model turns craving into computable signals and triggers early intervention while risk is climbing.',
+  chip1:'Rules + LLM dual channel', chip2:'Data stays local · Synthetic demo', chip3:'ASEAN-ready · 5 languages',
+  btnEnter:'Open live dashboard', btnLearn:'How it works',
+  tabDash:'Dashboard', tabPeople:'Clients', tabCase:'Case detail', tabCheck:'Check-in', tabAbout:'System & compliance', tabQr:'Share',
+  bn1:'All synthetic data', bn2:'AI assists · Human final decision · Not for punishment or diagnosis', bn3:'Demo only',
+  dashTitle:'Risk dashboard', dashSub:'Red / orange / green status, pending items and craving climbing windows in one view.',
+  dashTableTitle:'Client status', pendingTitle:'Pending alerts',
+  peopleTitle:'Client roster', peopleSub:'Three synthetic cases cover sustained-high / climbing / stable trajectories.',
+  caseTitle:'Case detail', caseSub:'5-D craving radar + 60-day trend + climbing windows + 3-step blocking plans.',
+  radarTitle:'Craving radar', trendTitle:'Trend & climbing windows', planTitle:'Alerts & blocking plans',
+  checkTitle:'Daily check-in', checkSub:'EMA-style six items in ~30s. Submitting triggers the assessment pipeline.',
+  flowTitle:'Assessment pipeline',
+  aboutTitle:'System & compliance', aboutSub:'Explainable rules · Local data · Human decision · ASEAN localization.',
+  a1t:'Pipeline', a2t:'Why rules + LLM', a3t:'Toward ASEAN', a4t:'Data & responsibility',
+  qrTitle:'Scan to try', qrSub:'Generate a QR for this page so judges can open the demo instantly.',
+  qrH:'Live demo URL', qrHint:'If opened as a local file, host this HTML on any static host to share.',
+  btnCopy:'Copy link', btnPrint:'Print / PDF',
+  localTitle:'Full Flask edition',
+  localBody:'The bundled 心锚平台 folder is a one-click Flask app with check-in, audit trail, demo reset and 5-language UI. Run 启动.bat → http://127.0.0.1:5000, account officer / 123456.',
+  footNote:'Offline demo page. All data is synthetic.',
+  statTotal:'Active clients', statRed:'Red alerts', statOrange:'Orange alerts', statPending:'Pending', statWindows:'Climbing windows',
+  colCode:'Code', colAlias:'Alias', colStage:'Stage', colCapital:'Capital', colIntensity:'Intensity', colNet:'Net risk', colLevel:'Level', colAction:'Action', colDate:'Date', colReason:'Trigger', colStatus:'Status',
+  view:'View', handle:'Handle', pendingEmpty:'No pending alerts',
+  levelRed:'Red', levelOrange:'Orange', levelGreen:'Green', levelSuffix:'',
+  stageAcute:'Acute', stageConsol:'Consolidation', stageReint:'Reintegration',
+  dimIntensity:'Intensity', dimFrequency:'Frequency', dimDuration:'Duration', dimControl:'Control loss', dimCoping:'Poor coping',
+  pathLabel:'Drive path', netLabel:'Net risk', evidence:'Evidence',
+  step1:'Immediate stress relief', step2:'Cognitive restructuring', step3:'Alternative behavior',
+  toastDemo:'Demo data ready (static page does not persist)',
+  toastCopied:'Link copied', toastAssessed:'Simulated assessment done, net risk refreshed',
+  fPerson:'Client', fDate:'Date', fMood:'Mood (1-5)', fCrave:'Peak craving (0-10)', fMin:'Craving minutes', fSit:'High-risk situation', fSleep:'Sleep (1-5)', fEff:'Coping (1-5)', fNote:'Free-text note',
+  fConflict:'Conflict', fExposure:'Cue exposure', fSubmit:'Submit & assess',
+  flow1:'Signal extraction & situation classification',
+  flow2:'Five-dimension craving model',
+  flow3:'Net risk = 0.7 × risk − 0.3 × capital + 30',
+  flow4:'Blocking plan: three immediate steps',
+  flow5:'7-day MA climbing-window detection',
+  a2body:'Quantitative scoring is rule-based for auditability; semantic extraction uses LLMs. Large gaps trigger human review.',
+  a3body:'Guangxi is China gateway to ASEAN. Rules translatable, plans reusable, data never leaves the country. Library can be localized per national law and culture.',
+  a4:['All data is synthetic; no real client information','AI assists only; officers make final decisions','Never a basis for punishment, diagnosis or coercion','Every manual action is audited','Fully offline deployable; data stays in-domain'],
+  sitNE:'Negative emotion', sitIC:'Conflict', sitSP:'Social pressure', sitCE:'Cue exposure', sitNP:'Physical', sitOT:'Other',
+  case1:'Chen · Sustained high', case2:'Li · Climbing', case3:'Wang · Stable',
+  climbNote:'7-day MA rising → climbing window, alert auto-escalates one level',
+  e1:'7-day mean peak craving 7.2 (high)', e2:'Cue exposure 3 times, weight stacked', e3:'Recovery capital 38/100, weak family support',
+},
+vi:{
+  heroTitle:'Hệ thống hỗ trợ cai nghiện cộng đồng',
+  heroLead:'Mô hình phòng ngừa tái nghiện biến cảm giác thèm thành tín hiệu, can thiệp sớm khi rủi ro đang tăng.',
+  chip1:'Kênh kép Quy tắc + LLM', chip2:'Dữ liệu tại chỗ · Demo tổng hợp', chip3:'Hướng ASEAN · 5 ngôn ngữ',
+  btnEnter:'Mở bảng điều khiển', btnLearn:'Tìm hiểu quy trình',
+  tabDash:'Bảng rủi ro', tabPeople:'Đối tượng', tabCase:'Chi tiết ca', tabCheck:'Chấm công', tabAbout:'Hệ thống & tuân thủ', tabQr:'Chia sẻ',
+  bn1:'Dữ liệu tổng hợp', bn2:'AI hỗ trợ · Con người quyết định', bn3:'Chỉ demo',
+  dashTitle:'Bảng điều khiển rủi ro', dashSub:'Toàn cảnh đỏ / cam / xanh, việc chờ xử lý và cửa sổ tăng.',
+  dashTableTitle:'Trạng thái đối tượng', pendingTitle:'Cảnh báo chờ xử lý',
+  peopleTitle:'Danh sách đối tượng', peopleSub:'Ba ca tổng hợp: nguy cơ cao kéo dài / đang tăng / ổn định.',
+  caseTitle:'Chi tiết ca', caseSub:'Radar 5 chiều + xu hướng 60 ngày + cửa sổ tăng + kế hoạch chặn 3 bước.',
+  radarTitle:'Radar thèm 5 chiều', trendTitle:'Xu hướng & cửa sổ tăng', planTitle:'Cảnh báo & kế hoạch chặn',
+  checkTitle:'Chấm công hằng ngày', checkSub:'EMA 6 câu ~30 giây. Gửi xong chạy đánh giá ngay.',
+  flowTitle:'Quy trình đánh giá',
+  aboutTitle:'Hệ thống & tuân thủ', aboutSub:'Quy tắc minh bạch · Dữ liệu tại chỗ · Quyết định cuối · Bản địa hóa ASEAN.',
+  a1t:'Quy trình', a2t:'Vì sao quy tắc + LLM', a3t:'Hướng ASEAN', a4t:'Dữ liệu & trách nhiệm',
+  qrTitle:'Quét mã để trải nghiệm', qrSub:'Tạo QR cho trang này để giám khảo mở demo ngay.',
+  qrH:'Địa chỉ demo', qrHint:'Nếu mở file cục bộ, hãy đăng lên static host để chia sẻ.',
+  btnCopy:'Sao chép', btnPrint:'In / PDF',
+  localTitle:'Phiên bản Flask đầy đủ',
+  localBody:'Thư mục 心锚平台 là ứng dụng Flask đầy đủ: chấm công, hồ sơ xử lý, khôi phục demo, 5 ngôn ngữ. Chạy 启动.bat → http://127.0.0.1:5000, tài khoản officer / 123456.',
+  footNote:'Trang demo ngoại tuyến. Dữ liệu tổng hợp.',
+  statTotal:'Đối tượng', statRed:'Cảnh báo đỏ', statOrange:'Cảnh báo cam', statPending:'Chờ xử lý', statWindows:'Cửa sổ tăng',
+  colCode:'Mã', colAlias:'Bí danh', colStage:'Giai đoạn', colCapital:'Vốn', colIntensity:'Cường độ', colNet:'Rủi ro ròng', colLevel:'Mức', colAction:'Thao tác', colDate:'Ngày', colReason:'Nguyên nhân', colStatus:'Trạng thái',
+  view:'Xem', handle:'Xử lý', pendingEmpty:'Không có cảnh báo chờ',
+  levelRed:'Đỏ', levelOrange:'Cam', levelGreen:'Xanh', levelSuffix:'',
+  stageAcute:'Cấp', stageConsol:'Củng cố', stageReint:'Hòa nhập',
+  dimIntensity:'Cường độ', dimFrequency:'Tần suất', dimDuration:'Thời lượng', dimControl:'Mất kiểm soát', dimCoping:'Ứng phó kém',
+  pathLabel:'Đường dẫn', netLabel:'Rủi ro ròng', evidence:'Bằng chứng',
+  step1:'Xử lý stress ngay', step2:'Tái cấu trúc nhận thức', step3:'Hành vi thay thế',
+  toastDemo:'Dữ liệu demo đã sẵn (trang tĩnh không ghi DB)',
+  toastCopied:'Đã sao chép', toastAssessed:'Đã chạy đánh giá mô phỏng',
+  fPerson:'Đối tượng', fDate:'Ngày', fMood:'Tâm trạng (1-5)', fCrave:'Đỉnh thèm (0-10)', fMin:'Phút thèm', fSit:'Tình huống nguy hiểm', fSleep:'Giấc ngủ (1-5)', fEff:'Ứng phó (1-5)', fNote:'Ghi chú',
+  fConflict:'Xung đột', fExposure:'Tiếp xúc tín hiệu', fSubmit:'Gửi & đánh giá',
+  flow1:'Trích xuất tín hiệu & phân loại tình huống',
+  flow2:'Mô hình thèm 5 chiều',
+  flow3:'Rủi ro ròng = 0.7×rủi ro − 0.3×vốn + 30',
+  flow4:'Kế hoạch chặn 3 bước',
+  flow5:'MA 7 ngày, phát hiện cửa sổ tăng',
+  a2body:'Điểm số dùng quy tắc để kiểm toán; ngữ nghĩa dùng LLM. Chênh lệch lớn sẽ yêu cầu rà soát thủ công.',
+  a3body:'Quảng Tây là cửa ngõ Trung–ASEAN. Quy tắc dịch được, kế hoạch tái sử dụng, dữ liệu không xuất cảnh.',
+  a4:['Dữ liệu tổng hợp, không có thông tin thật','AI chỉ hỗ trợ; cán bộ quyết định cuối','Không dùng làm căn cứ kỷ luật hay chẩn đoán','Mọi xử lý đều được ghi audit','Triển khai ngoại tuyến, dữ liệu trong nước'],
+  sitNE:'Cảm xúc tiêu cực', sitIC:'Xung đột', sitSP:'Áp lực xã hội', sitCE:'Tín hiệu kích thích', sitNP:'Thể chất', sitOT:'Khác',
+  case1:'Trần · Cao kéo dài', case2:'Lý · Đang tăng', case3:'Vương · Ổn định',
+  climbNote:'MA 7 ngày tăng liên tiếp → cửa sổ tăng, nâng cảnh báo',
+  e1:'Trung bình đỉnh thèm 7 ngày 7.2', e2:'Tiếp xúc tín hiệu 3 lần', e3:'Vốn phục hồi 38/100',
+},
+th:{
+  heroTitle:'ระบบช่วยฟื้นฟูยาเสพติดชุมชน',
+  heroLead:'แบบจำลองป้องกันการกลับไปเสพ เปลี่ยนความอยากเป็นสัญญาณ เตือนก่อนเสี่ยงพุ่ง',
+  chip1:'คู่ขนาน กฎ + LLM', chip2:'ข้อมูลในระบบ · สาธิตสังเคราะห์', chip3:'เพื่ออาเซียน · 5 ภาษา',
+  btnEnter:'เปิดแดชบอร์ด', btnLearn:'ดูขั้นตอน',
+  tabDash:'แดชบอร์ด', tabPeople:'ผู้รับบริการ', tabCase:'รายละเอียดเคส', tabCheck:'บันทึกรายวัน', tabAbout:'ระบบและข้อกำหนด', tabQr:'แชร์',
+  bn1:'ข้อมูลสังเคราะห์ทั้งหมด', bn2:'AI ช่วย · คนตัดสินใจ', bn3:'เพื่อการสาธิต',
+  dashTitle:'แดชบอร์ดความเสี่ยง', dashSub:'ภาพรวมแดง/ส้ม/เขียว งานที่รอ และหน้าต่างพุ่ง',
+  dashTableTitle:'สถานะผู้รับบริการ', pendingTitle:'รายการเตือนที่รอ',
+  peopleTitle:'ทะเบียนผู้รับบริการ', peopleSub:'สามเคส: เสี่ยงสูงต่อเนื่อง / กำลังพุ่ง / คงที่',
+  caseTitle:'รายละเอียดเคส', caseSub:'เรดาร์ 5 มิติ + แนวโน้ม 60 วัน + แผนสกัด 3 ขั้น',
+  radarTitle:'เรดาร์ความอยาก', trendTitle:'แนวโน้มและหน้าต่างพุ่ง', planTitle:'การเตือนและแผนสกัด',
+  checkTitle:'บันทึกรายวัน', checkSub:'แบบ EMA 6 ข้อ 30 วินาที เริ่มประเมินทันที',
+  flowTitle:'สายพานประเมิน',
+  aboutTitle:'ระบบและข้อกำหนด', aboutSub:'กฎโปร่งใส · ข้อมูลอยู่ในประเทศ · คนตัดสินใจ · โลคัลไลซ์อาเซียน',
+  a1t:'สายพาน', a2t:'ทำไม กฎ + LLM', a3t:'เพื่ออาเซียน', a4t:'ข้อมูลและความรับผิดชอบ',
+  qrTitle:'สแกนเพื่อทดลอง', qrSub:'สร้าง QR ของหน้านี้ให้กรรมการเปิดทันที',
+  qrH:'ลิงก์สาธิต', qrHint:'หากเปิดไฟล์ท้องถิ่น กรุณาโฮสต์บน static host',
+  btnCopy:'คัดลอก', btnPrint:'พิมพ์ / PDF',
+  localTitle:'ฉบับ Flask เต็ม',
+  localBody:'โฟลเดอร์ 心锚平台 คือแอป Flask เต็มรูปแบบ พร้อม 5 ภาษา รัน 启动.bat → http://127.0.0.1:5000',
+  footNote:'หน้าสาธิตออฟไลน์ ข้อมูลสังเคราะห์',
+  statTotal:'ผู้รับบริการ', statRed:'เตือนแดง', statOrange:'เตือนส้ม', statPending:'รอจัดการ', statWindows:'หน้าต่างพุ่ง',
+  colCode:'รหัส', colAlias:'ชื่อสมมติ', colStage:'ระยะ', colCapital:'ทุน', colIntensity:'ความเข้ม', colNet:'เสี่ยงสุทธิ', colLevel:'ระดับ', colAction:'การดำเนินการ', colDate:'วันที่', colReason:'สาเหตุ', colStatus:'สถานะ',
+  view:'ดู', handle:'จัดการ', pendingEmpty:'ไม่มีรายการรอ',
+  levelRed:'แดง', levelOrange:'ส้ม', levelGreen:'เขียว', levelSuffix:'',
+  stageAcute:'เฉียบพลัน', stageConsol:'คงสภาพ', stageReint:'กลับคืนสังคม',
+  dimIntensity:'ความเข้ม', dimFrequency:'ความถี่', dimDuration:'ระยะเวลา', dimControl:'เสียการควบคุม', dimCoping:'รับมือไม่ดี',
+  pathLabel:'เส้นทาง', netLabel:'เสี่ยงสุทธิ', evidence:'หลักฐาน',
+  step1:'คลายเครียดทันที', step2:'ปรับความคิด', step3:'พฤติกรรมทางเลือก',
+  toastDemo:'พร้อมสาธิต',
+  toastCopied:'คัดลอกแล้ว', toastAssessed:'ประเมินจำลองแล้ว',
+  fPerson:'ผู้รับบริการ', fDate:'วันที่', fMood:'อารมณ์ (1-5)', fCrave:'ความอยากสูงสุด (0-10)', fMin:'นาทีที่อยาก', fSit:'สถานการณ์เสี่ยง', fSleep:'นอน (1-5)', fEff:'รับมือ (1-5)', fNote:'บันทึก',
+  fConflict:'ความขัดแย้ง', fExposure:'สัมผัสสิ่งกระตุ้น', fSubmit:'ส่งและประเมิน',
+  flow1:'ดึงสัญญาณและจำแนกสถานการณ์',
+  flow2:'แบบจำลองความอยาก 5 มิติ',
+  flow3:'ความเสี่ยงสุทธิ = 0.7×ความเสี่ยง − 0.3×ทุน + 30',
+  flow4:'แผนสกัด 3 ขั้นตอน',
+  flow5:'MA 7 วัน หาหน้าต่างพุ่ง',
+  a2body:'คะแนนใช้กฎเพื่อตรวจสอบย้อนหลัง ความหมายใช้ LLM ผลต่างมากจะให้คนตรวจซ้ำ',
+  a3body:'กวางสีเป็นประตูสู่อาเซียน กฎแปลได้ แผนใช้ซ้ำ ข้อมูลไม่ออกนอกประเทศ',
+  a4:['ข้อมูลสังเคราะห์ทั้งหมด','AI ช่วยเท่านั้น เจ้าหน้าที่ตัดสินใจ','ห้ามใช้เป็นฐานลงโทษหรือวินิจฉัย','บันทึกทุกการจัดการ','ติดตั้งออฟไลน์ได้'],
+  sitNE:'อารมณ์ลบ', sitIC:'ความขัดแย้ง', sitSP:'แรงกดดัน', sitCE:'สิ่งกระตุ้น', sitNP:'ร่างกาย', sitOT:'อื่น ๆ',
+  case1:'เฉิน · สูงต่อเนื่อง', case2:'หลี่ · กำลังพุ่ง', case3:'หวัง · คงที่',
+  climbNote:'MA 7 วันพุ่งต่อเนื่อง → ยกระดับเตือน',
+  e1:'ค่าเฉลี่ยความอยาก 7 วัน 7.2', e2:'สัมผัสสิ่งกระตุ้น 3 ครั้ง', e3:'ทุนฟื้นฟู 38/100',
+},
+id:{
+  heroTitle:'Sistem Pendukung Rehabilitasi Narkoba Komunitas',
+  heroLead:'Model pencegahan kekambuhan mengubah keinginan menjadi sinyal dan memicu intervensi dini.',
+  chip1:'Kanal ganda Aturan + LLM', chip2:'Data lokal · Demo sintetis', chip3:'Siap ASEAN · 5 bahasa',
+  btnEnter:'Buka dasbor', btnLearn:'Pelajari alur',
+  tabDash:'Dasbor', tabPeople:'Klien', tabCase:'Detail kasus', tabCheck:'Check-in', tabAbout:'Sistem & kepatuhan', tabQr:'Bagikan',
+  bn1:'Semua data sintetis', bn2:'AI membantu · Keputusan manusia', bn3:'Demo saja',
+  dashTitle:'Dasbor risiko', dashSub:'Status merah/oranye/hijau, tugas tertunda, dan jendela kenaikan.',
+  dashTableTitle:'Status klien', pendingTitle:'Peringatan tertunda',
+  peopleTitle:'Daftar klien', peopleSub:'Tiga kasus: risiko tinggi berkelanjutan / naik / stabil.',
+  caseTitle:'Detail kasus', caseSub:'Radar 5D + tren 60 hari + rencana blokir 3 langkah.',
+  radarTitle:'Radar keinginan', trendTitle:'Tren & jendela kenaikan', planTitle:'Peringatan & rencana blokir',
+  checkTitle:'Check-in harian', checkSub:'EMA 6 butir ±30 detik. Langsung memicu penilaian.',
+  flowTitle:'Pipeline penilaian',
+  aboutTitle:'Sistem & kepatuhan', aboutSub:'Aturan transparan · Data lokal · Keputusan manusia · Lokalisasi ASEAN.',
+  a1t:'Pipeline', a2t:'Mengapa aturan + LLM', a3t:'Menuju ASEAN', a4t:'Data & tanggung jawab',
+  qrTitle:'Pindai untuk mencoba', qrSub:'Buat QR halaman ini agar juri langsung membuka demo.',
+  qrH:'URL demo', qrHint:'Jika dibuka sebagai file lokal, host di static host.',
+  btnCopy:'Salin tautan', btnPrint:'Cetak / PDF',
+  localTitle:'Edisi Flask lengkap',
+  localBody:'Folder 心锚平台 adalah aplikasi Flask lengkap dengan 5 bahasa. Jalankan 启动.bat → http://127.0.0.1:5000',
+  footNote:'Halaman demo offline. Data sintetis.',
+  statTotal:'Klien', statRed:'Merah', statOrange:'Oranye', statPending:'Tertunda', statWindows:'Jendela naik',
+  colCode:'Kode', colAlias:'Alias', colStage:'Tahap', colCapital:'Modal', colIntensity:'Intensitas', colNet:'Risiko neto', colLevel:'Tingkat', colAction:'Aksi', colDate:'Tanggal', colReason:'Pemicu', colStatus:'Status',
+  view:'Lihat', handle:'Tangani', pendingEmpty:'Tidak ada',
+  levelRed:'Merah', levelOrange:'Oranye', levelGreen:'Hijau', levelSuffix:'',
+  stageAcute:'Akut', stageConsol:'Konsolidasi', stageReint:'Reintegrasi',
+  dimIntensity:'Intensitas', dimFrequency:'Frekuensi', dimDuration:'Durasi', dimControl:'Kehilangan kendali', dimCoping:'Koping buruk',
+  pathLabel:'Jalur', netLabel:'Risiko neto', evidence:'Bukti',
+  step1:'Redakan stres segera', step2:'Restrukturisasi kognitif', step3:'Perilaku alternatif',
+  toastDemo:'Data demo siap',
+  toastCopied:'Tautan disalin', toastAssessed:'Penilaian simulasi selesai',
+  fPerson:'Klien', fDate:'Tanggal', fMood:'Suasana (1-5)', fCrave:'Puncak keinginan (0-10)', fMin:'Menit keinginan', fSit:'Situasi risiko', fSleep:'Tidur (1-5)', fEff:'Koping (1-5)', fNote:'Catatan',
+  fConflict:'Konflik', fExposure:'Paparan pemicu', fSubmit:'Kirim & nilai',
+  flow1:'Ekstraksi sinyal & klasifikasi situasi',
+  flow2:'Model keinginan 5 dimensi',
+  flow3:'Risiko neto = 0.7×risiko − 0.3×modal + 30',
+  flow4:'Rencana blokir 3 langkah',
+  flow5:'MA 7 hari, deteksi jendela kenaikan',
+  a2body:'Skoring kuantitatif berbasis aturan; semantik memakai LLM. Selisih besar memicu tinjauan manusia.',
+  a3body:'Guangxi adalah gerbang Tiongkok–ASEAN. Aturan dapat diterjemahkan, rencana dapat digunakan ulang, data tidak keluar negeri.',
+  a4:['Semua data sintetis','AI hanya membantu; petugas memutuskan','Bukan dasar hukuman atau diagnosis','Setiap tindakan diaudit','Dapat dijalankan offline'],
+  sitNE:'Emosi negatif', sitIC:'Konflik', sitSP:'Tekanan sosial', sitCE:'Paparan pemicu', sitNP:'Fisik', sitOT:'Lainnya',
+  case1:'Chen · Tinggi terus', case2:'Li · Sedang naik', case3:'Wang · Stabil',
+  climbNote:'MA 7 hari naik terus → eskalasi otomatis',
+  e1:'Rata-rata puncak 7 hari 7.2', e2:'Paparan pemicu 3 kali', e3:'Modal pemulihan 38/100',
+}
+};
+
+/* ============ data ============ */
+const SITUATIONS = [
+  {code:'CE', key:'sitCE', w:4.0},
+  {code:'IC', key:'sitIC', w:3.0},
+  {code:'SP', key:'sitSP', w:2.5},
+  {code:'NE', key:'sitNE', w:2.0},
+  {code:'NP', key:'sitNP', w:1.5},
+  {code:'OT', key:'sitOT', w:1.0},
+];
+
+const PEOPLE = [
+  {
+    id:1, code:'P001', alias:{zh:'陈立辉',en:'Chen Lihui',vi:'Trần Lập Huy',th:'เฉินลี่ฮุย',id:'Chen Lihui'},
+    stage:{zh:'巩固期',en:'Consolidation',vi:'Củng cố',th:'คงสภาพ',id:'Konsolidasi'},
+    stageKey:'stageConsol', capital:38,
+    net:85.9, level:'red', levelKey:'levelRed',
+    dims:{intensity:8.2,frequency:7.6,duration:6.8,loss_control:7.9,coping:6.4},
+    path:'IC / CE',
+    peaks:[4,5,5,6,6,7,6,7,7,8,7,8,8,7,8,8,9,8,8,9,8,9,9,8,9,9,8,9,9,9,8,9,9,9,9,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9],
+    evidence:{zh:['近 7 日渴求峰值均值 7.2，处于高位','线索暴露情境 3 次，权重累加','康复资本 38/100，家庭支持薄弱'],
+              en:['7-day mean peak craving 7.2','Cue exposure 3 times','Recovery capital 38/100'],
+              vi:['Trung bình đỉnh thèm 7 ngày 7.2','Tiếp xúc tín hiệu 3 lần','Vốn phục hồi 38/100'],
+              th:['ค่าเฉลี่ยความอยาก 7 วัน 7.2','สัมผัสสิ่งกระตุ้น 3 ครั้ง','ทุนฟื้นฟู 38/100'],
+              id:['Rata-rata puncak 7 hari 7.2','Paparan pemicu 3 kali','Modal pemulihan 38/100']},
+    alerts:[
+      {date:'2026-10-08', level:'red', status:{zh:'待处置',en:'Pending',vi:'Chờ',th:'รอ',id:'Tertunda'},
+       reason:{zh:'净风险 85.9 ≥ 70，线索暴露叠加失控感升高',en:'Net risk 85.9 ≥ 70, cue exposure + control loss',
+               vi:'Rủi ro ròng 85.9, tín hiệu + mất kiểm soát',th:'ความเสี่ยง 85.9 สิ่งกระตุ้นซ้อน',id:'Risiko 85.9, paparan pemicu'},
+       plan:{
+         step1:{zh:'立即离开诱发现场，联系值班民警或禁毒社工',en:'Leave cue site; contact officer/social worker',
+                vi:'Rời khỏi hiện trường; liên hệ cán bộ',th:'ออกจากที่กระตุ้น ติดต่อเจ้าหน้าที่',id:'Segera tinggalkan lokasi pemicu'},
+         step2:{zh:'梳理「线索—渴求—后果」链条，识别合理化借口',en:'Map cue-craving-consequence; spot rationalizations',
+                vi:'Phân tích chuỗi tín hiệu–thèm–hậu quả',th:'วิเคราะห์ห่วงโซ่',id:'Petakan rantai pemicu–keinginan–akibat'},
+         step3:{zh:'启用预设绕行路线与紧急联系人，20 分钟有氧替代',en:'Use alternative route + emergency contact; 20-min aerobic',
+                vi:'Dùng lộ trình thay thế + liên hệ khẩn',th:'ใช้เส้นทางเลี่ยง',id:'Gunakan rute alternatif + kontak darurat'}
+       }},
+      {date:'2026-10-06', level:'red', status:{zh:'待处置',en:'Pending',vi:'Chờ',th:'รอ',id:'Tertunda'},
+       reason:{zh:'7 日均值连续上升，触发爬升窗口',en:'7-day MA climbing window triggered',
+               vi:'MA 7 ngày tăng liên tiếp',th:'MA 7 วันพุ่งต่อเนื่อง',id:'MA 7 hari naik terus'},
+       plan:{
+         step1:{zh:'24 小时内安排一对一危机面谈',en:'1:1 crisis talk within 24h',vi:'Phỏng vấn khủng hoảng 24h',th:'พูดคุยวิกฤต 24 ชม.',id:'Wawancara krisis 24 jam'},
+         step2:{zh:'CBT 认知重构：识别「反正一次没关系」',en:'CBT: challenge "just once" thoughts',vi:'CBT: thách thức suy nghĩ',th:'CBT: ท้าทายความคิด',id:'CBT: tantang pikiran'},
+         step3:{zh:'启动一级帮教，家属/同伴支持介入',en:'Level-1 plan; family/peer support',vi:'Kế hoạch cấp 1',th:'แผนระดับ 1',id:'Rencana level 1'}
+       }}
+    ],
+    trendNote:{zh:'第 48 天起风险持续上行，检出 3 处爬升窗口，尚未处置。',
+               en:'Risk rising since day 48; 3 climbing windows detected.',
+               vi:'Rủi ro tăng từ ngày 48; phát hiện 3 cửa sổ tăng.',
+               th:'ความเสี่ยงพุ่งตั้งแต่วัน 48 พบหน้าต่างพุ่ง 3 จุด',
+               id:'Risiko naik sejak hari 48; 3 jendela kenaikan terdeteksi.'}
+  },
+  {
+    id:2, code:'P002', alias:{zh:'李兆文',en:'Li Zhaowen',vi:'Lý Triệu Văn',th:'หลี่เจ้าเหวิน',id:'Li Zhaowen'},
+    stage:{zh:'巩固期',en:'Consolidation',vi:'Củng cố',th:'คงสภาพ',id:'Konsolidasi'},
+    stageKey:'stageConsol', capital:70,
+    net:58.4, level:'orange', levelKey:'levelOrange',
+    dims:{intensity:5.4,frequency:5.0,duration:4.6,loss_control:4.2,coping:3.8},
+    path:'SP',
+    peaks:[3,3,4,3,4,4,3,4,4,5,4,5,4,5,5,4,5,5,6,5,5,6,5,6,6,5,6,6,7,6,6,7,6,7,7,6,7,7,6,7,7,8,7,7,8,7,8,8,7,8,8,7,8,8,7,8,8,7,8,8],
+    evidence:{zh:['社会压力情境近 3 日连续出现','应对效能自评由 4 降至 2','康复资本 70/100，仍有就业支撑'],
+              en:['Social pressure 3 consecutive days','Self-efficacy dropped 4→2','Capital 70/100'],
+              vi:['Áp lực xã hội 3 ngày liền','Tự hiệu quả giảm','Vốn 70/100'],
+              th:['แรงกดดันสังคม 3 วันติด','ประสิทธิภาพลด', 'ทุน 70/100'],
+              id:['Tekanan sosial 3 hari','Efikasi turun','Modal 70/100']},
+    alerts:[
+      {date:'2026-10-07', level:'orange', status:{zh:'待处置',en:'Pending',vi:'Chờ',th:'รอ',id:'Tertunda'},
+       reason:{zh:'净风险 58.4 落入橙色区间，社会压力情境升高',en:'Net risk 58.4 orange, social pressure up',
+               vi:'Rủi ro 58.4 cam, áp lực xã hội tăng',th:'ความเสี่ยง 58.4 แรงกดดันสังคม',id:'Risiko 58.4 oranye'},
+       plan:{
+         step1:{zh:'48 小时内跟进谈话，确认压力来源',en:'Follow-up talk within 48h',vi:'Theo dõi trong 48h',th:'ติดตามใน 48 ชม.',id:'Tindak lanjut 48 jam'},
+         step2:{zh:'社会压力应对演练：拒绝话术与退出策略',en:'Refusal skills & exit strategy drill',vi:'Tập kỹ năng từ chối',th:'ฝึกทักษะปฏิเสธ',id:'Latihan menolak'},
+         step3:{zh:'安排同伴互助，一周后复评',en:'Peer support; reassess in 1 week',vi:'Hỗ trợ đồng đẳng',th:'การสนับสนุนเพื่อน',id:'Dukungan sebaya'}
+       }}
+    ],
+    trendNote:{zh:'整体波动可控，近三日因社会压力情境升至橙色。',
+               en:'Overall controlled; rose to orange due to social pressure.',
+               vi:'Nhìn chung kiểm soát được; tăng do áp lực xã hội.',
+               th:'ควบคุมได้ เพิ่มเพราะแรงกดดันสังคม',
+               id:'Terkendali; naik karena tekanan sosial.'}
+  },
+  {
+    id:3, code:'P003', alias:{zh:'王建平',en:'Wang Jianping',vi:'Vương Kiến Bình',th:'หวังเจียนผิง',id:'Wang Jianping'},
+    stage:{zh:'回归期',en:'Reintegration',vi:'Hòa nhập',th:'กลับคืนสังคม',id:'Reintegrasi'},
+    stageKey:'stageReint', capital:72,
+    net:26.9, level:'green', levelKey:'levelGreen',
+    dims:{intensity:2.4,frequency:2.0,duration:1.8,loss_control:1.6,coping:1.4},
+    path:'NP',
+    peaks:[8,8,9,8,7,7,8,7,6,6,7,6,5,5,6,5,4,4,5,4,3,4,3,3,4,3,3,2,3,2,2,3,2,2,3,2,2,2,2,2,2,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+    evidence:{zh:['急性期高风险（14 天红色）已成功回落','近 30 日无高危情境标记','康复资本 72/100，稳定就业'],
+              en:['Acute high-risk (14 red days) resolved','No high-risk flags for 30 days','Capital 72/100'],
+              vi:['Giai đoạn cấp đã ổn định','30 ngày không có cờ rủi ro','Vốn 72/100'],
+              th:['ระยะเฉียบพลันดีขึ้น','30 วันไม่มีสถานการณ์เสี่ยง','ทุน 72/100'],
+              id:['Fase akut membaik','30 hari tanpa penanda risiko','Modal 72/100']},
+    alerts:[
+      {date:'2026-09-02', level:'red', status:{zh:'已处置',en:'Handled',vi:'Đã xử lý',th:'จัดการแล้ว',id:'Ditangani'},
+       reason:{zh:'急性期渴求峰值 8 触发红色预警',en:'Acute peak craving 8 → red alert',vi:'Đỉnh thèm 8 → đỏ',th:'ความอยาก 8 → แดง',id:'Puncak 8 → merah'},
+       plan:{
+         step1:{zh:'即刻一对一面谈，安全计划确认',en:'Immediate 1:1 & safety plan',vi:'Phỏng vấn ngay',th:'พูดคุยทันที',id:'Wawancara segera'},
+         step2:{zh:'识别高危情境与触发线索',en:'Identify cues & triggers',vi:'Nhận diện tín hiệu',th:'ระบุสิ่งกระตุ้น',id:'Identifikasi pemicu'},
+         step3:{zh:'替代行为计划 + 每日打卡',en:'Alternative behavior + daily check-in',vi:'Hành vi thay thế',th:'พฤติกรรมทางเลือก',id:'Perilaku alternatif'}
+       }}
+    ],
+    trendNote:{zh:'急性期高风险（14 天红色），经干预后成功回落至绿色，已留痕。',
+               en:'Resolved from acute red to green with recorded interventions.',
+               vi:'Đã ổn định từ đỏ về xanh, có hồ sơ.',
+               th:'ดีขึ้นจากแดงเป็นเขียว มีบันทึก',
+               id:'Membaik dari merah ke hijau, tercatat.'}
+  }
+];
+
+/* ============ state ============ */
+let lang = localStorage.getItem('xm_lang') || 'zh';
+let currentCase = 0;
+let checkState = {mood:3, crave:5, min:30, sit:'CE', sleep:3, eff:3, note:''};
+
+function t(k){ return (T[lang] && T[lang][k]) || T.zh[k] || k; }
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._tm); el._tm = setTimeout(()=>el.classList.remove('show'), 2200);
+}
+function go(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  const el = document.getElementById('view-'+view);
+  if(el) el.classList.add('on');
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on', b.dataset.view===view));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setLang(code){
+  lang = code;
+  localStorage.setItem('xm_lang', code);
+  document.documentElement.lang = code;
+  renderAll();
+  toast(LANGS[code] + ' · OK');
+}
+function copyUrl(){
+  const url = location.href;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>toast(t('toastCopied')));
+  } else {
+    const ta=document.createElement('textarea'); ta.value=url; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); ta.remove(); toast(t('toastCopied'));
+  }
+}
+
+/* ============ charts (pure SVG) ============ */
+function drawRadar(container, dims){
+  const labels = [t('dimIntensity'),t('dimFrequency'),t('dimDuration'),t('dimControl'),t('dimCoping')];
+  const vals = [dims.intensity,dims.frequency,dims.duration,dims.loss_control,dims.coping];
+  const w=320,h=280,cx=w/2,cy=h/2+6,R=95;
+  const n=5;
+  function pt(i,r){
+    const a = -Math.PI/2 + i*2*Math.PI/n;
+    return [cx + r*Math.cos(a), cy + r*Math.sin(a)];
+  }
+  let rings='';
+  [0.25,0.5,0.75,1].forEach(f=>{
+    const pts = Array.from({length:n},(_,i)=>pt(i,R*f).join(',')).join(' ');
+    rings += `<polygon points="${pts}" fill="none" stroke="#E2EAF2" stroke-width="1"/>`;
+  });
+  let axes='';
+  for(let i=0;i<n;i++){
+    const [x,y]=pt(i,R);
+    axes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#E2EAF2" stroke-width="1"/>`;
+  }
+  const dataPts = vals.map((v,i)=>pt(i, R*Math.min(v,10)/10).join(',')).join(' ');
+  let dots='';
+  vals.forEach((v,i)=>{
+    const [x,y]=pt(i, R*Math.min(v,10)/10);
+    dots += `<circle cx="${x}" cy="${y}" r="4" fill="#1A5490"/>`;
+  });
+  let texts='';
+  labels.forEach((lb,i)=>{
+    const [x,y]=pt(i, R+24);
+    texts += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#4A5A6E">${lb}</text>`;
+  });
+  container.innerHTML = `<svg viewBox="0 0 ${w} ${h}">
+    ${rings}${axes}
+    <polygon points="${dataPts}" fill="rgba(26,84,144,0.22)" stroke="#1A5490" stroke-width="2"/>
+    ${dots}${texts}
+  </svg>`;
+}
+
+function drawTrend(container, peaks, noteEl, noteText){
+  const w=520,h=280,padL=40,padR=16,padT=18,padB=36;
+  const iw=w-padL-padR, ih=h-padT-padB;
+  const n=peaks.length;
+  // 7-day MA
+  const ma = peaks.map((_,i)=>{
+    const s=Math.max(0,i-6);
+    const arr=peaks.slice(s,i+1);
+    return arr.reduce((a,b)=>a+b,0)/arr.length;
+  });
+  // climbing windows: ma rising 3 consecutive days and total delta >= 1.5
+  const marks=[];
+  for(let i=3;i<ma.length;i++){
+    if(ma[i]>ma[i-1] && ma[i-1]>ma[i-2] && ma[i-2]>ma[i-3]){
+      if(ma[i]-ma[i-3] >= 1.2) marks.push(i);
+    }
+  }
+  const yMax=10;
+  const x = i => padL + (n<=1?0:i*(iw/(n-1)));
+  const y = v => padT + ih - (v/yMax)*ih;
+  const line = (arr,color,width)=>{
+    const d = arr.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+    return `<path d="${d}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  };
+  let grid='';
+  for(let v=0;v<=10;v+=2){
+    grid += `<line x1="${padL}" y1="${y(v)}" x2="${w-padR}" y2="${y(v)}" stroke="#E2EAF2" stroke-width="1"/>
+             <text x="${padL-8}" y="${y(v)}" text-anchor="end" dominant-baseline="middle" font-size="10" fill="#7A8A9C">${v}</text>`;
+  }
+  let markEls='';
+  marks.slice(-6).forEach(i=>{
+    markEls += `<circle cx="${x(i)}" cy="${y(ma[i])}" r="5" fill="#D64545"/>
+                <text x="${x(i)}" y="${y(ma[i])-10}" text-anchor="middle" font-size="9" fill="#D64545">↑</text>`;
+  });
+  container.innerHTML = `<svg viewBox="0 0 ${w} ${h}">
+    ${grid}
+    ${line(peaks,'#B9C6D4',1.5)}
+    ${line(ma,'#1A5490',2.6)}
+    ${markEls}
+    <text x="${w-padR}" y="${h-10}" text-anchor="end" font-size="10" fill="#7A8A9C">60d</text>
+    <rect x="${padL}" y="${padT}" width="12" height="3" fill="#B9C6D4"/>
+    <text x="${padL+18}" y="${padT+2}" font-size="10" fill="#7A8A9C">${t('dimIntensity')}</text>
+    <rect x="${padL+70}" y="${padT}" width="12" height="3" fill="#1A5490"/>
+    <text x="${padL+88}" y="${padT+2}" font-size="10" fill="#7A8A9C">MA7</text>
+  </svg>`;
+  if(noteEl) noteEl.textContent = noteText;
+}
+
+/* ---- compact QR (byte mode, ECC M, versions 1-8) ---- */
+function qr_encode(text){
+  // Reference implementation adapted from the QR Code standard (ISO/IEC 18004)
+  // Byte mode, error correction level M, auto version, mask selection.
+  const EXP = new Array(512), LOG = new Array(256);
+  (function(){
+    let x = 1;
+    for (let i = 0; i < 255; i++) {
+      EXP[i] = x; LOG[x] = i;
+      x <<= 1; if (x & 0x100) x ^= 0x11D;
+    }
+    for (let i = 255; i < 512; i++) EXP[i] = EXP[i - 255];
+  })();
+  const gmul = (a,b) => (a === 0 || b === 0) ? 0 : EXP[LOG[a] + LOG[b]];
+
+  function polyMul(a,b){
+    const r = new Array(a.length + b.length - 1).fill(0);
+    for (let i=0;i<a.length;i++) for (let j=0;j<b.length;j++) r[i+j] ^= gmul(a[i], b[j]);
+    return r;
+  }
+  function genPoly(n){
+    let p = [1];
+    for (let i=0;i<n;i++) p = polyMul(p, [1, EXP[i]]);
+    return p;
+  }
+  function rsEncode(data, ecLen){
+    const gen = genPoly(ecLen);
+    const res = data.concat(new Array(ecLen).fill(0));
+    for (let i=0;i<data.length;i++){
+      const factor = res[i];
+      if (factor !== 0){
+        for (let j=0;j<gen.length;j++) res[i+j] ^= gmul(gen[j], factor);
+      }
+    }
+    return res.slice(data.length);
+  }
+
+  // version table: [data codewords, ec codewords per block, num blocks]
+  // ECC level M
+  const VER = {
+    1:  {total:26,  ec:10, blocks:[[16,1]]},
+    2:  {total:44,  ec:16, blocks:[[28,1]]},
+    3:  {total:70,  ec:26, blocks:[[44,1]]},
+    4:  {total:100, ec:18, blocks:[[32,2]]},
+    5:  {total:134, ec:24, blocks:[[43,1],[27,1]]},
+    6:  {total:172, ec:16, blocks:[[27,2],[28,2]]},
+  };
+
+  const bytes = Array.from(new TextEncoder().encode(text));
+  let ver = 0;
+  for (let v = 1; v <= 6; v++){
+    const dataCap = VER[v].blocks.reduce((s,b)=>s+b[0]*b[1], 0);
+    if (bytes.length + 2 <= dataCap){ ver = v; break; }
+  }
+  if (!ver) throw new Error("QR payload too long");
+
+  const spec = VER[ver];
+  const dataCap = spec.blocks.reduce((s,b)=>s+b[0]*b[1], 0);
+
+  // bit stream
+  const bits = [];
+  const push = (val, len) => { for (let i=len-1;i>=0;i--) bits.push((val >> i) & 1); };
+  push(0b0100, 4);          // byte mode
+  push(bytes.length, 8);    // count (versions 1-9 use 8 bits)
+  bytes.forEach(b => push(b, 8));
+  const capBits = dataCap * 8;
+  for (let i=0;i<4 && bits.length < capBits;i++) bits.push(0);
+  while (bits.length % 8) bits.push(0);
+  const pads = [0xEC, 0x11];
+  for (let i=0; bits.length < capBits; i++) push(pads[i % 2], 8);
+
+  const dataCw = [];
+  for (let i=0;i<bits.length;i+=8){
+    let b = 0;
+    for (let j=0;j<8;j++) b = (b << 1) | bits[i+j];
+    dataCw.push(b);
+  }
+
+  // split into blocks
+  const blocks = [];
+  let idx = 0;
+  spec.blocks.forEach(([n, count]) => {
+    for (let c=0;c<count;c++){
+      const d = dataCw.slice(idx, idx + n);
+      idx += n;
+      blocks.push({ data: d, ec: rsEncode(d, spec.ec) });
+    }
+  });
+
+  // interleave
+  const finalCw = [];
+  const maxD = Math.max(...blocks.map(b => b.data.length));
+  for (let i=0;i<maxD;i++) blocks.forEach(b => { if (i < b.data.length) finalCw.push(b.data[i]); });
+  for (let i=0;i<spec.ec;i++) blocks.forEach(b => finalCw.push(b.ec[i]));
+
+  const size = 17 + ver * 4;
+  const m = Array.from({length:size}, () => new Array(size).fill(null));
+  const reserved = Array.from({length:size}, () => new Array(size).fill(false));
+
+  function setF(r,c,v){ if (r>=0&&c>=0&&r<size&&c<size){ m[r][c] = v; reserved[r][c] = true; } }
+
+  // finders + separators
+  function finder(r0,c0){
+    for (let i=-1;i<=7;i++) for (let j=-1;j<=7;j++){
+      const on = (i>=0&&i<=6&&(j===0||j===6)) || (j>=0&&j<=6&&(i===0||i===6)) || (i>=2&&i<=4&&j>=2&&j<=4);
+      setF(r0+i, c0+j, on ? 1 : 0);
+    }
+  }
+  finder(0,0); finder(0,size-7); finder(size-7,0);
+
+  // timing
+  for (let i=8;i<size-8;i++){
+    setF(6,i, i%2===0 ? 1 : 0);
+    setF(i,6, i%2===0 ? 1 : 0);
+  }
+
+  // alignment patterns (versions 2+)
+  if (ver >= 2){
+    const centers = {
+      2:[6,18], 3:[6,22], 4:[6,26], 5:[6,30], 6:[6,34]
+    }[ver];
+    for (const r of centers) for (const c of centers){
+      // skip finder corners
+      if ((r<=7&&c<=7) || (r<=7&&c>=size-8) || (r>=size-8&&c<=7)) continue;
+      for (let i=-2;i<=2;i++) for (let j=-2;j<=2;j++){
+        const on = Math.max(Math.abs(i), Math.abs(j)) !== 1;
+        setF(r+i, c+j, on ? 1 : 0);
+      }
+    }
+  }
+
+  // reserve format info areas
+  for (let i=0;i<9;i++){
+    if (i !== 6){ reserved[8][i] = true; reserved[i][8] = true; }
+  }
+  for (let i=0;i<8;i++){
+    reserved[8][size-1-i] = true;
+    reserved[size-1-i][8] = true;
+  }
+  m[size-8][8] = 1; reserved[size-8][8] = true; // dark module
+
+  // place data
+  const dataBits = [];
+  finalCw.forEach(cw => { for (let i=7;i>=0;i--) dataBits.push((cw >> i) & 1); });
+  let bi = 0;
+  let upward = true;
+  for (let col = size - 1; col > 0; col -= 2){
+    if (col === 6) col = 5;
+    for (let k = 0; k < size; k++){
+      const row = upward ? (size - 1 - k) : k;
+      for (let d = 0; d < 2; d++){
+        const c = col - d;
+        if (!reserved[row][c]){
+          let bit = bi < dataBits.length ? dataBits[bi++] : 0;
+          // mask 0: (row + col) % 2 == 0
+          if ((row + c) % 2 === 0) bit ^= 1;
+          m[row][c] = bit;
+        }
+      }
+    }
+    upward = !upward;
+  }
+
+  // format info: ECC M = 00, mask 0
+  function formatBits(eclBits, mask){
+    const data = (eclBits << 3) | mask;
+    let rem = data;
+    for (let i = 0; i < 10; i++) rem = (rem << 1) ^ ((rem >> 9) * 0x537);
+    return ((data << 10) | rem) ^ 0x5412;
+  }
+  const fmt = formatBits(0b00, 0);
+  const fbit = i => (fmt >> i) & 1;
+  // first copy around top-left (col,row) => m[row][col]
+  for (let i = 0; i <= 5; i++) m[i][8] = fbit(i);
+  m[7][8] = fbit(6);
+  m[8][8] = fbit(7);
+  m[8][7] = fbit(8);
+  for (let i = 9; i < 15; i++) m[8][14 - i] = fbit(i);
+  // second copy
+  for (let i = 0; i < 8; i++) m[8][size - 1 - i] = fbit(i);
+  for (let i = 8; i < 15; i++) m[size - 15 + i][8] = fbit(i);
+  m[size - 8][8] = 1; // dark module
+  return m;
+}
+
+function generateQR(text){ return qr_encode(text); }
+
+function renderQR(){
+  const url = location.href.split('#')[0];
+  document.getElementById('qrUrlText').textContent = url;
+  document.getElementById('qrHint').textContent = t('qrHint');
+  const box = document.getElementById('qrBox');
+  try{
+    const m = qr_encode(url);
+    const n=m.length, scale=Math.floor(180/n)||2, gap=1;
+    const px=n*(scale+gap);
+    let cells='';
+    for(let r=0;r<n;r++) for(let c=0;c<n;c++){
+      if(m[r][c]) cells += `<rect x="${c*(scale+gap)}" y="${r*(scale+gap)}" width="${scale}" height="${scale}" fill="#0B1F3A"/>`;
+    }
+    box.innerHTML = `<svg viewBox="0 0 ${px} ${px}" xmlns="http://www.w3.org/2000/svg">${cells}</svg>`;
+  }catch(e){
+    box.innerHTML = `<div style="display:grid;place-items:center;height:100%;font-size:12px;color:#7A8A9C;text-align:center;padding:12px">QR<br><span style="word-break:break-all;font-size:10px">${url}</span></div>`;
+    console.error(e);
+  }
+}
+
+/* ============ render ============ */
+function renderAll(){
+  // hero
+  const d=T[lang];
+  document.getElementById('heroTitle').textContent=d.heroTitle;
+  document.getElementById('heroLead').textContent=d.heroLead;
+  document.getElementById('chip1').textContent=d.chip1;
+  document.getElementById('chip2').textContent=d.chip2;
+  document.getElementById('chip3').textContent=d.chip3;
+  document.getElementById('btnEnter').textContent=d.btnEnter;
+  document.getElementById('btnLearn').textContent=d.btnLearn;
+  document.getElementById('tabDash').textContent=d.tabDash;
+  document.getElementById('tabPeople').textContent=d.tabPeople;
+  document.getElementById('tabCase').textContent=d.tabCase;
+  document.getElementById('tabCheck').textContent=d.tabCheck;
+  document.getElementById('tabAbout').textContent=d.tabAbout;
+  document.getElementById('tabQr').textContent=d.tabQr;
+  document.getElementById('bn1').textContent=d.bn1;
+  document.getElementById('bn2').textContent=d.bn2;
+  document.getElementById('bn3').textContent=d.bn3;
+  document.getElementById('footNote').textContent=d.footNote;
+
+  // lang bar
+  document.getElementById('langBar').innerHTML = Object.keys(LANGS).map(code=>
+    `<button class="lang-btn ${code===lang?'on':''}" onclick="setLang('${code}')">${LANGS[code]}</button>`
+  ).join('');
+
+  // stats
+  const red=PEOPLE.filter(p=>p.level==='red').length;
+  const orange=PEOPLE.filter(p=>p.level==='orange').length;
+  const green=PEOPLE.filter(p=>p.level==='green').length;
+  document.getElementById('statGrid').innerHTML = `
+    <div class="stat"><div class="n">${PEOPLE.length}</div><div class="l">${d.statTotal}</div></div>
+    <div class="stat red"><div class="n">${red}</div><div class="l">${d.statRed}</div></div>
+    <div class="stat orange"><div class="n">${orange}</div><div class="l">${d.statOrange}</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">${d.statPending}</div></div>
+    <div class="stat green"><div class="n">3</div><div class="l">${d.statWindows}</div></div>`;
+  document.getElementById('dashTitle').textContent=d.dashTitle;
+  document.getElementById('dashSub').textContent=d.dashSub;
+  document.getElementById('dashTableTitle').textContent=d.dashTableTitle;
+  document.getElementById('pendingTitle').textContent=d.pendingTitle;
+  document.getElementById('peopleTitle').textContent=d.peopleTitle;
+  document.getElementById('peopleSub').textContent=d.peopleSub;
+  document.getElementById('caseTitle').textContent=d.caseTitle;
+  document.getElementById('caseSub').textContent=d.caseSub;
+  document.getElementById('radarTitle').textContent=d.radarTitle;
+  document.getElementById('trendTitle').textContent=d.trendTitle;
+  document.getElementById('planTitle').textContent=d.planTitle;
+  document.getElementById('checkTitle').textContent=d.checkTitle;
+  document.getElementById('checkSub').textContent=d.checkSub;
+  document.getElementById('flowTitle').textContent=d.flowTitle;
+  document.getElementById('aboutTitle').textContent=d.aboutTitle;
+  document.getElementById('aboutSub').textContent=d.aboutSub;
+  document.getElementById('a1t').textContent=d.a1t;
+  document.getElementById('a2t').textContent=d.a2t;
+  document.getElementById('a3t').textContent=d.a3t;
+  document.getElementById('a4t').textContent=d.a4t;
+  document.getElementById('qrTitle').textContent=d.qrTitle;
+  document.getElementById('qrSub').textContent=d.qrSub;
+  document.getElementById('qrH').textContent=d.qrH;
+  document.getElementById('btnCopy').textContent=d.btnCopy;
+  document.getElementById('btnPrint').textContent=d.btnPrint;
+  document.getElementById('localTitle').textContent=d.localTitle;
+  document.getElementById('localBody').textContent=d.localBody;
+  document.getElementById('a2').textContent=d.a2body;
+  document.getElementById('a3').textContent=d.a3body;
+
+  // tables
+  const head = `<tr>
+    <th>${d.colCode}</th><th>${d.colAlias}</th><th>${d.colStage}</th><th>${d.colCapital}</th>
+    <th>${d.colIntensity}</th><th>${d.colNet}</th><th>${d.colLevel}</th><th>${d.colAction}</th></tr>`;
+  const rows = PEOPLE.map((p,i)=>`<tr>
+    <td>${p.code}</td>
+    <td>${p.alias[lang]||p.alias.zh}</td>
+    <td>${t(p.stageKey)}</td>
+    <td>${p.capital}</td>
+    <td>${p.dims.intensity}</td>
+    <td><strong>${p.net}</strong></td>
+    <td><span class="lv lv-${p.level}">${t(p.levelKey)}</span></td>
+    <td><a href="#" onclick="openCase(${i});return false;" style="font-weight:600">${d.view}</a></td>
+  </tr>`).join('');
+  document.getElementById('dashTable').innerHTML = head+rows;
+  document.getElementById('peopleTable').innerHTML = head+rows;
+
+  // pending
+  const pend=[];
+  PEOPLE.forEach((p,i)=>{
+    p.alerts.forEach(a=>{
+      const st=(a.status[lang]||a.status.zh);
+      if(st===d.levelRed || /待|Pending|Chờ|รอ|Tertunda|待处置/.test(st) || st===T.zh.levelRed && false) {}
+      // show all alerts of type pending-ish or all for demo
+      pend.push({p,a,i});
+    });
+  });
+  document.getElementById('pendingList').innerHTML = pend.slice(0,4).map(({p,a,i})=>{
+    const lvl=a.level==='red'?d.levelRed:(a.level==='orange'?d.levelOrange:d.levelGreen);
+    const reason=a.reason[lang]||a.reason.zh;
+    return `<div class="alert-item">
+      <div class="head">
+        <span class="lv lv-${a.level}">${lvl}</span>
+        <strong>${p.alias[lang]||p.alias.zh}</strong>
+        <span style="color:var(--ink3);font-size:12.5px">${a.date}</span>
+        <span class="badge">${a.status[lang]||a.status.zh}</span>
+        <a href="#" onclick="openCase(${i});return false;" style="margin-left:auto;font-weight:600">${d.handle}</a>
+      </div>
+      <div style="font-size:13.5px;color:var(--ink2)">${reason}</div>
+    </div>`;
+  }).join('') || `<div style="color:var(--ink3)">${d.pendingEmpty}</div>`;
+
+  // case pills
+  document.getElementById('casePills').innerHTML = PEOPLE.map((p,i)=>{
+    const labels=['case1','case2','case3'];
+    return `<button class="pill ${i===currentCase?'on':''}" onclick="openCase(${i})">${d[labels[i]]}</button>`;
+  }).join('');
+
+  renderCase();
+
+  // checkin form
+  document.getElementById('checkForm').innerHTML = `
+    <div class="field"><label>${d.fPerson}</label>
+      <select id="c_person">${PEOPLE.map((p,i)=>`<option value="${i}">${p.code} ${p.alias[lang]||p.alias.zh}</option>`).join('')}</select></div>
+    <div class="field"><label>${d.fDate}</label><input type="date" id="c_date" value="2026-10-08"></div>
+    <div class="field"><label>${d.fMood}</label><input type="number" id="c_mood" min="1" max="5" value="3"></div>
+    <div class="field"><label>${d.fCrave}</label><input type="number" id="c_crave" min="0" max="10" value="6"></div>
+    <div class="field"><label>${d.fMin}</label><input type="number" id="c_min" min="0" value="35"></div>
+    <div class="field"><label>${d.fSit}</label>
+      <select id="c_sit">${SITUATIONS.map(s=>`<option value="${s.code}">${s.code} · ${t(s.key)} (${s.w})</option>`).join('')}</select></div>
+    <div class="field"><label>${d.fSleep}</label><input type="number" id="c_sleep" min="1" max="5" value="3"></div>
+    <div class="field"><label>${d.fEff}</label><input type="number" id="c_eff" min="1" max="5" value="3"></div>
+    <div class="field" style="grid-column:1/-1"><label>${d.fNote}</label><textarea id="c_note" placeholder="..."></textarea></div>`;
+  document.getElementById('btnSubmitCheck').textContent=d.fSubmit;
+  document.getElementById('flowList').innerHTML = [d.flow1,d.flow2,d.flow3,d.flow4,d.flow5].map(x=>`<li>${x}</li>`).join('');
+
+  // about
+  document.getElementById('a1').innerHTML = [d.flow1,d.flow2,d.flow3,d.flow4,d.flow5].map(x=>`<li>${x}</li>`).join('');
+  document.getElementById('a2kv').innerHTML = `
+    <div class="k">${t('pathLabel')}</div><div>CE / IC / SP / NE / NP</div>
+    <div class="k">${t('netLabel')}</div><div>0.7 × R − 0.3 × C + 30</div>`;
+  document.getElementById('langChips').innerHTML = Object.keys(LANGS).map(c=>
+    `<button class="chip" style="cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink)" onclick="setLang('${c}')">${LANGS[c]}</button>`).join('');
+  document.getElementById('a4').innerHTML = d.a4.map(x=>`<li>${x}</li>`).join('');
+
+  renderQR();
+}
+
+function openCase(i){
+  currentCase=i;
+  go('case');
+  renderAll();
+}
+
+function renderCase(){
+  const d=T[lang];
+  const p=PEOPLE[currentCase];
+  drawRadar(document.getElementById('radarBox'), p.dims);
+  drawTrend(document.getElementById('trendBox'), p.peaks,
+    document.getElementById('trendNote'), p.trendNote[lang]||p.trendNote.zh);
+
+  const ev=p.evidence[lang]||p.evidence.zh;
+  document.getElementById('radarKv').innerHTML = `
+    <div class="k">${t('dimIntensity')}</div><div>${p.dims.intensity} / 10</div>
+    <div class="k">${t('dimFrequency')}</div><div>${p.dims.frequency} / 10</div>
+    <div class="k">${t('dimDuration')}</div><div>${p.dims.duration} / 10</div>
+    <div class="k">${t('dimControl')}</div><div>${p.dims.loss_control} / 10</div>
+    <div class="k">${t('dimCoping')}</div><div>${p.dims.coping} / 10</div>
+    <div class="k">${t('pathLabel')}</div><div>${p.path}</div>
+    <div class="k">${t('netLabel')}</div><div><strong>${p.net}</strong> / 100</div>
+    <div class="k">${t('evidence')}</div><div>${ev.map(e=>'· '+e).join('<br>')}</div>`;
+
+  document.getElementById('caseAlerts').innerHTML = p.alerts.map(a=>{
+    const lvl=a.level==='red'?d.levelRed:(a.level==='orange'?d.levelOrange:d.levelGreen);
+    const reason=a.reason[lang]||a.reason.zh;
+    return `<div class="alert-item">
+      <div class="head">
+        <span class="lv lv-${a.level}">${lvl}</span>
+        <strong>${a.date}</strong>
+        <span class="badge">${a.status[lang]||a.status.zh}</span>
+      </div>
+      <div style="margin-bottom:10px;color:var(--ink2);font-size:13.5px">${reason}</div>
+      <ol class="steps">
+        <li><strong>${d.step1}</strong>：${a.plan.step1[lang]||a.plan.step1.zh}</li>
+        <li><strong>${d.step2}</strong>：${a.plan.step2[lang]||a.plan.step2.zh}</li>
+        <li><strong>${d.step3}</strong>：${a.plan.step3[lang]||a.plan.step3.zh}</li>
+      </ol>
+    </div>`;
+  }).join('');
+}
+
+function submitCheckin(){
+  const p=PEOPLE[document.getElementById('c_person').value|0];
+  const crave=+document.getElementById('c_crave').value||5;
+  const eff=+document.getElementById('c_eff').value||3;
+  const sit=document.getElementById('c_sit').value;
+  const w=(SITUATIONS.find(s=>s.code===sit)||{w:1}).w;
+  // demo formula
+  let risk = crave*7 + w*4 + (5-eff)*3;
+  let net = Math.round(0.7*risk - 0.3*p.capital + 30);
+  net=Math.max(0,Math.min(100,net));
+  p.net=net;
+  p.level = net>=70?'red':(net>=40?'orange':'green');
+  p.levelKey = p.level==='red'?'levelRed':(p.level==='orange'?'levelOrange':'levelGreen');
+  p.dims.intensity=crave;
+  p.peaks.push(crave); if(p.peaks.length>60) p.peaks.shift();
+  toast(t('toastAssessed') + ' · ' + t('netLabel') + ' ' + net);
+  renderAll();
+}
+
+// init
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.documentElement.lang = lang;
+  renderAll();
+});
+</script>
+</body>
+</html>
