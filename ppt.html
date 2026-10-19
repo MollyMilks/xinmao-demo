@@ -352,6 +352,30 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   filter:blur(2px)
 }
 
+
+/* unified dark theme guarantees */
+.slide.dark .lead{color:#D7E6F5}
+.slide.dark .muted{color:#A8C0D8;opacity:.9}
+.slide.dark ul.clean li{color:#E8F1FA;border-color:rgba(255,255,255,.12)}
+.slide.dark .table th{color:#9FC2E0;opacity:.85}
+.slide.dark .table td{color:#E8F1FA}
+.slide.dark h1,.slide.dark h2,.slide.dark h3{color:#FFFFFF}
+.slide.dark .kicker{color:#2EE6D6}
+.slide.dark .stat-l{color:#A8C0D8;opacity:.85}
+.slide.dark .chip{background:rgba(46,230,214,.14);color:#9DFFF4;border-color:rgba(46,230,214,.32)}
+.slide.dark .chip.gold{background:rgba(240,197,106,.14);color:#FFE3A1;border-color:rgba(240,197,106,.34)}
+.slide.dark .badge{background:rgba(46,230,214,.16);color:#9DFFF4;border-color:rgba(46,230,214,.32)}
+.slide.dark .node{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18);color:#fff}
+.slide.dark .tag.red{background:rgba(255,107,122,.18);color:#FF8A96}
+.slide.dark .tag.orange{background:rgba(255,180,84,.18);color:#FFC98A}
+.slide.dark .tag.green{background:rgba(61,255,168,.16);color:#7DFFC4}
+/* richer dark background for all slides */
+.slide.dark{
+  background:
+    radial-gradient(900px 480px at 85% -5%, rgba(46,230,214,.16), transparent 55%),
+    radial-gradient(700px 420px at -5% 100%, rgba(110,200,255,.12), transparent 50%),
+    linear-gradient(150deg,#071426 0%,#0B2140 48%,#0A1B30 100%) !important
+}
 </style>
 </head>
 <body>
@@ -409,7 +433,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 </section>
 
 <!-- ========== 2 TRACK + About UI ========== -->
-<section class="slide light" data-title="赛道契合">
+<section class="slide dark" data-title="赛道契合">
   <div class="kicker rv">Why this track</div>
   <h2 class="rv d1">紧扣「刑罚执行与监管安全」</h2>
   <div class="split">
@@ -508,7 +532,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 </section>
 
 <!-- ========== 4 SOLUTION + Checkin UI ========== -->
-<section class="slide light" data-title="方案总览">
+<section class="slide dark" data-title="方案总览">
   <div class="kicker rv">Solution</div>
   <h2 class="rv d1">从每日一打，到可执行的阻断动作</h2>
   <div class="split">
@@ -614,7 +638,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 </section>
 
 <!-- ========== 6 SCORING + Formula UI ========== -->
-<section class="slide light" data-title="评估算法">
+<section class="slide dark" data-title="评估算法">
   <div class="kicker rv">Scoring</div>
   <h2 class="rv d1">可审计的风险公式</h2>
   <div class="split">
@@ -937,7 +961,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 </section>
 
 <!-- ========== 9 INTERVENTION + Plan UI ========== -->
-<section class="slide light" data-title="帮教闭环">
+<section class="slide dark" data-title="帮教闭环">
   <div class="kicker rv">Intervention</div>
   <h2 class="rv d1">标准动作打底，个性化表达润色</h2>
   <div class="split">
@@ -1056,7 +1080,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 </section>
 
 <!-- ========== 11 COMPLIANCE + About UI ========== -->
-<section class="slide light" data-title="安全合规">
+<section class="slide dark" data-title="安全合规">
   <div class="kicker rv">Compliance</div>
   <h2 class="rv d1">五条硬约束</h2>
   <div class="split">
@@ -1157,7 +1181,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 </section>
 
 <!-- ========== 13 ROADMAP + Path UI ========== -->
-<section class="slide light" data-title="路线图">
+<section class="slide dark" data-title="路线图">
   <div class="kicker rv">Roadmap</div>
   <h2 class="rv d1">合成验证 → 单所校准 → 区域复制 → 东盟</h2>
   <div class="split">
