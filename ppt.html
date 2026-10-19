@@ -807,7 +807,7 @@ const qurl = (function(){
 })();
 // Prefer explicit query ?url=
 const params=new URLSearchParams(location.search);
-const target=params.get('url')||qurl;
+const target=params.get('url')||'https://mollymilks.github.io/xinmao-demo/';
 renderQR(target);
 drawTrend();
 drawRadar();
