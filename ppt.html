@@ -6,226 +6,368 @@
 <title>心锚 · 社区戒毒矫治与康复智能辅助系统 · 路演</title>
 <style>
 :root{
-  --navy:#071426; --navy2:#0B1F3A; --brand:#1A5490; --brand2:#2470B8;
-  --teal:#2EC4B6; --gold:#D4A853; --paper:#F6F9FC;
-  --ink:#152033; --ink2:#4A5A6E; --ink3:#7A8A9C;
-  --line:rgba(26,84,144,.12); --red:#FF6B6B; --orange:#FFB020; --green:#3DDC97;
+  --navy:#050D1A; --navy2:#0A1B30; --brand:#1A5490; --brand2:#2E7BD6;
+  --teal:#2EE6D6; --cyan:#6EC8FF; --gold:#F0C56A; --paper:#F4F8FF;
+  --ink:#12203A; --ink2:#3E5070; --ink3:#7189A8;
+  --red:#FF6B7A; --orange:#FFB454; --green:#3DFFA8;
+  --glass:rgba(255,255,255,.10);
+  --glass-brd:rgba(255,255,255,.22);
+  --shadow:0 24px 60px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--navy);color:#fff;
-  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0;height:100%;overflow:hidden;
+  background:var(--navy);color:#fff;
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased}
 
-/* ===== stage ===== */
+/* ================= stage ================= */
 #stage{position:relative;width:100vw;height:100vh;overflow:hidden}
-#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.45}
+
+/* particles + aurora */
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.7}
+.aurora{
+  position:absolute;inset:-20%;z-index:0;pointer-events:none;opacity:.55;
+  background:
+    radial-gradient(48% 40% at 20% 25%, rgba(46,230,214,.28), transparent 60%),
+    radial-gradient(42% 38% at 80% 20%, rgba(110,200,255,.22), transparent 60%),
+    radial-gradient(50% 42% at 60% 85%, rgba(240,197,106,.18), transparent 60%);
+  filter:blur(40px);
+  animation:auroraMove 16s ease-in-out infinite alternate;
+}
+@keyframes auroraMove{
+  0%{transform:translate3d(-2%,-1%,0) scale(1)}
+  50%{transform:translate3d(3%,2%,0) scale(1.05)}
+  100%{transform:translate3d(-1%,3%,0) scale(1.02)}
+}
+
+#progress{
+  position:absolute;left:0;top:0;height:3px;z-index:70;width:0;
+  background:linear-gradient(90deg,var(--teal),var(--cyan),var(--gold),var(--teal));
+  background-size:200% 100%;
+  box-shadow:0 0 18px rgba(46,230,214,.75);
+  animation:progShift 6s linear infinite;
+  transition:width .45s cubic-bezier(.22,.8,.3,1)
+}
+@keyframes progShift{to{background-position:200% 0}}
+
+/* ================= slides ================= */
 .slide{
   position:absolute;inset:0;display:flex;flex-direction:column;
-  padding:64px 80px 96px;opacity:0;visibility:hidden;pointer-events:none;
-  transform:translateY(24px) scale(.99);
-  transition:opacity .5s ease, transform .5s cubic-bezier(.22,.8,.3,1), visibility .5s;
+  padding:60px 78px 96px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(26px) scale(.985);filter:blur(4px);
+  transition:opacity .55s ease,transform .55s cubic-bezier(.22,.8,.3,1),
+    filter .55s ease,visibility .55s;
   z-index:2;overflow:hidden
 }
-.slide.on{opacity:1;visibility:visible;pointer-events:auto;transform:none}
-.slide.dark{background:
-  radial-gradient(900px 480px at 88% 0%, rgba(46,196,182,.16), transparent 55%),
-  radial-gradient(700px 420px at 0% 100%, rgba(212,168,83,.12), transparent 50%),
-  linear-gradient(150deg,#0B1F3A 0%,#123A66 50%,#0E2C52 100%)}
-.slide.light{background:linear-gradient(165deg,#F8FBFF 0%,#EAF2FB 55%,#DFEAF7 100%);color:var(--ink)}
-.slide.cover{background:
-  radial-gradient(1000px 520px at 78% 18%, rgba(46,196,182,.22), transparent 55%),
-  radial-gradient(800px 480px at 12% 88%, rgba(212,168,83,.16), transparent 55%),
-  linear-gradient(135deg,#071426 0%,#0B1F3A 42%,#1A5490 100%)}
-
-/* ===== type (generous) ===== */
-.kicker{font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;
-  color:var(--teal);margin:0 0 14px}
-h1{font-size:clamp(40px,5.2vw,64px);line-height:1.12;margin:0 0 18px;font-weight:800}
-h2{font-size:clamp(28px,3.4vw,42px);line-height:1.25;margin:0 0 16px;font-weight:750}
-h3{font-size:20px;line-height:1.45;margin:0 0 12px;font-weight:700}
-p{line-height:1.8}
-.lead{font-size:clamp(17px,1.7vw,21px);line-height:1.85;max-width:900px;margin:0 0 28px}
-.slide.light .lead{color:var(--ink2)}
-.muted{opacity:.72} .slide.light .muted{color:var(--ink3);opacity:1}
-.small{font-size:14px;line-height:1.7}
-
-/* stagger */
-.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease, transform .55s ease}
-.slide.on .rv{opacity:1;transform:none}
-.slide.on .d1{transition-delay:.10s}.slide.on .d2{transition-delay:.20s}
-.slide.on .d3{transition-delay:.30s}.slide.on .d4{transition-delay:.40s}
-.slide.on .d5{transition-delay:.50s}.slide.on .d6{transition-delay:.60s}
-
-/* ===== cards / layout (roomy) ===== */
-.card{
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
-  border-radius:20px;padding:26px 28px;backdrop-filter:blur(12px);
-  box-shadow:0 14px 40px rgba(0,0,0,.16);min-width:0
+.slide.on{opacity:1;visibility:visible;pointer-events:auto;transform:none;filter:none}
+.slide.dark{
+  background:
+    linear-gradient(145deg,rgba(10,27,48,.92),rgba(14,42,78,.88),rgba(8,22,42,.94));
 }
-.slide.light .card{background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(26,84,144,.08)}
-.card.teal{border-top:3px solid var(--teal)}
-.card.gold{border-top:3px solid var(--gold)}
-.card.brand{border-top:3px solid var(--brand2)}
-.card.red{border-top:3px solid var(--red)}
+.slide.light{
+  background:linear-gradient(165deg,#F7FAFF 0%,#E8F1FB 50%,#DCE8F8 100%);
+  color:var(--ink)
+}
+.slide.cover{
+  background:
+    radial-gradient(900px 520px at 75% 15%, rgba(46,230,214,.22), transparent 55%),
+    radial-gradient(800px 480px at 15% 85%, rgba(240,197,106,.16), transparent 55%),
+    linear-gradient(135deg,#050D1A 0%,#0A1B30 45%,#123A6B 100%);
+}
+.slide.light .aurora{opacity:.28}
 
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px;min-width:0}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;min-width:0}
-.row{display:flex;gap:22px;flex-wrap:wrap;align-items:stretch}
-.row>*{flex:1 1 220px;min-width:0}
-@media(max-width:1100px){.grid2,.grid3{grid-template-columns:1fr}}
+/* ================= liquid glass ================= */
+.glass{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.05));
+  border:1px solid var(--glass-brd);
+  border-radius:22px;
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.35),
+    inset 0 -1px 0 rgba(255,255,255,.08),
+    var(--shadow);
+  padding:26px 28px
+}
+.glass::before{
+  content:"";position:absolute;inset:-40%;
+  background:linear-gradient(115deg,
+    transparent 35%,
+    rgba(255,255,255,.28) 48%,
+    rgba(255,255,255,.08) 55%,
+    transparent 70%);
+  transform:translateX(-70%) rotate(8deg);
+  animation:sweep 7s ease-in-out infinite;
+  pointer-events:none
+}
+.glass::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(120% 90% at 0% 0%, rgba(255,255,255,.18), transparent 45%);
+}
+@keyframes sweep{
+  0%,100%{transform:translateX(-80%) rotate(8deg);opacity:.55}
+  50%{transform:translateX(80%) rotate(8deg);opacity:1}
+}
+.glass.teal{border-color:rgba(46,230,214,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 24px 60px rgba(46,230,214,.14)}
+.glass.gold{border-color:rgba(240,197,106,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 24px 60px rgba(240,197,106,.14)}
+.glass.brand{border-color:rgba(110,200,255,.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 24px 60px rgba(110,200,255,.14)}
+.glass.red{border-color:rgba(255,107,122,.40);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 24px 60px rgba(255,107,122,.14)}
 
+.slide.light .glass{
+  background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.62));
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 18px 50px rgba(26,84,144,.12)
+}
+.slide.light .glass::after{
+  background:radial-gradient(120% 90% at 0% 0%, rgba(255,255,255,.7), transparent 50%);
+}
+
+/* glow ring */
+.glow-ring{position:relative}
+.glow-ring::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
+  background:conic-gradient(from var(--a,0deg),
+    rgba(46,230,214,.0),rgba(46,230,214,.85),rgba(110,200,255,.2),
+    rgba(240,197,106,.75),rgba(46,230,214,0));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:spinA 6s linear infinite;opacity:.9;pointer-events:none
+}
+@property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes spinA{to{--a:360deg}}
+
+/* ================= type ================= */
+.kicker{font-size:13px;letter-spacing:3.2px;text-transform:uppercase;font-weight:800;
+  color:var(--teal);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:34px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--teal),transparent)}
+h1{font-size:clamp(42px,5.4vw,68px);line-height:1.1;margin:0 0 18px;font-weight:850;letter-spacing:.5px}
+h2{font-size:clamp(28px,3.4vw,42px);line-height:1.24;margin:0 0 16px;font-weight:780}
+h3{font-size:20px;line-height:1.45;margin:0 0 12px;font-weight:720}
+.lead{font-size:clamp(17px,1.7vw,21px);line-height:1.85;max-width:920px;margin:0 0 26px}
+.slide.light .lead{color:var(--ink2)}
+.muted{opacity:.72}.slide.light .muted{color:var(--ink3);opacity:1}
+.small{font-size:14px;line-height:1.75}
+
+.rv{opacity:0;transform:translateY(18px);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.22,.8,.3,1)}
+.slide.on .rv{opacity:1;transform:none}
+.slide.on .d1{transition-delay:.10s}.slide.on .d2{transition-delay:.18s}
+.slide.on .d3{transition-delay:.28s}.slide.on .d4{transition-delay:.38s}
+.slide.on .d5{transition-delay:.48s}.slide.on .d6{transition-delay:.58s}
+
+/* layout */
 .body{flex:1;display:flex;flex-direction:column;gap:22px;min-height:0}
-.footer{margin-top:auto;padding-top:18px;font-size:13px;opacity:.6}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;min-width:0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;min-width:0}
+.row{display:flex;gap:18px;flex-wrap:wrap;align-items:stretch}
+.row>*{flex:1 1 200px;min-width:0}
+@media(max-width:1100px){.grid2,.grid3{grid-template-columns:1fr}}
+.footer{margin-top:auto;padding-top:16px;font-size:13px;opacity:.6}
 
-.stat{font-size:clamp(36px,4vw,52px);font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
-.stat.teal{color:var(--teal)}.stat.gold{color:var(--gold)}.stat.red{color:var(--red)}.stat.blue{color:#7EC8FF}
-.stat-l{font-size:15px;margin-top:8px;opacity:.75;line-height:1.5}
+.stat{font-size:clamp(34px,3.8vw,50px);font-weight:850;line-height:1.15;font-variant-numeric:tabular-nums}
+.stat.teal{color:var(--teal)}.stat.gold{color:var(--gold)}
+.stat.red{color:var(--red)}.stat.blue{color:var(--cyan)}
+.stat-l{font-size:14.5px;margin-top:8px;opacity:.75;line-height:1.55}
 
 ul.clean{margin:0;padding:0;list-style:none}
-ul.clean li{
-  position:relative;padding:14px 0 14px 30px;font-size:17px;line-height:1.75;
-  border-bottom:1px dashed rgba(255,255,255,.12)
-}
-.slide.light ul.clean li{border-color:var(--line);color:var(--ink2)}
+ul.clean li{position:relative;padding:13px 0 13px 28px;font-size:16.5px;line-height:1.75;
+  border-bottom:1px dashed rgba(255,255,255,.12)}
+.slide.light ul.clean li{border-color:rgba(26,84,144,.12);color:var(--ink2)}
 ul.clean li:last-child{border-bottom:none}
-ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;height:10px;
-  border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(46,196,182,.18)}
+ul.clean li::before{content:"";position:absolute;left:4px;top:21px;width:10px;height:10px;
+  border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 4px rgba(46,230,214,.18),0 0 12px rgba(46,230,214,.55)}
 
 .chips{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
-.chip{padding:10px 16px;border-radius:999px;font-size:14px;font-weight:650;
-  background:rgba(46,196,182,.16);color:#9FF0E6;border:1px solid rgba(46,196,182,.3)}
-.slide.light .chip{background:rgba(46,196,182,.12);color:#0E7C74;border-color:rgba(46,196,182,.28)}
-.chip.gold{background:rgba(212,168,83,.16);color:#F0D9A0;border-color:rgba(212,168,83,.32)}
+.chip{
+  padding:10px 16px;border-radius:999px;font-size:14px;font-weight:650;
+  background:rgba(46,230,214,.14);color:#9DFFF4;border:1px solid rgba(46,230,214,.32);
+  box-shadow:0 8px 24px rgba(46,230,214,.12)
+}
+.slide.light .chip{background:rgba(46,200,190,.12);color:#0B7A72;border-color:rgba(46,200,190,.3)}
+.chip.gold{background:rgba(240,197,106,.14);color:#FFE3A1;border-color:rgba(240,197,106,.34)}
 .slide.light .chip.gold{color:#8A6820}
 .badge{padding:9px 16px;border-radius:999px;font-size:14px;font-weight:750;
-  background:rgba(46,196,182,.18);color:#9FF0E6;border:1px solid rgba(46,196,182,.3)}
-.slide.light .badge{background:rgba(46,196,182,.14);color:#0E7C74}
+  background:rgba(46,230,214,.16);color:#9DFFF4;border:1px solid rgba(46,230,214,.32)}
+.slide.light .badge{background:rgba(46,200,190,.14);color:#0B7A72}
 .badge-row{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0}
 
-.flow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0}
-.node{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
-  border-radius:14px;padding:14px 18px;font-size:15px;font-weight:700;min-width:100px;text-align:center}
-.slide.light .node{background:#fff;border:1px solid var(--line)}
-.arrow{color:var(--teal);font-size:22px;font-weight:800}
-.slide.on .node{animation:pulseN 3s ease-in-out infinite}
-@keyframes pulseN{0%,100%{box-shadow:0 0 0 0 rgba(46,196,182,0)}50%{box-shadow:0 0 0 8px rgba(46,196,182,.12)}}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0}
+.node{
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;padding:13px 16px;font-size:14.5px;font-weight:700;
+  min-width:92px;text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2)
+}
+.slide.light .node{background:rgba(255,255,255,.8);border:1px solid rgba(26,84,144,.12)}
+.arrow{color:var(--teal);font-size:22px;font-weight:800;
+  text-shadow:0 0 16px rgba(46,230,214,.65)}
+.slide.on .node{animation:pulseN 2.8s ease-in-out infinite}
+@keyframes pulseN{
+  0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 0 0 rgba(46,230,214,0)}
+  50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 0 10px rgba(46,230,214,.12)}
+}
 
 .tag{display:inline-block;padding:5px 12px;border-radius:8px;font-size:13px;font-weight:800;margin-right:6px}
-.tag.red{background:rgba(255,107,107,.18);color:#FF8A8A}
-.tag.orange{background:rgba(255,176,32,.18);color:#FFC76A}
-.tag.green{background:rgba(61,220,151,.18);color:#7DFFC4}
+.tag.red{background:rgba(255,107,122,.18);color:#FF8A96}
+.tag.orange{background:rgba(255,180,84,.18);color:#FFC98A}
+.tag.green{background:rgba(61,255,168,.16);color:#7DFFC4}
 .slide.light .tag.red{background:#FDECEC;color:#C0392B}
 .slide.light .tag.orange{background:#FFF4E5;color:#C47A12}
 .slide.light .tag.green{background:#E7F7F0;color:#0F7A55}
 
-/* orbs */
-.orb{position:absolute;border-radius:50%;pointer-events:none;opacity:.5}
-.orb-t{width:360px;height:360px;right:-80px;top:-100px;background:radial-gradient(circle,rgba(46,196,182,.4),transparent 70%)}
-.orb-g{width:300px;height:300px;left:-80px;bottom:-60px;background:radial-gradient(circle,rgba(212,168,83,.32),transparent 70%)}
-.slide.on .orb-t{animation:fA 9s ease-in-out infinite}
-.slide.on .orb-g{animation:fB 11s ease-in-out infinite}
-@keyframes fA{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,24px)}}
-@keyframes fB{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,-20px)}}
-
-.shine{background:linear-gradient(120deg,#fff,#9FF0E6 40%,#D4A853 75%,#fff);
-  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:shine 6s linear infinite}
+.shine{
+  background:linear-gradient(120deg,#fff 10%,#9DFFF4 35%,#F0C56A 60%,#fff 90%);
+  background-size:220% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 5.5s linear infinite;
+  filter:drop-shadow(0 0 28px rgba(46,230,214,.35))
+}
 @keyframes shine{to{background-position:220% center}}
-.type::after{content:"|";color:var(--teal);animation:blink 1s step-end infinite}
+.type::after{content:"|";color:var(--teal);animation:blink 1s step-end infinite;
+  text-shadow:0 0 12px var(--teal)}
 @keyframes blink{50%{opacity:0}}
 
-/* ===== DEMO DEVICE ===== */
-.demo-wrap{display:grid;grid-template-columns:1.35fr .85fr;gap:28px;align-items:stretch;min-height:0}
+/* floating orbs */
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(8px);opacity:.55}
+.orb-t{width:380px;height:380px;right:-90px;top:-110px;
+  background:radial-gradient(circle,rgba(46,230,214,.5),transparent 70%);
+  animation:fA 10s ease-in-out infinite}
+.orb-g{width:320px;height:320px;left:-90px;bottom:-70px;
+  background:radial-gradient(circle,rgba(240,197,106,.4),transparent 70%);
+  animation:fB 12s ease-in-out infinite}
+.orb-c{width:280px;height:280px;right:18%;bottom:-40px;
+  background:radial-gradient(circle,rgba(110,200,255,.35),transparent 70%);
+  animation:fA 9s ease-in-out infinite reverse}
+@keyframes fA{0%,100%{transform:translate(0,0)}50%{transform:translate(-22px,26px)}}
+@keyframes fB{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-22px)}}
+
+/* ================= device / demo ================= */
+.demo-wrap{display:grid;grid-template-columns:1.4fr .85fr;gap:24px;align-items:stretch;min-height:0;flex:1}
 @media(max-width:1100px){.demo-wrap{grid-template-columns:1fr}}
 .device{
-  background:#0A1B30;border:1px solid rgba(255,255,255,.14);border-radius:18px;
-  overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.35);display:flex;flex-direction:column;
-  min-height:420px
+  position:relative;border-radius:20px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(10,27,48,.95),rgba(14,42,78,.92));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.18);
+  display:flex;flex-direction:column;min-height:440px
 }
+.device::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.08) 50%,transparent 60%);
+  background-size:200% 100%;animation:deviceSheen 8s linear infinite
+}
+@keyframes deviceSheen{to{background-position:-200% 0}}
 .device-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;
-  background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.08)}
+  background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1)}
 .dot{width:10px;height:10px;border-radius:50%}
 .dot.r{background:#FF5F57}.dot.y{background:#FEBC2E}.dot.g{background:#28C840}
-.device-title{margin-left:10px;font-size:13px;opacity:.75}
-.screen{position:relative;flex:1;padding:18px 20px;overflow:hidden;min-height:340px}
-.scene{position:absolute;inset:0;padding:18px 20px;opacity:0;visibility:hidden;
-  transition:opacity .45s ease, transform .45s ease;transform:translateY(10px)}
+.device-title{margin-left:10px;font-size:13px;opacity:.8}
+.screen{position:relative;flex:1;padding:16px 18px;overflow:hidden;min-height:360px}
+.scene{position:absolute;inset:0;padding:16px 18px;opacity:0;visibility:hidden;
+  transition:opacity .5s ease,transform .5s ease;transform:translateY(12px)}
 .scene.on{opacity:1;visibility:visible;transform:none}
 
-/* mini UI inside demo */
-.ui-nav{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
-.ui-logo{font-size:13px;font-weight:800;color:#fff;margin-right:8px}
-.ui-tab{padding:7px 12px;border-radius:8px;font-size:12px;color:#9FC2E0}
-.ui-tab.act{background:rgba(46,196,182,.22);color:#fff}
-.ui-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-.ui-kpi-i{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);
-  border-radius:12px;padding:12px 12px 10px}
-.ui-kpi-i .n{font-size:22px;font-weight:800;line-height:1.2}
-.ui-kpi-i .l{font-size:11px;opacity:.65;margin-top:4px}
-.ui-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
-  border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.ui-nav{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.ui-logo{font-size:13px;font-weight:800;margin-right:6px}
+.ui-tab{padding:7px 12px;border-radius:8px;font-size:12px;opacity:.75}
+.ui-tab.act{background:rgba(46,230,214,.22);opacity:1;
+  box-shadow:0 0 18px rgba(46,230,214,.25)}
+.ui-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.ui-kpi-i{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:10px}
+.ui-kpi-i .n{font-size:20px;font-weight:800;line-height:1.2}
+.ui-kpi-i .l{font-size:10.5px;opacity:.65;margin-top:3px}
+.ui-card{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
+  border-radius:12px;padding:11px 12px;margin-bottom:9px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12)
+}
 .ui-row{display:flex;gap:10px;align-items:center;font-size:12.5px;padding:8px 0;
-  border-bottom:1px solid rgba(255,255,255,.06)}
+  border-bottom:1px solid rgba(255,255,255,.07)}
 .ui-row:last-child{border-bottom:none}
-.ui-btn{padding:8px 14px;border-radius:9px;background:#2470B8;color:#fff;font-size:12px;font-weight:700}
-.ui-btn.teal{background:var(--teal);color:#062A28}
+.ui-btn{
+  padding:8px 14px;border-radius:9px;background:linear-gradient(135deg,#2E7BD6,#245FA8);
+  color:#fff;font-size:12px;font-weight:700;
+  box-shadow:0 8px 20px rgba(46,123,214,.35)
+}
+.ui-btn.teal{background:linear-gradient(135deg,#2EE6D6,#18B8AC);color:#04302C;
+  box-shadow:0 8px 22px rgba(46,230,214,.35)}
 .ui-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin:8px 0}
-.ui-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--teal),#7EC8FF);transition:width 1s ease}
-.ui-input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
-  border-radius:8px;padding:8px 10px;font-size:12px;color:#DDE8F6;margin:6px 0;min-height:34px}
+.ui-bar i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--teal),var(--cyan));
+  box-shadow:0 0 12px rgba(46,230,214,.55);transition:width 1s ease}
+.ui-input{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  border-radius:8px;padding:8px 10px;font-size:12px;color:#EAF2FF;margin:5px 0;min-height:32px
+}
 .cursor{
   position:absolute;width:18px;height:18px;border-radius:50% 50% 50% 0;
-  background:#fff;transform:rotate(-20deg);box-shadow:0 4px 14px rgba(0,0,0,.35);
-  opacity:0;transition:left .7s cubic-bezier(.22,.8,.3,1), top .7s cubic-bezier(.22,.8,.3,1), opacity .3s;
+  background:#fff;transform:rotate(-20deg);
+  box-shadow:0 6px 18px rgba(0,0,0,.4),0 0 20px rgba(46,230,214,.55);
+  opacity:0;transition:left .75s cubic-bezier(.22,.8,.3,1),top .75s cubic-bezier(.22,.8,.3,1),opacity .3s;
   z-index:20;pointer-events:none
 }
-.cursor.click{animation:clickPulse .35s ease}
-@keyframes clickPulse{0%{transform:rotate(-20deg) scale(1)}50%{transform:rotate(-20deg) scale(1.25)}100%{transform:rotate(-20deg) scale(1)}}
-.cursor::after{
-  content:"";position:absolute;inset:0;border-radius:50%;
-  background:rgba(46,196,182,.5);animation:ripple 1.4s ease-out infinite
-}
-@keyframes ripple{0%{transform:scale(.6);opacity:.8}100%{transform:scale(2.2);opacity:0}}
+.cursor.click{animation:clickPulse .4s ease}
+@keyframes clickPulse{0%{transform:rotate(-20deg) scale(1)}50%{transform:rotate(-20deg) scale(1.3)}100%{transform:rotate(-20deg) scale(1)}}
+.cursor::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:rgba(46,230,214,.55);animation:ripple 1.5s ease-out infinite}
+@keyframes ripple{0%{transform:scale(.5);opacity:.85}100%{transform:scale(2.4);opacity:0}}
 
-.demo-side{display:flex;flex-direction:column;gap:14px}
-.step-list{display:flex;flex-direction:column;gap:10px}
+.demo-side{display:flex;flex-direction:column;gap:12px;min-height:0}
+.step-list{display:flex;flex-direction:column;gap:9px;overflow:auto}
 .step-item{
-  display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
-  transition:all .3s ease;font-size:14px;line-height:1.55
+  display:flex;gap:12px;align-items:flex-start;padding:11px 13px;border-radius:14px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  transition:all .35s ease;font-size:13.5px;line-height:1.5;cursor:pointer
 }
-.step-item.act{background:rgba(46,196,182,.18);border-color:rgba(46,196,182,.45);
-  box-shadow:0 8px 24px rgba(46,196,182,.18)}
-.step-item .idx{width:26px;height:26px;border-radius:9px;background:rgba(255,255,255,.12);
-  display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0}
-.step-item.act .idx{background:var(--teal);color:#062A28}
+.step-item.act{
+  background:linear-gradient(135deg,rgba(46,230,214,.22),rgba(110,200,255,.12));
+  border-color:rgba(46,230,214,.5);
+  box-shadow:0 12px 32px rgba(46,230,214,.18),inset 0 1px 0 rgba(255,255,255,.25)
+}
+.step-item .idx{
+  width:26px;height:26px;border-radius:9px;background:rgba(255,255,255,.12);
+  display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0
+}
+.step-item.act .idx{background:var(--teal);color:#04302C}
 
-/* progress / chrome */
-#progress{position:absolute;left:0;top:0;height:3px;z-index:60;width:0;
-  background:linear-gradient(90deg,var(--teal),#7EC8FF,var(--gold));
-  box-shadow:0 0 12px rgba(46,196,182,.55);transition:width .4s ease}
+/* chrome */
 .chrome{
   position:absolute;left:0;right:0;bottom:0;height:62px;z-index:50;
   display:flex;align-items:center;gap:12px;padding:0 28px;
-  background:rgba(7,20,38,.78);backdrop-filter:blur(16px);
-  border-top:1px solid rgba(255,255,255,.08);font-size:13px
+  background:rgba(5,13,26,.72);backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-top:1px solid rgba(255,255,255,.1);font-size:13px
 }
 .chrome .brand{font-weight:800;letter-spacing:.6px}
 .chrome .right{margin-left:auto;display:flex;align-items:center;gap:10px}
-.btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;
+.btn{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);color:#fff;
   border-radius:12px;padding:9px 15px;cursor:pointer;font-size:13px;font-family:inherit;
-  transition:background .2s, transform .15s}
-.btn:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
-.btn.on{background:var(--teal);color:#062A28;border-color:transparent;font-weight:700}
+  backdrop-filter:blur(10px);transition:all .2s
+}
+.btn:hover{background:rgba(255,255,255,.16);transform:translateY(-1px);
+  box-shadow:0 10px 28px rgba(46,230,214,.22)}
+.btn.on{background:linear-gradient(135deg,var(--teal),#18B8AC);color:#04302C;
+  border-color:transparent;font-weight:700;box-shadow:0 10px 28px rgba(46,230,214,.35)}
 .page{font-weight:700;font-variant-numeric:tabular-nums}
 
 /* QR */
 .qr-panel{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:center}
 @media(max-width:820px){.qr-panel{grid-template-columns:1fr}}
-.qr-\boxed{width:240px;height:240px;background:#fff;border-radius:22px;padding:14px;
-  box-shadow:0 22px 55px rgba(0,0,0,.35)}
+.qr-\boxed{
+  width:240px;height:240px;background:#fff;border-radius:22px;padding:14px;
+  box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.2),
+    0 0 40px rgba(46,230,214,.28)
+}
 .qr-box svg{width:100%;height:100%}
 
-.chart{width:100%;height:240px}
+.chart{width:100%;height:230px}
 .chart svg{width:100%;height:100%;overflow:visible}
 .chart .draw{stroke-dasharray:1200;stroke-dashoffset:1200}
 .slide.on .chart .draw{animation:drawL 1.5s ease .25s forwards}
@@ -234,29 +376,46 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
 @keyframes popIn{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
 
 .table{width:100%;border-collapse:collapse;font-size:15px}
-.table th,.table td{padding:12px 14px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
-.slide.light .table th,.slide.light .table td{border-color:var(--line)}
+.table th,.table td{padding:11px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
+.slide.light .table th,.slide.light .table td{border-color:rgba(26,84,144,.12)}
 .table th{font-size:12.5px;letter-spacing:.4px;opacity:.65;font-weight:700}
 
 .steps3{display:flex;gap:16px;flex-wrap:wrap}
-.step3{flex:1 1 200px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
-  border-radius:18px;padding:22px 20px;min-width:0}
-.slide.light .step3{background:#fff;border:1px solid var(--line)}
-.step3 .n{font-size:32px;font-weight:800;color:var(--teal);margin-bottom:8px}
+.step3{flex:1 1 200px;min-width:0}
+
+/* mini live widgets on slides */
+.mini{
+  position:relative;border-radius:16px;overflow:hidden;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  padding:14px 16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)
+}
+.slide.light .mini{background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.8)}
+.mini .lbl{font-size:11.5px;opacity:.65;margin-bottom:6px}
+.wave{
+  height:64px;border-radius:12px;overflow:hidden;position:relative;
+  background:linear-gradient(180deg,rgba(46,230,214,.12),rgba(110,200,255,.08))
+}
+.wave svg{width:100%;height:100%}
+.pulse-dot{
+  width:10px;height:10px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 0 rgba(46,230,214,.7);animation:pd 1.8s ease-out infinite
+}
+@keyframes pd{100%{box-shadow:0 0 0 16px rgba(46,230,214,0)}}
 </style>
 </head>
 <body>
 <div id="stage">
 <canvas id="fx"></canvas>
+<div class="aurora"></div>
 <div id="progress"></div>
 
-<!-- 1 封面 -->
+<!-- ========== 1 COVER ========== -->
 <section class="slide cover on" data-title="封面">
-  <div class="orb orb-t"></div><div class="orb orb-g"></div>
-  <div style="margin:auto 0;position:relative;z-index:2;max-width:980px">
+  <div class="orb orb-t"></div><div class="orb orb-g"></div><div class="orb orb-c"></div>
+  <div style="margin:auto 0;position:relative;z-index:2;max-width:1000px">
     <div class="kicker rv">2026 中国（广西）—东盟「AI+法律」应用创新大赛</div>
     <h1 class="rv d1"><span class="shine">心锚</span></h1>
-    <div class="rv d2" style="font-size:clamp(22px,2.6vw,34px);font-weight:650;letter-spacing:1px;margin-bottom:22px;line-height:1.4">
+    <div class="rv d2" style="font-size:clamp(22px,2.7vw,36px);font-weight:650;letter-spacing:1px;margin-bottom:22px;line-height:1.4">
       社区戒毒矫治与康复智能辅助系统
     </div>
     <p class="lead rv d3" style="color:#C9DCEF">
@@ -268,21 +427,21 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
       <span class="chip gold">面向东盟 · 五语</span>
       <span class="chip">数据不出域</span>
     </div>
-    <div class="badge-row rv d5" style="margin-top:28px">
+    <div class="badge-row rv d5" style="margin-top:26px">
       <span class="badge">广西警察学院 · 心锚队</span>
       <span class="badge">AI 让法律跨越山海</span>
     </div>
   </div>
 </section>
 
-<!-- 2 赛道 -->
+<!-- ========== 2 TRACK ========== -->
 <section class="slide light" data-title="赛道契合">
   <div class="kicker rv">Why this track</div>
   <h2 class="rv d1">紧扣「刑罚执行与监管安全」</h2>
-  <p class="lead rv d2">大赛方向二明确征集「戒毒康复智能管理与科学戒治」「社区矫正精准矫治」——本项目即可运行原型。</p>
+  <p class="lead rv d2">大赛方向二明确征集「戒毒康复智能管理与科学戒治」「社区矫正精准矫治」。</p>
   <div class="body">
     <div class="grid3">
-      <div class="card brand rv d2">
+      <div class="glass glow-ring rv d2">
         <h3>法律锚点</h3>
         <ul class="clean">
           <li>《禁毒法》社区戒毒康复</li>
@@ -290,7 +449,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           <li>风险分级精准矫治</li>
         </ul>
       </div>
-      <div class="card teal rv d3">
+      <div class="glass teal glow-ring rv d3">
         <h3>服务对象</h3>
         <ul class="clean">
           <li>社区矫正 / 司法所</li>
@@ -298,10 +457,10 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           <li>戒毒所管教民警</li>
         </ul>
       </div>
-      <div class="card gold rv d4">
+      <div class="glass gold glow-ring rv d4">
         <h3>技术主张</h3>
         <ul class="clean">
-          <li>规则可解释、可审计</li>
+          <li>规则可解释可审计</li>
           <li>LLM 增强不越权</li>
           <li>轻量可进内网</li>
         </ul>
@@ -311,7 +470,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   <div class="footer">先进性 · 示范性 · 可推广性 · 实效性 · 项目完整性</div>
 </section>
 
-<!-- 3 痛点 -->
+<!-- ========== 3 PROBLEM ========== -->
 <section class="slide dark" data-title="痛点">
   <div class="orb orb-t"></div>
   <div class="kicker rv">The problem</div>
@@ -326,7 +485,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           <li><strong>出所后真空</strong>——复吸高发，事后才被动处置</li>
         </ul>
       </div>
-      <div class="card red rv d3" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="glass red glow-ring rv d3" style="display:flex;flex-direction:column;justify-content:center">
         <div class="stat red">滞后</div>
         <p class="small muted" style="margin:14px 0 0">
           识别时点普遍晚于风险形成。<br>
@@ -337,12 +496,12 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   </div>
 </section>
 
-<!-- 4 方案 -->
+<!-- ========== 4 SOLUTION ========== -->
 <section class="slide light" data-title="方案总览">
   <div class="kicker rv">Solution</div>
   <h2 class="rv d1">从每日一打，到可执行的阻断动作</h2>
   <div class="body">
-    <div class="flow rv d2" style="margin:4px 0 8px">
+    <div class="flow rv d2">
       <div class="node">每日打卡</div><div class="arrow">→</div>
       <div class="node">信号抽取</div><div class="arrow">→</div>
       <div class="node">五维建模</div><div class="arrow">→</div>
@@ -351,15 +510,15 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
       <div class="node">复评留痕</div>
     </div>
     <div class="row">
-      <div class="card teal rv d3"><div class="stat teal">1 次/日</div><div class="stat-l">生态瞬时评估</div></div>
-      <div class="card brand rv d3"><div class="stat blue">5 维</div><div class="stat-l">渴求可计算</div></div>
-      <div class="card gold rv d4"><div class="stat gold">8 类</div><div class="stat-l">高危情境</div></div>
-      <div class="card red rv d4"><div class="stat red">3 步</div><div class="stat-l">当下阻断</div></div>
+      <div class="glass teal glow-ring rv d3"><div class="stat teal">1 次/日</div><div class="stat-l">生态瞬时评估</div></div>
+      <div class="glass brand glow-ring rv d3"><div class="stat blue">5 维</div><div class="stat-l">渴求可计算</div></div>
+      <div class="glass gold glow-ring rv d4"><div class="stat gold">8 类</div><div class="stat-l">高危情境</div></div>
+      <div class="glass red glow-ring rv d4"><div class="stat red">3 步</div><div class="stat-l">当下阻断</div></div>
     </div>
   </div>
 </section>
 
-<!-- 5 架构 -->
+<!-- ========== 5 ARCHITECTURE ========== -->
 <section class="slide dark" data-title="架构">
   <div class="kicker rv">Architecture</div>
   <h2 class="rv d1">六层流水线</h2>
@@ -375,9 +534,9 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           <div class="node">6 · 应用展示　驾驶舱 / 个案 / 留痕</div>
         </div>
       </div>
-      <div class="card brand rv d3" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="glass brand glow-ring rv d3" style="display:flex;flex-direction:column;justify-content:center">
         <h3>轻量 · 可离线 · 可审计</h3>
-        <p class="small muted" style="margin:0 0 12px">Flask + SQLite + ECharts 本地化，普通电脑或政务云即可部署，无需 GPU。</p>
+        <p class="small muted" style="margin:0 0 14px">Flask + SQLite + ECharts 本地化，普通电脑或政务云即可部署。</p>
         <table class="table">
           <tr><th>研判</th><td>规则为主 + LLM 为辅</td></tr>
           <tr><th>数据</th><td>全程不出域</td></tr>
@@ -388,22 +547,26 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   </div>
 </section>
 
-<!-- 6 算法 -->
+<!-- ========== 6 SCORING ========== -->
 <section class="slide light" data-title="评估算法">
   <div class="kicker rv">Scoring</div>
   <h2 class="rv d1">可审计的风险公式</h2>
   <div class="body">
     <div class="grid2" style="flex:1">
-      <div class="card brand rv d2">
+      <div class="glass brand glow-ring rv d2">
         <h3>两步计算</h3>
         <div class="steps3" style="margin:8px 0">
-          <div class="step3"><div class="n">R</div><strong>原始风险</strong>
-            <div class="small muted" style="margin-top:8px">五维之和 × (1 + Σ情境权重/10)</div></div>
-          <div class="step3"><div class="n">N</div><strong>净风险</strong>
-            <div class="small muted" style="margin-top:8px">0.7×R − 0.3×康复资本 + 30</div></div>
+          <div class="glass teal" style="padding:18px">
+            <div class="stat teal" style="font-size:32px">R</div>
+            <div class="small muted" style="margin-top:8px">五维之和 × (1 + Σ情境权重/10)</div>
+          </div>
+          <div class="glass gold" style="padding:18px">
+            <div class="stat gold" style="font-size:32px">N</div>
+            <div class="small muted" style="margin-top:8px">0.7×R − 0.3×康复资本 + 30</div>
+          </div>
         </div>
       </div>
-      <div class="card rv d3">
+      <div class="glass glow-ring rv d3">
         <h3>高危情境加权</h3>
         <table class="table">
           <tr><th>代码</th><th>情境</th><th>权重</th></tr>
@@ -417,14 +580,14 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   </div>
 </section>
 
-<!-- 7 预警 -->
+<!-- ========== 7 WARNING ========== -->
 <section class="slide dark" data-title="预警与趋势">
-  <div class="orb orb-g"></div>
+  <div class="orb orb-g"></div><div class="orb orb-c"></div>
   <div class="kicker rv">Early warning</div>
   <h2 class="rv d1">既看「今天多危险」，也看「是否在变危险」</h2>
   <div class="body">
     <div class="grid2" style="flex:1">
-      <div class="card rv d2">
+      <div class="glass glow-ring rv d2">
         <h3>三级预警</h3>
         <table class="table" style="margin-bottom:12px">
           <tr><th>色标</th><th>条件</th><th>响应</th></tr>
@@ -432,9 +595,18 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           <tr><td><span class="tag orange">橙</span></td><td>40–69</td><td>48h 跟进</td></tr>
           <tr><td><span class="tag green">绿</span></td><td>N &lt; 40</td><td>常规跟踪</td></tr>
         </table>
-        <p class="small muted" style="margin:0">7 日均线连续上升 → 爬升窗口，预警自动上调一档</p>
+        <div class="mini" style="margin-top:10px">
+          <div class="lbl">趋势爬升窗口 · 实时示意</div>
+          <div class="wave">
+            <svg viewBox="0 0 320 64" preserveAspectRatio="none">
+              <path class="draw" d="M0,50 C40,48 60,40 90,38 S150,30 180,22 S250,12 320,8"
+                fill="none" stroke="#2EE6D6" stroke-width="3"/>
+              <circle class="pop" cx="250" cy="12" r="5" fill="#FF6B7A"/>
+            </svg>
+          </div>
+        </div>
       </div>
-      <div class="card rv d3">
+      <div class="glass teal glow-ring rv d3">
         <h3>趋势示例</h3>
         <div class="chart" id="chartTrend"></div>
       </div>
@@ -442,11 +614,11 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   </div>
 </section>
 
-<!-- 8 平台演示 -->
-<section class="slide dark" data-title="平台演示">
-  <div class="kicker rv">Live walkthrough</div>
-  <h2 class="rv d1">平台使用过程 · 自动演示</h2>
-  <div class="demo-wrap rv d2" style="flex:1;min-height:0">
+<!-- ========== 8 FULL FEATURE DEMO ========== -->
+<section class="slide dark" data-title="功能演示">
+  <div class="kicker rv">Live product tour</div>
+  <h2 class="rv d1">全功能真实界面 · 自动演示</h2>
+  <div class="demo-wrap rv d2">
     <div class="device" id="device">
       <div class="device-bar">
         <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
@@ -455,19 +627,19 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
       <div class="screen" id="screen">
         <div class="cursor" id="cursor"></div>
 
-        <!-- scene login -->
+        <!-- 0 登录 -->
         <div class="scene on" data-s="0">
-          <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:16px;height:100%">
+          <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:14px;height:100%">
             <div>
-              <div style="font-size:22px;font-weight:800;margin:18px 0 8px">心锚</div>
-              <div class="small" style="opacity:.75;line-height:1.7">社区戒毒矫治与康复<br>智能辅助系统</div>
-              <div class="chips" style="margin-top:16px">
+              <div style="font-size:24px;font-weight:850;margin:16px 0 8px" class="shine">心锚</div>
+              <div class="small" style="opacity:.8;line-height:1.8">社区戒毒矫治与康复<br>智能辅助系统</div>
+              <div class="chips" style="margin-top:14px">
                 <span class="chip" style="font-size:11px;padding:5px 10px">规则 + LLM</span>
                 <span class="chip gold" style="font-size:11px;padding:5px 10px">五语</span>
               </div>
             </div>
             <div class="ui-card" style="align-self:center">
-              <div class="small" style="font-weight:700;margin-bottom:8px">进入系统</div>
+              <div class="small" style="font-weight:700;margin-bottom:6px">进入系统</div>
               <div class="ui-input" id="loginUser">officer</div>
               <div class="ui-input" id="loginPass">••••••</div>
               <div class="ui-btn teal" id="btnLogin" style="text-align:center;margin-top:8px">登 录</div>
@@ -475,7 +647,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           </div>
         </div>
 
-        <!-- scene dashboard -->
+        <!-- 1 驾驶舱 -->
         <div class="scene" data-s="1">
           <div class="ui-nav">
             <span class="ui-logo">心锚</span>
@@ -483,6 +655,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
             <span class="ui-tab">康复人员</span>
             <span class="ui-tab">打卡录入</span>
             <span class="ui-tab">系统说明</span>
+            <span class="ui-tab" style="margin-left:auto">中文 ▾</span>
           </div>
           <div class="ui-kpi">
             <div class="ui-kpi-i"><div class="n" data-c="3">0</div><div class="l">在册</div></div>
@@ -492,73 +665,125 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           </div>
           <div class="ui-card">
             <div class="ui-row"><span class="tag red">红</span><span>P001 陈立辉</span>
-              <span style="margin-left:auto;opacity:.8">85.9</span>
+              <span style="margin-left:auto;opacity:.85">85.9</span>
               <span class="ui-btn" id="btnView1" style="margin-left:8px">查看</span></div>
             <div class="ui-row"><span class="tag orange">橙</span><span>P002 李兆文</span>
-              <span style="margin-left:auto;opacity:.8">58.4</span>
-              <span class="ui-btn" style="margin-left:8px;opacity:.7">查看</span></div>
+              <span style="margin-left:auto;opacity:.85">58.4</span>
+              <span class="ui-btn" style="margin-left:8px;opacity:.75">查看</span></div>
             <div class="ui-row"><span class="tag green">绿</span><span>P003 王建平</span>
-              <span style="margin-left:auto;opacity:.8">26.9</span>
-              <span class="ui-btn" style="margin-left:8px;opacity:.7">查看</span></div>
+              <span style="margin-left:auto;opacity:.85">26.9</span>
+              <span class="ui-btn" style="margin-left:8px;opacity:.75">查看</span></div>
           </div>
         </div>
 
-        <!-- scene person -->
+        <!-- 2 个案详情 -->
         <div class="scene" data-s="2">
           <div class="ui-nav">
             <span class="ui-logo">P001 陈立辉</span>
             <span class="tag red">红 · 85.9</span>
             <span class="ui-tab">巩固期</span>
+            <span class="ui-tab" id="btnRerun" style="margin-left:auto">重跑评估</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <div class="ui-card">
-              <div class="small" style="opacity:.7;margin-bottom:6px">渴求五维</div>
-              <div class="ui-bar"><i style="--w:82%" data-w="82%"></i></div>
-              <div class="ui-bar"><i style="--w:76%" data-w="76%"></i></div>
-              <div class="ui-bar"><i style="--w:68%" data-w="68%"></i></div>
-              <div class="ui-bar"><i style="--w:79%" data-w="79%"></i></div>
+              <div class="small" style="opacity:.7;margin-bottom:4px">渴求五维</div>
+              <div class="ui-bar"><i data-w="82%"></i></div>
+              <div class="ui-bar"><i data-w="76%"></i></div>
+              <div class="ui-bar"><i data-w="68%"></i></div>
+              <div class="ui-bar"><i data-w="79%"></i></div>
+              <div class="ui-bar"><i data-w="64%"></i></div>
             </div>
             <div class="ui-card">
-              <div class="small" style="opacity:.7;margin-bottom:6px">60 日趋势 · 爬升窗口</div>
-              <svg viewBox="0 0 220 90" style="width:100%;height:90px">
-                <path class="draw" d="M5,70 L30,62 L55,58 L80,50 L105,46 L130,38 L155,30 L180,22 L210,14"
-                  fill="none" stroke="#2EC4B6" stroke-width="2.5"/>
-                <circle class="pop" cx="180" cy="22" r="5" fill="#FF6B6B"/>
+              <div class="small" style="opacity:.7;margin-bottom:4px">60 日趋势 · 爬升窗口</div>
+              <svg viewBox="0 0 220 88" style="width:100%;height:88px">
+                <path class="draw" d="M5,72 L30,64 L55,58 L80,52 L105,46 L130,36 L155,28 L180,20 L210,12"
+                  fill="none" stroke="#2EE6D6" stroke-width="2.6"/>
+                <circle class="pop" cx="180" cy="20" r="5" fill="#FF6B7A"/>
               </svg>
             </div>
           </div>
-          <div class="ui-card" style="margin-top:10px">
-            <div class="small" style="font-weight:700;margin-bottom:6px">阻断三步</div>
-            <div class="small" style="opacity:.8;line-height:1.7">
+          <div class="ui-card" style="margin-top:8px">
+            <div class="small" style="font-weight:700;margin-bottom:4px">阻断三步</div>
+            <div class="small" style="opacity:.85;line-height:1.75">
               ① 立即离开诱发现场　② 线索—后果链条梳理　③ 绕行路线 + 紧急联系人
             </div>
             <div class="ui-btn teal" id="btnHandle" style="display:inline-block;margin-top:8px">提交处置留痕</div>
           </div>
         </div>
 
-        <!-- scene checkin -->
+        <!-- 3 打卡评估 -->
         <div class="scene" data-s="3">
-          <div class="ui-nav"><span class="ui-logo">每日打卡录入</span></div>
+          <div class="ui-nav"><span class="ui-logo">每日打卡录入</span>
+            <span class="ui-tab act">EMA · 6 题</span></div>
           <div class="ui-card">
             <div class="small" style="opacity:.7">1. 今日渴求峰值</div>
             <div class="ui-input" id="inCrave">6</div>
             <div class="small" style="opacity:.7">2. 高危情境</div>
             <div class="ui-input" id="inSit">CE · 线索／诱因暴露</div>
             <div class="small" style="opacity:.7">3. 今日自述</div>
-            <div class="ui-input" id="inNote" style="min-height:52px">路过以前那个地方，脑子里突然全是……</div>
+            <div class="ui-input" id="inNote" style="min-height:48px">路过以前那个地方，脑子里突然全是……</div>
             <div class="ui-btn teal" id="btnSubmit" style="display:inline-block;margin-top:6px">提交并触发评估</div>
           </div>
         </div>
 
-        <!-- scene done -->
+        <!-- 4 多语言 -->
         <div class="scene" data-s="4">
+          <div class="ui-nav">
+            <span class="ui-logo">系统说明 · 面向东盟</span>
+            <span class="ui-tab act" id="langZh">中文</span>
+            <span class="ui-tab" id="langEn">English</span>
+            <span class="ui-tab" id="langVi">Tiếng Việt</span>
+            <span class="ui-tab" id="langTh">ไทย</span>
+            <span class="ui-tab" id="langId">Bahasa</span>
+          </div>
+          <div class="ui-card">
+            <div class="small" style="font-weight:700;margin-bottom:6px" id="langTitle">规则可翻译 · 方案可复用 · 数据不出境</div>
+            <div class="small" style="opacity:.8;line-height:1.8" id="langBody">
+              界面已支持中文 / English / Tiếng Việt / ภาษาไทย / Bahasa Indonesia，
+              导航、风险色标、情境标签与关键业务文案一键切换。
+            </div>
+          </div>
+          <div class="ui-card">
+            <div class="small" style="opacity:.75;line-height:1.8">
+              合规：数据不出境 · 人工最终决策 · 全程审计留痕
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 处置闭环 -->
+        <div class="scene" data-s="5">
+          <div class="ui-nav"><span class="ui-logo">预警与阻断</span></div>
+          <div class="ui-card">
+            <div class="ui-row"><span class="tag red">红</span><span>2026-10-08</span>
+              <span style="margin-left:auto;opacity:.8">待处置</span></div>
+            <div class="small" style="opacity:.85;line-height:1.75;margin:6px 0">
+              净风险 85.9 ≥ 70，线索暴露叠加失控感升高
+            </div>
+            <div class="small" style="opacity:.8;line-height:1.8">
+              ① 离开诱发现场 ② CBT 认知重构 ③ 替代行为 + 紧急联系人
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <div class="ui-input" style="flex:1;margin:0">处置说明……</div>
+              <div class="ui-btn teal" id="btnAudit">提交留痕</div>
+            </div>
+          </div>
+          <div class="ui-card">
+            <div class="small" style="opacity:.7">已处置记录</div>
+            <div class="small" style="opacity:.85;margin-top:4px">张警官 · 2026-10-06 · 一对一面谈完成</div>
+          </div>
+        </div>
+
+        <!-- 6 完成 -->
+        <div class="scene" data-s="6">
           <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(61,220,151,.2);
-              display:grid;place-items:center;font-size:28px;color:var(--green)">✓</div>
-            <div style="font-size:22px;font-weight:800">评估已刷新</div>
-            <div class="small muted" style="text-align:center;line-height:1.8">
+            <div class="pulse-dot" style="width:18px;height:18px"></div>
+            <div style="width:68px;height:68px;border-radius:50%;background:rgba(61,255,168,.18);
+              display:grid;place-items:center;font-size:30px;color:var(--green);
+              box-shadow:0 0 40px rgba(61,255,168,.35)">✓</div>
+            <div style="font-size:22px;font-weight:850">研判 — 处置 — 复评 闭环完成</div>
+            <div class="small muted" style="text-align:center;line-height:1.9">
               信号抽取 → 五维建模 → 净风险 → 阻断方案 → 趋势检测<br>
-              全程留痕 · 人工最终决策
+              合成数据 · AI 辅助研判 · 人工最终决策
             </div>
           </div>
         </div>
@@ -567,39 +792,44 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
 
     <div class="demo-side">
       <div class="step-list" id="stepList">
-        <div class="step-item act" data-i="0"><div class="idx">1</div><div>登录系统<br><span class="small muted">演示账号一键进入</span></div></div>
-        <div class="step-item" data-i="1"><div class="idx">2</div><div>风险驾驶舱<br><span class="small muted">红橙绿一屏态势</span></div></div>
-        <div class="step-item" data-i="2"><div class="idx">3</div><div>个案详情<br><span class="small muted">雷达 / 趋势 / 阻断三步</span></div></div>
-        <div class="step-item" data-i="3"><div class="idx">4</div><div>打卡评估<br><span class="small muted">六题约 30 秒</span></div></div>
-        <div class="step-item" data-i="4"><div class="idx">5</div><div>闭环留痕<br><span class="small muted">研判—处置—复评</span></div></div>
+        <div class="step-item act" data-i="0"><div class="idx">1</div><div>登录<br><span class="small muted">一键进入</span></div></div>
+        <div class="step-item" data-i="1"><div class="idx">2</div><div>风险驾驶舱<br><span class="small muted">红橙绿态势</span></div></div>
+        <div class="step-item" data-i="2"><div class="idx">3</div><div>个案详情<br><span class="small muted">雷达 / 趋势 / 三步</span></div></div>
+        <div class="step-item" data-i="3"><div class="idx">4</div><div>打卡评估<br><span class="small muted">六题即时研判</span></div></div>
+        <div class="step-item" data-i="4"><div class="idx">5</div><div>多语言 · 东盟<br><span class="small muted">五语一键切换</span></div></div>
+        <div class="step-item" data-i="5"><div class="idx">6</div><div>处置留痕<br><span class="small muted">方案派发闭环</span></div></div>
+        <div class="step-item" data-i="6"><div class="idx">7</div><div>复评完成<br><span class="small muted">全程可审计</span></div></div>
       </div>
-      <div class="card teal" style="padding:16px 18px">
-        <div class="small muted" id="demoHint">自动演示中 · 可点击右侧步骤跳转</div>
+      <div class="glass teal" style="padding:14px 16px">
+        <div class="small muted" id="demoHint">自动演示中 · 点击右侧步骤可跳转</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 9 帮教 -->
+<!-- ========== 9 INTERVENTION ========== -->
 <section class="slide light" data-title="帮教闭环">
   <div class="kicker rv">Intervention</div>
   <h2 class="rv d1">标准动作打底，个性化表达润色</h2>
   <div class="body">
     <div class="steps3">
-      <div class="step3 rv d2">
-        <div class="n">01</div><h3>即时应激处理</h3>
+      <div class="glass red glow-ring rv d2 step3">
+        <div class="stat red" style="font-size:32px">01</div>
+        <h3 style="margin-top:8px">即时应激处理</h3>
         <p class="small muted">离开现场、安全确认、紧急联系人、呼吸放松。</p>
       </div>
-      <div class="step3 rv d3">
-        <div class="n">02</div><h3>认知重构</h3>
+      <div class="glass gold glow-ring rv d3 step3">
+        <div class="stat gold" style="font-size:32px">02</div>
+        <h3 style="margin-top:8px">认知重构</h3>
         <p class="small muted">CBT 线索—后果链条，识别借口合理化。</p>
       </div>
-      <div class="step3 rv d4">
-        <div class="n">03</div><h3>替代行为</h3>
+      <div class="glass teal glow-ring rv d4 step3">
+        <div class="stat teal" style="font-size:32px">03</div>
+        <h3 style="margin-top:8px">替代行为</h3>
         <p class="small muted">绕行路线、有氧运动、同伴互助。</p>
       </div>
     </div>
-    <div class="card brand rv d5">
+    <div class="glass brand glow-ring rv d5">
       <div class="flow" style="margin:0">
         <div class="node">研判</div><div class="arrow">→</div>
         <div class="node">派发</div><div class="arrow">→</div>
@@ -611,15 +841,15 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   </div>
 </section>
 
-<!-- 10 东盟 -->
+<!-- ========== 10 ASEAN ========== -->
 <section class="slide cover" data-title="面向东盟">
-  <div class="orb orb-t"></div>
+  <div class="orb orb-t"></div><div class="orb orb-c"></div>
   <div class="kicker rv">ASEAN ready</div>
   <h2 class="rv d1">规则可翻译 · 方案可复用 · 数据不出境</h2>
   <p class="lead rv d2" style="color:#C9DCEF">广西是面向东盟的前沿。评估维度与方案库可按对象国法律文化本地化。</p>
   <div class="body">
     <div class="grid3">
-      <div class="card rv d3">
+      <div class="glass glow-ring rv d3">
         <h3>五语界面</h3>
         <div class="badge-row">
           <span class="badge">中文</span><span class="badge">English</span>
@@ -627,11 +857,11 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           <span class="badge">Bahasa</span>
         </div>
       </div>
-      <div class="card rv d4">
+      <div class="glass gold glow-ring rv d4">
         <h3>本地化</h3>
         <p class="small muted">量表用语、方案库、阈值权重均可按场所调整。</p>
       </div>
-      <div class="card rv d5">
+      <div class="glass teal glow-ring rv d5">
         <h3>合规</h3>
         <p class="small muted">数据不跨境 · 人工最终决策 · 审计可追溯。</p>
       </div>
@@ -639,7 +869,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   </div>
 </section>
 
-<!-- 11 合规 -->
+<!-- ========== 11 COMPLIANCE ========== -->
 <section class="slide light" data-title="安全合规">
   <div class="kicker rv">Compliance</div>
   <h2 class="rv d1">五条硬约束</h2>
@@ -654,7 +884,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
           <li><strong>会话与传输安全</strong>——可升级 HTTPS</li>
         </ul>
       </div>
-      <div class="card gold rv d3" style="display:flex;align-items:center">
+      <div class="glass gold glow-ring rv d3" style="display:flex;align-items:center">
         <p class="lead" style="margin:0;font-size:18px">
           系统定位为<strong>人工智能辅助评估工具</strong>，预警与方案须经工作人员审核确认后执行，
           不得作为处分、诊断或强制措施依据。
@@ -664,51 +894,55 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   </div>
 </section>
 
-<!-- 12 效益 -->
+<!-- ========== 12 IMPACT ========== -->
 <section class="slide dark" data-title="效益指标">
   <div class="kicker rv">Impact</div>
   <h2 class="rv d1">可量化目标</h2>
   <div class="body">
     <div class="row">
-      <div class="card brand rv d2"><div class="stat blue"><span data-count="85">0</span>%+</div><div class="stat-l">红橙预警召回率</div></div>
-      <div class="card teal rv d3"><div class="stat teal">≤10 分</div><div class="stat-l">人均研判（原约 30 分）</div></div>
-      <div class="card gold rv d4"><div class="stat gold"><span data-count="90">0</span>%+</div><div class="stat-l">爬升窗口 24h 闭环</div></div>
-      <div class="card red rv d5"><div class="stat red">3 类</div><div class="stat-l">稳定区分风险走势</div></div>
+      <div class="glass brand glow-ring rv d2"><div class="stat blue"><span data-count="85">0</span>%+</div><div class="stat-l">红橙预警召回率</div></div>
+      <div class="glass teal glow-ring rv d3"><div class="stat teal">≤10 分</div><div class="stat-l">人均研判（原约 30 分）</div></div>
+      <div class="glass gold glow-ring rv d4"><div class="stat gold"><span data-count="90">0</span>%+</div><div class="stat-l">爬升窗口 24h 闭环</div></div>
+      <div class="glass red glow-ring rv d5"><div class="stat red">3 类</div><div class="stat-l">稳定区分风险走势</div></div>
     </div>
   </div>
 </section>
 
-<!-- 13 路线 -->
+<!-- ========== 13 ROADMAP ========== -->
 <section class="slide light" data-title="路线图">
   <div class="kicker rv">Roadmap</div>
   <h2 class="rv d1">合成验证 → 单所校准 → 区域复制 → 东盟</h2>
   <div class="body">
     <div class="steps3">
-      <div class="step3 rv d2"><div class="n">1</div><h3>合成验证</h3><p class="small muted">已完成闭环 · TRL 6</p></div>
-      <div class="step3 rv d3"><div class="n">2</div><h3>单所校准</h3><p class="small muted">广西试点 · TRL 7</p></div>
-      <div class="step3 rv d4"><div class="n">3</div><h3>区域复制</h3><p class="small muted">所内 + 所外一体</p></div>
-      <div class="step3 rv d5"><div class="n">4</div><h3>东盟协同</h3><p class="small muted">多语 · 联防联控</p></div>
+      <div class="glass glow-ring rv d2 step3"><div class="stat blue" style="font-size:32px">1</div>
+        <h3 style="margin-top:8px">合成验证</h3><p class="small muted">已完成闭环 · TRL 6</p></div>
+      <div class="glass teal glow-ring rv d3 step3"><div class="stat teal" style="font-size:32px">2</div>
+        <h3 style="margin-top:8px">单所校准</h3><p class="small muted">广西试点 · TRL 7</p></div>
+      <div class="glass gold glow-ring rv d4 step3"><div class="stat gold" style="font-size:32px">3</div>
+        <h3 style="margin-top:8px">区域复制</h3><p class="small muted">所内 + 所外一体</p></div>
+      <div class="glass brand glow-ring rv d5 step3"><div class="stat blue" style="font-size:32px">4</div>
+        <h3 style="margin-top:8px">东盟协同</h3><p class="small muted">多语 · 联防联控</p></div>
     </div>
   </div>
 </section>
 
-<!-- 14 二维码 -->
+<!-- ========== 14 QR ========== -->
 <section class="slide cover" data-title="体验">
-  <div class="orb orb-t"></div><div class="orb orb-g"></div>
+  <div class="orb orb-t"></div><div class="orb orb-g"></div><div class="orb orb-c"></div>
   <div class="kicker rv">Try it now</div>
   <h2 class="rv d1">扫码即刻体验心锚</h2>
   <div class="qr-panel rv d2" style="margin-top:8px">
-    <div class="qr-box" id="qrBox"></div>
+    <div class="qr-box glow-ring" id="qrBox"></div>
     <div>
       <h3>在线体验站</h3>
       <p class="lead" style="font-size:19px;word-break:break-all;margin-bottom:12px" id="urlText">—</p>
-      <p class="muted small" style="line-height:1.85">
+      <p class="muted small" style="line-height:1.9">
         风险驾驶舱 · 个案雷达与趋势 · 打卡评估 · 帮教方案 · 五语切换<br>
         合成虚构数据 · AI 辅助研判 · 人工最终决策
       </p>
     </div>
   </div>
-  <div class="card rv d3" style="margin-top:24px">
+  <div class="glass glow-ring rv d3" style="margin-top:22px">
     <h3 style="margin:0">谢谢聆听 · 心锚队（广西警察学院）</h3>
   </div>
 </section>
@@ -727,27 +961,48 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
 </div>
 
 <script>
-/* ===== particles ===== */
+/* ========== particles + glow field ========== */
 (function(){
-  const c=document.getElementById('fx'), ctx=c.getContext('2d');
-  let w,h,parts=[];
+  const c=document.getElementById('fx'),ctx=c.getContext('2d');
+  let w,h,parts=[],t=0;
   function resize(){
     w=c.width=innerWidth; h=c.height=innerHeight;
-    const n=Math.min(60,Math.floor(w*h/22000));
-    parts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,
-      r:Math.random()*1.6+.4,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,a:Math.random()*.45+.15}));
+    const n=Math.min(80,Math.floor(w*h/18000));
+    parts=Array.from({length:n},(_,i)=>({
+      x:Math.random()*w,y:Math.random()*h,
+      r:Math.random()*1.8+.4,
+      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+      a:Math.random()*.5+.2,
+      hue:[172,200,220,42][i%4]
+    }));
   }
   function tick(){
+    t+=0.008;
     ctx.clearRect(0,0,w,h);
+    // soft moving lights
+    for(let i=0;i<3;i++){
+      const gx=w*(.25+.22*i+Math.sin(t+i)*0.08);
+      const gy=h*(.3+.18*i+Math.cos(t*.8+i)*0.1);
+      const g=ctx.createRadialGradient(gx,gy,0,gx,gy,Math.min(w,h)*0.35);
+      g.addColorStop(0,`hsla(${[172,205,42][i]},80%,60%,0.07)`);
+      g.addColorStop(1,'transparent');
+      ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+    }
     for(let i=0;i<parts.length;i++){
-      const p=parts[i]; p.x+=p.vx; p.y+=p.vy;
+      const p=parts[i];
+      p.x+=p.vx; p.y+=p.vy;
       if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(120,200,255,${p.a})`; ctx.fill();
+      const glow=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4);
+      glow.addColorStop(0,`hsla(${p.hue},90%,70%,${p.a})`);
+      glow.addColorStop(1,'transparent');
+      ctx.fillStyle=glow; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*4,0,Math.PI*2); ctx.fill();
       for(let j=i+1;j<parts.length;j++){
-        const q=parts[j], dx=p.x-q.x, dy=p.y-q.y, d=dx*dx+dy*dy;
-        if(d<11000){ ctx.strokeStyle=`rgba(46,196,182,${.1*(1-d/11000)})`;
-          ctx.lineWidth=.5; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+        const q=parts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;
+        if(d<10000){
+          ctx.strokeStyle=`hsla(${p.hue},80%,70%,${.12*(1-d/10000)})`;
+          ctx.lineWidth=.55;
+          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
+        }
       }
     }
     requestAnimationFrame(tick);
@@ -755,7 +1010,7 @@ ul.clean li::before{content:"";position:absolute;left:6px;top:22px;width:10px;he
   addEventListener('resize',resize); resize(); tick();
 })();
 
-/* ===== QR ===== */
+/* ========== QR ========== */
 function qr_encode(text){
   const EXP=new Array(512),LOG=new Array(256);
   (function(){let x=1;for(let i=0;i<255;i++){EXP[i]=x;LOG[x]=i;x<<=1;if(x&0x100)x^=0x11D}
@@ -837,13 +1092,13 @@ function renderQR(url){
   document.getElementById('urlText').textContent=url;
 }
 
-/* ===== trend ===== */
+/* ========== trend ========== */
 function drawTrend(){
   const peaks=[4,5,5,6,6,7,6,7,7,8,7,8,8,7,8,8,9,8,8,9,8,9,9,8,9,9,8,9,9,9,
                8,9,9,9,9,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9];
   const ma=peaks.map((_,i)=>{const s=Math.max(0,i-6),a=peaks.slice(s,i+1);
     return a.reduce((x,y)=>x+y,0)/a.length;});
-  const w=520,h=240,pl=36,pr=14,pt=14,pb=26,iw=w-pl-pr,ih=h-pt-pb,n=peaks.length;
+  const w=520,h=230,pl=36,pr=14,pt=14,pb=24,iw=w-pl-pr,ih=h-pt-pb,n=peaks.length;
   const x=i=>pl+i*(iw/(n-1)),y=v=>pt+ih-(v/10)*ih;
   let grid='';
   for(let v=0;v<=10;v+=2) grid+=`<line x1="${pl}" y1="${y(v)}" x2="${w-pr}" y2="${y(v)}" stroke="rgba(255,255,255,.12)"/>
@@ -852,12 +1107,13 @@ function drawTrend(){
   document.getElementById('chartTrend').innerHTML=`<svg viewBox="0 0 ${w} ${h}">
     ${grid}
     <path class="draw" d="${path(peaks)}" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
-    <path class="draw" d="${path(ma)}" fill="none" stroke="#2EC4B6" stroke-width="2.8" stroke-linecap="round"/>
-    <circle class="pop" cx="${x(56)}" cy="${y(ma[56])}" r="6" fill="#FF6B6B"/>
+    <path class="draw" d="${path(ma)}" fill="none" stroke="#2EE6D6" stroke-width="2.8" stroke-linecap="round"
+      style="filter:drop-shadow(0 0 8px rgba(46,230,214,.65))"/>
+    <circle class="pop" cx="${x(56)}" cy="${y(ma[56])}" r="6" fill="#FF6B7A"/>
   </svg>`;
 }
 
-/* ===== counters ===== */
+/* ========== counters ========== */
 function animCounts(root){
   root.querySelectorAll('[data-count],[data-c]').forEach(el=>{
     const target=+(el.dataset.count||el.dataset.c||0);
@@ -870,104 +1126,72 @@ function animCounts(root){
     })(t0);
   });
   root.querySelectorAll('.ui-bar i[data-w]').forEach(bar=>{
-    setTimeout(()=>{bar.style.width=bar.dataset.w;},200);
+    setTimeout(()=>{bar.style.width=bar.dataset.w;},220);
   });
 }
 
-/* ===== DEMO WALKTHROUGH ===== */
+/* ========== DEMO ========== */
 const SCENE_META=[
-  {title:'心锚 · 登录', hint:'演示账号一键进入系统'},
-  {title:'心锚 · 风险驾驶舱', hint:'红橙绿态势与待处置一屏掌握'},
-  {title:'心锚 · 个案详情', hint:'雷达 / 趋势 / 阻断三步'},
-  {title:'心锚 · 打卡评估', hint:'六题约 30 秒，提交即触发评估'},
-  {title:'心锚 · 闭环完成', hint:'研判—处置—复评全程留痕'}
+  {title:'心锚 · 登录',hint:'演示账号一键进入系统'},
+  {title:'心锚 · 风险驾驶舱',hint:'红橙绿态势与待处置一屏掌握'},
+  {title:'心锚 · 个案详情',hint:'五维雷达 / 60 日趋势 / 阻断三步'},
+  {title:'心锚 · 打卡评估',hint:'六题约 30 秒，提交即触发评估'},
+  {title:'心锚 · 多语言 / 东盟',hint:'中英越泰印尼马来一键切换'},
+  {title:'心锚 · 处置留痕',hint:'方案派发与审计闭环'},
+  {title:'心锚 · 复评完成',hint:'研判—处置—复评全程留痕'}
 ];
-let demoIdx=0, demoTimer=null, demoRunning=false;
+let demoIdx=0,demoTimer=null,demoRunning=false;
 
 function moveCursor(id){
-  const cur=document.getElementById('cursor');
-  const el=document.getElementById(id);
+  const cur=document.getElementById('cursor'),el=document.getElementById(id);
   if(!cur||!el) return;
   const scr=document.getElementById('screen');
-  const sr=scr.getBoundingClientRect(), er=el.getBoundingClientRect();
+  const sr=scr.getBoundingClientRect(),er=el.getBoundingClientRect();
   cur.style.opacity='1';
-  cur.style.left=(er.left-sr.left+er.width*0.7)+'px';
+  cur.style.left=(er.left-sr.left+er.width*0.65)+'px';
   cur.style.top=(er.top-sr.top+er.height*0.55)+'px';
-  return el;
 }
 function clickCursor(){
-  const cur=document.getElementById('cursor');
-  if(!cur) return;
+  const cur=document.getElementById('cursor'); if(!cur)return;
   cur.classList.remove('click'); void cur.offsetWidth; cur.classList.add('click');
 }
 function showScene(i){
   demoIdx=i;
-  document.querySelectorAll('#screen .scene').forEach(s=>{
-    s.classList.toggle('on', +s.dataset.s===i);
-  });
-  document.querySelectorAll('#stepList .step-item').forEach(s=>{
-    s.classList.toggle('act', +s.dataset.i===i);
-  });
+  document.querySelectorAll('#screen .scene').forEach(s=>s.classList.toggle('on',+s.dataset.s===i));
+  document.querySelectorAll('#stepList .step-item').forEach(s=>s.classList.toggle('act',+s.dataset.i===i));
   document.getElementById('deviceTitle').textContent=SCENE_META[i].title;
   document.getElementById('demoHint').textContent=SCENE_META[i].hint;
-  // animate bars/counters when scene shows
   const sc=document.querySelector(`#screen .scene[data-s="${i}"]`);
   if(sc) animCounts(sc);
 }
 function runDemoStep(){
   if(!demoRunning) return;
-  const i=demoIdx;
-  const cur=document.getElementById('cursor');
-  if(i===0){
-    moveCursor('btnLogin'); clickCursor();
-    demoTimer=setTimeout(()=>{ showScene(1); runDemoStep(); }, 1400);
-  } else if(i===1){
-    moveCursor('btnView1'); clickCursor();
-    demoTimer=setTimeout(()=>{ showScene(2); runDemoStep(); }, 1600);
-  } else if(i===2){
-    moveCursor('btnHandle'); clickCursor();
-    demoTimer=setTimeout(()=>{ showScene(3); runDemoStep(); }, 1600);
-  } else if(i===3){
-    moveCursor('btnSubmit'); clickCursor();
-    demoTimer=setTimeout(()=>{ showScene(4); runDemoStep(); }, 1500);
-  } else {
-    if(cur) cur.style.opacity='0';
-    demoTimer=setTimeout(()=>{ showScene(0); runDemoStep(); }, 1800);
-  }
+  const i=demoIdx,cur=document.getElementById('cursor');
+  const next=(to,delay)=>{ demoTimer=setTimeout(()=>{ showScene(to); runDemoStep(); },delay); };
+  if(i===0){ moveCursor('btnLogin'); clickCursor(); next(1,1400); }
+  else if(i===1){ moveCursor('btnView1'); clickCursor(); next(2,1600); }
+  else if(i===2){ moveCursor('btnHandle'); clickCursor(); next(3,1600); }
+  else if(i===3){ moveCursor('btnSubmit'); clickCursor(); next(4,1500); }
+  else if(i===4){ moveCursor('langEn'); clickCursor(); next(5,1600); }
+  else if(i===5){ moveCursor('btnAudit'); clickCursor(); next(6,1500); }
+  else { if(cur) cur.style.opacity='0'; next(0,2000); }
 }
-function startDemo(){
-  if(demoRunning) return;
-  demoRunning=true;
-  showScene(0);
-  runDemoStep();
-}
+function startDemo(){ if(demoRunning) return; demoRunning=true; showScene(0); runDemoStep(); }
 function stopDemo(){
-  demoRunning=false;
-  if(demoTimer) clearTimeout(demoTimer);
+  demoRunning=false; if(demoTimer) clearTimeout(demoTimer);
   const cur=document.getElementById('cursor'); if(cur) cur.style.opacity='0';
-}
-function jumpScene(i){
-  stopDemo();
-  showScene(i);
-  // brief pause then continue
-  setTimeout(()=>{ if(document.querySelector('.slide.on')?.id==='') {} startDemo(); }, 80);
-  // restart from that scene
-  setTimeout(()=>{ demoRunning=true; runDemoStep(); }, 200);
 }
 document.querySelectorAll('#stepList .step-item').forEach(el=>{
   el.addEventListener('click',()=>{
-    const i=+el.dataset.i;
-    stopDemo(); showScene(i);
-    demoRunning=true;
-    setTimeout(runDemoStep, 600);
+    stopDemo(); showScene(+el.dataset.i);
+    demoRunning=true; setTimeout(runDemoStep,700);
   });
 });
 
-/* ===== deck ===== */
+/* ========== deck ========== */
 const slides=[...document.querySelectorAll('.slide')];
-let idx=0, autoTimer=null;
+let idx=0,autoTimer=null;
 document.getElementById('pageTotal').textContent=slides.length;
-
 function show(i){
   idx=Math.max(0,Math.min(slides.length-1,i));
   slides.forEach((s,k)=>s.classList.toggle('on',k===idx));
@@ -976,9 +1200,7 @@ function show(i){
   document.getElementById('progress').style.width=((idx+1)/slides.length*100)+'%';
   animCounts(slides[idx]);
   if(slides[idx].dataset.title==='预警与趋势') drawTrend();
-  // demo auto-run when on demo slide
-  if(slides[idx].dataset.title==='平台演示'){ startDemo(); }
-  else { stopDemo(); }
+  if(slides[idx].dataset.title==='功能演示') startDemo(); else stopDemo();
 }
 function next(){show(idx+1)}
 function prev(){show(idx-1)}
@@ -986,7 +1208,7 @@ function toggleAuto(){
   const b=document.getElementById('btnAuto');
   if(autoTimer){ clearInterval(autoTimer); autoTimer=null; b.classList.remove('on'); b.textContent='▶ 自动'; return; }
   b.classList.add('on'); b.textContent='❚❚ 暂停';
-  autoTimer=setInterval(()=>{ if(idx>=slides.length-1) show(0); else next(); }, 10000);
+  autoTimer=setInterval(()=>{ if(idx>=slides.length-1) show(0); else next(); }, 12000);
 }
 function toggleFull(){
   if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();
@@ -1013,7 +1235,6 @@ document.addEventListener('touchend',e=>{
   if(dx<-50) next(); else if(dx>50) prev();
 },{passive:true});
 
-// typing
 (function(){
   const el=document.getElementById('typeLine'); if(!el)return;
   const full=el.textContent; el.textContent=''; let i=0;
