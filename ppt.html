@@ -48,9 +48,8 @@ html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--navy);
 .slide.dark{background:linear-gradient(145deg,rgba(8,22,42,.90),rgba(12,36,68,.86),rgba(6,18,36,.93))}
 .slide.light{background:linear-gradient(165deg,#F6FAFF,#E7F0FB,#DAE6F6);color:var(--ink)}
 .slide.cover{background:
-  radial-gradient(900px 520px at 72% 12%, rgba(46,230,214,.26), transparent 55%),
-  radial-gradient(800px 480px at 12% 88%, rgba(240,197,106,.18), transparent 55%),
-  linear-gradient(135deg,#050D1A,#0A1B30 45%,#123A6B)}
+  radial-gradient(700px 400px at 70% 18%, rgba(46,180,190,.14), transparent 60%),
+  linear-gradient(155deg,#050C18 0%,#0A1B30 55%,#0C2440 100%)}
 .slide.light .aurora{opacity:.30}
 
 /* two-column default: text | live ui */
@@ -296,7 +295,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 .slide.cover{isolation:isolate}
 .slide.cover .split{position:relative;z-index:3}
 .cover-grid{
-  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.10;
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.05;
   background-image:
     linear-gradient(rgba(110,200,255,.35) 1px,transparent 1px),
     linear-gradient(90deg,rgba(110,200,255,.35) 1px,transparent 1px);
@@ -316,10 +315,10 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 .cover-title .char{
   display:inline-block;opacity:0;transform:translateY(40px) rotateX(50deg);
   animation:charIn .8s cubic-bezier(.2,.9,.25,1) forwards;
-  background:linear-gradient(120deg,#fff 10%,#9DFFF4 32%,#D4A853 55%,#7EC8FF 78%,#fff 95%);
+  background:linear-gradient(115deg,#F5FAFF 0%,#DDE8F6 40%,#FFFFFF 55%,#C8D8EC 75%,#F5FAFF 100%);
   background-size:220% auto;
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 12px rgba(46,230,214,.28));
+  filter:drop-shadow(0 0 10px rgba(120,180,255,.18));
   animation:charIn .8s cubic-bezier(.2,.9,.25,1) forwards, shine 5s linear infinite
 }
 .cover-title .char:nth-child(1){animation-delay:.15s, .8s}
@@ -329,7 +328,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 }
 .cover-glow{
   position:absolute;left:50%;top:48%;width:420px;height:420px;transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(46,230,214,.22),rgba(110,200,255,.08) 45%,transparent 70%);
+  background:radial-gradient(circle,rgba(100,160,220,.14),transparent 68%);
   filter:blur(10px);pointer-events:none;z-index:1;
   animation:glowPulse 4s ease-in-out infinite
 }
@@ -343,8 +342,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 }
 .horizon{
   position:absolute;left:0;right:0;top:58%;height:1px;z-index:1;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(46,230,214,.35),rgba(110,200,255,.45),rgba(240,197,106,.28),transparent);
-  box-shadow:0 0 18px rgba(46,230,214,.28)
+  background:linear-gradient(90deg,transparent,rgba(140,180,220,.22),rgba(160,200,240,.28),transparent);
+  box-shadow:0 0 12px rgba(120,170,220,.18)
 }
 .horizon::before{
   content:"";position:absolute;left:20%;right:20%;top:-2px;height:4px;
@@ -376,6 +375,43 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
     radial-gradient(700px 420px at -5% 100%, rgba(110,200,255,.12), transparent 50%),
     linear-gradient(150deg,#071426 0%,#0B2140 48%,#0A1B30 100%) !important
 }
+
+/* clean step rail (no wrap) */
+.step-rail{display:flex;flex-direction:column;gap:0;margin:4px 0 14px;position:relative;padding-left:8px}
+.step-rail::before{
+  content:"";position:absolute;left:19px;top:18px;bottom:18px;width:2px;
+  background:linear-gradient(180deg,rgba(46,230,214,.55),rgba(110,200,255,.35),rgba(240,197,106,.25));
+  border-radius:2px
+}
+.step-rail-item{display:flex;align-items:center;gap:14px;padding:9px 0;position:relative}
+.step-rail-item .num{
+  width:28px;height:28px;border-radius:10px;flex-shrink:0;
+  background:rgba(46,230,214,.16);border:1px solid rgba(46,230,214,.4);
+  color:#9DFFF4;font-size:11px;font-weight:800;
+  display:grid;place-items:center;
+  box-shadow:0 0 16px rgba(46,230,214,.2)
+}
+.step-rail-item .txt{font-size:15px;font-weight:650;color:#EAF2FF;letter-spacing:.3px}
+.step-rail-item .sub{font-size:12px;color:#8FB0CC;margin-left:8px;font-weight:400}
+.step-rail-item:nth-child(1) .num{background:rgba(46,230,214,.18);border-color:rgba(46,230,214,.45)}
+.step-rail-item:nth-child(2) .num{background:rgba(110,200,255,.16);border-color:rgba(110,200,255,.4)}
+.step-rail-item:nth-child(3) .num{background:rgba(110,200,255,.14);border-color:rgba(110,200,255,.35)}
+.step-rail-item:nth-child(4) .num{background:rgba(240,197,106,.14);border-color:rgba(240,197,106,.38);color:#FFE3A1}
+.step-rail-item:nth-child(5) .num{background:rgba(240,197,106,.12);border-color:rgba(240,197,106,.32);color:#FFE3A1}
+.step-rail-item:nth-child(6) .num{background:rgba(61,255,168,.12);border-color:rgba(61,255,168,.32);color:#7DFFC4}
+
+/* calmer flow for remaining pages */
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;overflow:hidden;margin:8px 0}
+.flow .node{
+  flex:1 1 0;min-width:0;white-space:nowrap;font-size:11.5px;padding:9px 6px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  border-radius:10px;text-align:center;font-weight:650
+}
+.flow .arrow{font-size:13px;flex:0 0 auto;opacity:.85;text-shadow:none}
+.flow.vertical{flex-direction:column;align-items:stretch;flex-wrap:nowrap}
+.flow.vertical .node{width:100%}
+.flow.vertical .arrow{transform:rotate(90deg);align-self:center}
+
 </style>
 </head>
 <body>
@@ -537,13 +573,13 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
   <h2 class="rv d1">从每日一打，到可执行的阻断动作</h2>
   <div class="split">
     <div>
-      <div class="flow rv d2" style="margin-bottom:12px">
-        <div class="node">打卡</div><div class="arrow">→</div>
-        <div class="node">建模</div><div class="arrow">→</div>
-        <div class="node">净风险</div><div class="arrow">→</div>
-        <div class="node">预警</div><div class="arrow">→</div>
-        <div class="node">三步</div><div class="arrow">→</div>
-        <div class="node">复评</div>
+      <div class="step-rail rv d2">
+        <div class="step-rail-item"><div class="num">01</div><div class="txt">每日打卡<span class="sub">EMA 六题</span></div></div>
+        <div class="step-rail-item"><div class="num">02</div><div class="txt">信号建模<span class="sub">渴求五维</span></div></div>
+        <div class="step-rail-item"><div class="num">03</div><div class="txt">净风险计算<span class="sub">规则 + LLM</span></div></div>
+        <div class="step-rail-item"><div class="num">04</div><div class="txt">三级预警<span class="sub">红橙绿 + 爬升</span></div></div>
+        <div class="step-rail-item"><div class="num">05</div><div class="txt">阻断三步<span class="sub">当下可执行</span></div></div>
+        <div class="step-rail-item"><div class="num">06</div><div class="txt">复评留痕<span class="sub">闭环审计</span></div></div>
       </div>
       <div class="row-cards rv d3">
         <div class="glass teal" style="padding:14px"><div class="stat teal" style="font-size:28px">1 次/日</div><div class="stat-l">EMA 打卡</div></div>
@@ -985,10 +1021,10 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       </div>
       <div class="glass  rv d3" style="margin-top:12px">
         <div class="flow" style="margin:0">
-          <div class="node">研判</div><div class="arrow">→</div>
-          <div class="node">派发</div><div class="arrow">→</div>
-          <div class="node">留痕</div><div class="arrow">→</div>
-          <div class="node">复评</div><div class="arrow">→</div>
+          <div class="node">研判</div><div class="arrow">›</div>
+          <div class="node">派发</div><div class="arrow">›</div>
+          <div class="node">留痕</div><div class="arrow">›</div>
+          <div class="node">复评</div><div class="arrow">›</div>
           <div class="node">迭代</div>
         </div>
       </div>
@@ -1302,7 +1338,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
     parts=Array.from({length:n},(_,i)=>({
       x:Math.random()*w,y:Math.random()*h,
       r:Math.random()*2+.4,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,
-      a:Math.random()*.5+.25,hue:[172,195,215,42,280][i%5]
+      a:Math.random()*.5+.25,hue:210
     }));
   }
   function tick(){
@@ -1359,17 +1395,17 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       life:0, max:80+Math.random()*40,
       hue:Math.random()>.5?172:42
     });
-    setTimeout(spawnComet, 4000+Math.random()*3500);
+    setTimeout(spawnComet, 7000+Math.random()*5000);
   }
   function init(){
     resize();
-    const n=Math.min(90, Math.floor(w*h/16000));
+    const n=Math.min(55, Math.floor(w*h/24000));
     parts=Array.from({length:n},(_,i)=>({
       x:Math.random()*w, y:Math.random()*h,
       r:Math.random()*2.2+.5,
-      vx:(Math.random()-.5)*.55, vy:(Math.random()-.5)*.55,
+      vx:(Math.random()-.5)*.28, vy:(Math.random()-.5)*.28,
       a:Math.random()*.55+.3,
-      hue:[172,195,215,42,280][i%5],
+      hue:210,
       tw:Math.random()*Math.PI*2
     }));
     comets=[];
@@ -1383,7 +1419,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
       const gx=w*(.2+.22*i+Math.sin(t*0.7+i)*.08);
       const gy=h*(.28+.16*i+Math.cos(t*0.55+i)*.1);
       const g=ctx.createRadialGradient(gx,gy,0,gx,gy,Math.min(w,h)*.38);
-      g.addColorStop(0,`hsla(${[172,205,42,280][i]},90%,65%,.10)`);
+      g.addColorStop(0,`hsla(210,70%,55%,.05)`);
       g.addColorStop(1,'transparent');
       ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
     }
@@ -1392,7 +1428,7 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
     // constellation
     for(let i=0;i<parts.length;i++){
       const p=parts[i];
-      p.x+=p.vx; p.y+=p.vy; p.tw+=0.04;
+      p.x+=p.vx*.55; p.y+=p.vy*.55; p.tw+=0.025;
       if(p.x<-20)p.x=w+20; if(p.x>w+20)p.x=-20;
       if(p.y<-20)p.y=h+20; if(p.y>h+20)p.y=-20;
       const tw=0.65+0.35*Math.sin(p.tw);
@@ -1443,8 +1479,8 @@ ul.clean li::before{content:"";position:absolute;left:2px;top:18px;width:8px;hei
 
     // orbiting sparks around center
     const cx=w*0.5, cy=h*0.48;
-    for(let i=0;i<4;i++){
-      const ang=t*0.7+i*Math.PI/2;
+    for(let i=0;i<2;i++){
+      const ang=t*0.35+i*Math.PI;
       const rad=120+Math.sin(t+i)*18;
       const x=cx+Math.cos(ang)*rad*1.35;
       const y=cy+Math.sin(ang)*rad*0.75;
